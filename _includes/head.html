@@ -3,5 +3,18 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% if page.title %}{{ site.title | escape }} — {{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
+
+  <link rel="canonical" href="{{ site.url }}{{ site.baseurl }}{{ page.url }}">
+  
+  {% for lang in site.lang %}
+  {% assign locale = site.locales[lang] %}
+  {% if locale.baseurl != page_locale.baseurl %}
+  {% assign localized_page = localized_pages | where: "lang", lang | first %}
+  {% if localized_page %}
+  <link rel="alternate" hreflang="{{ lang }}" href="{{ site.url }}{{ site.baseurl }}{{ localized_page.url }}">
+  {% endif %}
+  {% endif %}
+  {% endfor %}
+  
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/main.css?{{ site.time | date: '%s%N' }}">
 </head>
