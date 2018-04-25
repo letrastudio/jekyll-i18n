@@ -54,13 +54,11 @@
 }
 
 .banner {
-  background: $accent-color;
-  .wrapper {
-    padding: $base-padding;
-  }
-  .banner-title {
-    font-size: 1.5em;
-    font-weight: 800;
+  background-size: cover;
+  background-position: center center;
+  height: 15em;
+  @include media($large-screen-up) {
+    height: 30em;
   }
 }
 
