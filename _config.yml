@@ -3,8 +3,8 @@ title: Jekyll I18n
 timezone: Europe/Lisbon
 lang: [en, pt, es, zh]
 description: A boilerplate solution for plugin-free multilingual sites.
-url: 
-baseurl: /baseurl
+url: https://letrastudio.github.io
+baseurl: /jekyll-i18n
 github_username: letrastudio
 
 collections:
