@@ -74,3 +74,14 @@
     margin: 0 0 0 $text-spacing;
   }
 }
+
+html[dir="rtl"] .text-container {
+  ul, ol {
+    padding-left: 0;
+    padding-right: $text-spacing * 2;
+  }
+  
+  .highlight pre {
+    direction: ltr;
+  }
+}

@@ -1,7 +1,7 @@
 {% include i18n.html obj=page %}
 
 <!DOCTYPE html>
-<html lang="{{ page_lang }}">
+<html lang="{{ page_lang }}" {% if page_locale.direction == 'rtl' %}dir="rtl"{% endif %}>
 
 {% include head.html %}
 

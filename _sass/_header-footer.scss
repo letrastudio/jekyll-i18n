@@ -53,6 +53,21 @@
   }
 }
 
+html[dir="rtl"] .site-nav {
+  @include media($large-screen-up) {
+    ul + ul {
+      margin-left: 0;
+      margin-right: $base-padding * 2;
+    }
+  }
+  li {
+    &:not(:last-child) {
+      margin-right: 0;
+      margin-left: 1em;
+    }
+  }
+}
+
 .banner {
   background-size: cover;
   background-position: center center;
@@ -80,6 +95,7 @@
   font-family: SF Mono, monospace;
   font-size: 0.75em;
   overflow-x: scroll;
+  direction: ltr;
   
   a {
     text-decoration: underline;
