@@ -16,7 +16,10 @@ layout: default
 
   {% if page.collection_label %}
   <div class="grid">
-    {% assign collection = site[page.collection_label] | sort: "slug" %}
+    {% assign collection = site[page.collection_label] %}
+    {% if collection.size > 0 %}
+    {% assign collection = collection | sort: "slug" %}
+    {% endif %}
     {% for document in collection %}
     {% include i18n.html obj=document %}
     <div class="grid-item">
