@@ -19,6 +19,7 @@ $scale-factor: $base-font-size / 1em;
 
 // Spacing
 $base-padding: 2rem * $scale-factor;
+$half-padding: $base-padding / 2;
 $base-spacing: 2em;
 $text-spacing: 1em;
 

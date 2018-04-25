@@ -6,12 +6,33 @@
 }
 
 .site-nav {
-  margin-top: 1em;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  margin-top: $base-padding;
+  ul {
+    padding-top: $half-padding;
+    border-top: 1px solid $blue;
+    
+    & + ul {
+      margin-top: $half-padding;
+    }
+  }
+  @include media($large-screen-up) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 0;
+    
+    ul {
+      border-top: none;
+      
+      & + ul {
+        margin-top: 0;
+        margin-left: $base-padding * 2;
+      }
+    }
+  }
   li {
     display: inline-block;
+    margin: 0.25em 0;
     &:not(:last-child) {
       margin-right: 1em;
     }
@@ -45,7 +66,7 @@
 
 .debug {
   summary {
-    padding: $base-padding / 2 $base-padding;
+    padding: $half-padding $base-padding;
   }
 }
 
