@@ -47,7 +47,8 @@
       color: $medium-gray;
       cursor: not-allowed;
     }
-    &[aria-current] {
+    &[aria-current],
+    &[href]:hover {
       border-bottom: 2px solid;
     }
   }
