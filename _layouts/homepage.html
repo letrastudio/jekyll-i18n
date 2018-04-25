@@ -6,9 +6,7 @@ layout: default
 <div class="banner" style="background-image: url('{{ page.banner_image | default: fallback_page.banner_image | prepend: site.baseurl }}')"></div>
 <div class="page wrapper">
   
-  <header class="page-header">
-    <h1 class="page-title">{{ page.headline }}</h1>
-  </header>
+  <h1 class="page-headline">{{ page.headline }}</h1>
   
   <div class="page-content text-container">
     {{ content }}
