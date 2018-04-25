@@ -65,6 +65,10 @@
 .debug {
   summary {
     padding: $half-padding $base-padding;
+    color: $medium-gray;
+  }
+  &[open] summary {
+    color: inherit;
   }
 }
 
