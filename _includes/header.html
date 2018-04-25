@@ -23,13 +23,13 @@
         {% for lang in site.lang %}
         {% assign locale = site.locales[lang] %}
         {% if locale.baseurl == page_locale.baseurl %}
-        <li><a href="{{ page.url | prepend: site.baseurl }}" aria-current="true">{{ locale.name }}</a></li>
+        <li><a href="{{ page.url | prepend: site.baseurl }}" aria-current="true" lang="{{ lang }}">{{ locale.name }}</a></li>
         {% else %}
         {% assign localized_page = localized_pages | where: "lang", lang | first %}
         {% if localized_page %}
-        <li><a href="{{ localized_page.url | prepend: site.baseurl }}">{{ locale.name }}</a></li>
+        <li><a href="{{ localized_page.url | prepend: site.baseurl }}" lang="{{ lang }}">{{ locale.name }}</a></li>
         {% else %}
-        <li><a>{{ locale.name }}</a></li>
+        <li><a lang="{{ lang }}">{{ locale.name }}</a></li>
         {% endif %}
         {% endif %}
         {% endfor %}
