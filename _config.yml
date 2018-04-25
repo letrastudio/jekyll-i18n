@@ -1,0 +1,106 @@
+---
+title: Jekyll I18n
+timezone: Europe/Lisbon
+lang: [en, pt, es, zh]
+description: A boilerplate solution for plugin-free multilingual sites.
+url: 
+baseurl: /baseurl
+github_username: letrastudio
+
+collections:
+  pages:
+    output: true
+    permalink: /:path/
+  pages_pt:
+    output: true
+    permalink: /pt/:path/
+  pages_es:
+    output: true
+    permalink: /es/:path/
+  pages_zh:
+    output: true
+    permalink: /zh/:path/
+  posts:
+    permalink: /:categories/:year/:month/:day/:title/
+  posts_pt:
+    output: true
+    permalink: /pt/:categories/:year/:month/:day/:title/
+  posts_es:
+    output: true
+    permalink: /es/:categories/:year/:month/:day/:title/
+  posts_zh:
+    output: true
+    permalink: /zh/:categories/:year/:month/:day/:title/
+  photos:
+    output: true
+    permalink: /photos/:path/
+  photos_pt:
+    output: true
+    permalink: /pt/fotografias/:path/
+
+defaults:
+- scope:
+    path: ''
+    type: pages
+  values:
+    layout: page
+    lang: en
+- scope:
+    path: ''
+    type: pages_pt
+  values:
+    layout: page
+    lang: pt
+- scope:
+    path: ''
+    type: pages_es
+  values:
+    layout: page
+    lang: es
+- scope:
+    path: ''
+    type: pages_zh
+  values:
+    layout: page
+    lang: zh
+- scope:
+    path: ''
+    type: posts
+  values:
+    layout: post
+    lang: en
+- scope:
+    path: ''
+    type: posts_pt
+  values:
+    layout: post
+    lang: pt
+- scope:
+    path: ''
+    type: posts_es
+  values:
+    layout: post
+    lang: es
+- scope:
+    path: ''
+    type: posts_zh
+  values:
+    layout: post
+    lang: zh
+- scope:
+    path: ''
+    type: photos
+  values:
+    layout: photo
+    lang: en
+- scope:
+    path: ''
+    type: photos_pt
+  values:
+    layout: photo
+    lang: pt
+
+collections_dir: collections
+markdown: kramdown
+sass:
+  style: compressed

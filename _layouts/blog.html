@@ -1,0 +1,16 @@
+---
+layout: page
+---
+
+{% include i18n.html obj=page %}
+{% if page_lang == default_lang %}
+  {% assign blog_collection = "posts" %}
+{% else %}
+  {% assign blog_collection = "posts_" | append: page_lang %}
+{% endif %}
+
+<ul>
+  {% for post in site[blog_collection] %}
+  <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
+  {% endfor %}
+</ul>

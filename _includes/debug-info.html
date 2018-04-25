@@ -1,0 +1,50 @@
+<details class="debug" open>
+  <summary>Debug Info</summary>
+  <div class="debug-wrapper">
+    <table>
+      <tr>
+        <th>page.lang</th>
+        <td>{{ page.lang }}</td>
+      </tr>
+      <tr>
+        <th>page.slug</th>
+        <td>{{ page.slug }}</td>
+      </tr>
+      <tr>
+        <th>page.content_id</th>
+        <td>{{ content_id }}</td>
+      </tr>
+      <tr>
+        <th>page.path</th>
+        <td>{{ page.path }}</td>
+      </tr>
+      <tr>
+        <th>page.collection</th>
+        <td>{{ page.collection }}</td>
+      </tr>
+      <tr>
+        <th>translated_collections</th>
+        <td>{{ translated_collections | join: ", " }}</td>
+      </tr>
+      <tr>
+        <th>translated_pages</th>
+        <td>
+          {% for translation in translated_pages %}
+          <a href="{{ translation.url }}">{{ translation.lang }}</a>{% unless forloop.last %},{% endunless %}
+          {% endfor %}
+        </td>
+      </tr>
+      <tr>
+        <th>fallback_translation</th>
+        <td>
+          {% if fallback_translation %}
+          <a href="{{ fallback_translation.url }}">{{ fallback_translation.title }}</a>
+          {% else %}
+          {{ fallback_translation | inspect }}
+          {% endif %}
+        </td>
+      </tr>
+    </table>
+    <pre hidden>{{ page | inspect }}</pre>
+  </div>
+</details>

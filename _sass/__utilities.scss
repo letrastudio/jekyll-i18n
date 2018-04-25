@@ -1,0 +1,99 @@
+/** Mixins
+*** ======================================================================== **/
+
+// Media Queries
+// Usage examples:
+// @include media($large-screen-up)
+// @include media(min-width 960px)
+// @include media($large-screen-up, $landscape)
+// @include media(min-width 960px, min-aspect-ratio "5/4")
+@mixin media($args...) {
+  $query: "";
+  @each $arg in $args {
+    $query: $query + " and (" + nth($arg, 1) + ": " + nth($arg, 2) + ")";
+  }
+  @media screen #{$query} {
+    @content;
+  }
+}
+
+
+// Clearfix
+@mixin clearfix {
+  &::after {
+    clear: both;
+    content: "";
+    display: block;
+  }
+}
+
+
+// Hide Text
+// For replacing text with a background image, such as a logo, while keeping the
+// text accessible to screen readers.
+@mixin hide-text {
+  overflow: hidden;
+  text-indent: 101%;
+  white-space: nowrap;
+}
+
+
+
+
+/** Font Stacks
+*** ======================================================================== **/
+
+$sans-serif: (
+  "Helvetica Neue",
+  "Helvetica",
+  "Arial",
+  sans-serif
+);
+
+$serif: (
+  "Georgia",
+  "Times",
+  "Times New Roman",
+  serif
+);
+
+$system-font: (
+  -apple-system,
+  BlinkMacSystemFont,
+  "Segoe UI",
+  "Roboto",
+  "Droid Sans",
+  "Helvetica Neue",
+  sans-serif
+);
+
+
+
+
+/** Selector Groups
+*** ======================================================================== **/
+
+$all-buttons: (
+  "button",
+  "[type='button']",
+  "[type='reset']",
+  "[type='submit']",
+);
+
+$all-text-inputs: (
+  "[type='color']",
+  "[type='date']",
+  "[type='datetime-local']",
+  "[type='email']",
+  "[type='month']",
+  "[type='number']",
+  "[type='password']",
+  "[type='search']",
+  "[type='tel']",
+  "[type='text']",
+  "[type='time']",
+  "[type='url']",
+  "[type='week']",
+  "input:not([type])",
+  "textarea",
+);

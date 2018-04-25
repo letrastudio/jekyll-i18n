@@ -1,0 +1,27 @@
+---
+layout: default
+---
+
+{% include i18n.html obj=page %}
+
+<div class="photo wrapper">
+  
+  <header class="page-header">
+    <h1 class="page-title">{{ page.title }}</h1>
+  </header>
+
+  <figure>
+    <img src="{{ page.image | default: fallback_translation.image | prepend: site.baseurl }}" {% if page.image_alt %}alt="{{ page.image_alt }}"{% endif %}>
+    {% if page.caption %}
+    <figcaption>{{ page.caption }}</figcaption>
+    {% endif %}
+  </figure>
+  
+  <p>
+    👤 {{ page.author | default: fallback_translation.author }}<br>
+    📅 {{ page.date | default: fallback_translation.date | date: "%Y-%m-%d" }}<br>
+    🗺 {{ page.location | default: fallback_translation.location }}<br>
+    🔗 <a href="{{ page.link | default: fallback_translation.link }}">unsplash.com</a>
+  </p>
+  
+</div>

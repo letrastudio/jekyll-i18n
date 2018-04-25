@@ -1,0 +1,76 @@
+.text-container {
+  max-width: $text-width;
+  
+  // Set spacing between elements, and reset top/bottom margins for first/last
+  // children, respectively
+  h1, h2, h3, h4, h5, h6,
+  p, blockquote, pre,
+  ul, ol, dl,
+  figure, img, svg, video, table {
+    margin-top: $text-spacing;
+    margin-bottom: $text-spacing;
+    &:first-child {
+      margin-top: 0;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  // Set wider top margins for heading elements
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: $text-spacing * 2;
+  }
+  
+  // Set wider top and bottom spacing for non-text elements
+  figure, img, svg, video, table, pre {
+    margin-top: $text-spacing * 1.5;
+    margin-bottom: $text-spacing * 1.5;
+  }
+  figure {
+    img, svg, video, table, pre {
+      margin: 0;
+    }
+  }
+  
+  a {
+    color: $action-color;
+    text-decoration: underline;
+    &:hover,
+    &:focus,
+    &:active {
+      color: darken($action-color, 10%);
+    }
+  }
+  
+  h1 {
+    font-size: 2em;
+  }
+  h2 {
+    font-size: 1.5em;
+  }
+  h3 {
+    font-size: 1.25em;
+  }
+  h4, h5, h6 {
+    font-size: 1em;
+  }
+  
+  ul, ol {
+    padding-left: $text-spacing * 2;
+  }
+  ul {
+    list-style-type: disc;
+  }
+  ol {
+    list-style-type: decimal;
+  }
+  
+  dt {
+    font-weight: bold;
+    margin: 0;
+  }
+  dd {
+    margin: 0 0 0 $text-spacing;
+  }
+}

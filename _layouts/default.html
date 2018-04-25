@@ -1,0 +1,26 @@
+{% include i18n.html obj=page %}
+
+<!DOCTYPE html>
+<html lang="{{ page_lang }}">
+
+{% include head.html %}
+
+<body>
+
+  <div class="page-wrapper">
+    
+    {% include header.html %}
+
+    <main>
+      {{ content }}
+    </main>
+    
+    {% include debug-info.html %}
+    
+    {% include footer.html %}
+
+  </div>
+
+</body>
+
+</html>

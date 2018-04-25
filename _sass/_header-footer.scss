@@ -1,0 +1,83 @@
+.site-title {
+  font-size: 2em;
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.site-nav {
+  margin-top: 1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  li {
+    display: inline-block;
+    &:not(:last-child) {
+      margin-right: 1em;
+    }
+  }
+  a {
+    padding: 0.125em 0;
+    
+    &[href] {
+      color: $action-color;
+    }
+    &:not([href]) {
+      color: $medium-gray;
+      cursor: not-allowed;
+    }
+    &[aria-current] {
+      border-bottom: 2px solid;
+    }
+  }
+}
+
+.banner {
+  background: $accent-color;
+  .wrapper {
+    padding: $base-padding;
+  }
+  .banner-title {
+    font-size: 1.5em;
+    font-weight: 800;
+  }
+}
+
+.debug {
+  summary {
+    padding: $base-padding / 2 $base-padding;
+  }
+}
+
+.debug-wrapper {
+  background: black;
+  color: yellowgreen;
+  padding: $base-padding;
+  font-family: SF Mono, monospace;
+  font-size: 0.75em;
+  overflow-x: scroll;
+  
+  a {
+    text-decoration: underline;
+  }
+  
+  pre {
+    background: transparent;
+  }
+  
+  table {
+    margin: 0;
+    min-width: 48em;
+  }
+  th {
+    width: 16em;
+  }
+  td {
+    color: white;
+    width: 100%;
+  }
+  th, td {
+    border: none;
+    padding: 0.125em 1em 0.125em 0;
+  }
+}

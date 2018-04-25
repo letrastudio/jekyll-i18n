@@ -1,0 +1,24 @@
+.grid {
+  display: grid;
+  grid-gap: $base-padding;
+  grid-template-columns: repeat(2, 1fr);
+  @include media($medium-screen-up) {
+    grid-template-columns: repeat(auto-fill, minmax(12em, 1fr));
+  }
+}
+
+.grid-item {
+  display: flex;
+  align-items: flex-end;
+  
+  a {
+    display: block;
+    width: 100%;
+  }
+  
+  p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

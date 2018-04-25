@@ -1,0 +1,41 @@
+<header class="site-header" role="banner">
+  <div class="wrapper">
+
+    {% if page_lang == default_lang %}
+      {% assign lang_baseurl = "/" %}
+      {% assign pages_collection = "pages" %}
+    {% else %}
+      {% assign lang_baseurl = "/" | append: page_lang | append: "/" %}
+      {% assign pages_collection = "pages_" | append: page_lang %}
+    {% endif %}
+    <a class="site-title" href="{{ site.baseurl }}{{ lang_baseurl }}">{{ site.title | escape }}</a>
+
+    <nav class="site-nav">
+      <ul class="pages-nav">
+        {% assign current_url = page.url %}
+        {% assign pages = site[pages_collection] | sort: "order" %}
+        {% for page in pages %}
+        {% if page.title %}
+        <li><a href="{{ page.url | prepend: site.baseurl }}" {% if page.url == current_url %}aria-current="page"{% endif %}>{{ page.title | escape }}</a></li>
+        {% endif %}
+        {% endfor %}
+      </ul>
+
+      <ul class="lang-switcher">
+        {% for lang in site.lang %}
+        {% if lang == page_lang %}
+        <li><a href="{{ page.url | prepend: site.baseurl }}" aria-current="true">{{ lang | upcase }}</a></li>
+        {% else %}
+        {% assign translation = translated_pages | where: "lang", lang | first %}
+        {% if translation %}
+        <li><a href="{{ translation.url | prepend: site.baseurl }}">{{ lang | upcase }}</a></li>
+        {% else %}
+        <li><a>{{ lang | upcase }}</a></li>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+      </ul>
+    </nav>
+
+  </div>
+</header>
