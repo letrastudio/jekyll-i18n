@@ -1,14 +1,9 @@
 <header class="site-header" role="banner">
   <div class="wrapper">
 
-    {% if page_lang == default_lang %}
-      {% assign lang_baseurl = "/" %}
-      {% assign pages_collection = "pages" %}
-    {% else %}
-      {% assign lang_baseurl = "/" | append: page_lang | append: "/" %}
-      {% assign pages_collection = "pages_" | append: page_lang %}
-    {% endif %}
-    <a class="site-title" href="{{ site.baseurl }}{{ lang_baseurl }}">{{ site.title | escape }}</a>
+    <a class="site-title" href="{{ site.baseurl }}{{ page_locale.baseurl | append: '/' | replace: '//', '/' }}">{{ site.title | escape }}</a>
+
+    {% assign pages_collection = "pages" | append: page_collection_suffix %}
 
     <nav class="site-nav">
       <ul class="pages-nav">
@@ -23,14 +18,15 @@
 
       <ul class="lang-switcher">
         {% for lang in site.lang %}
-        {% if lang == page_lang %}
-        <li><a href="{{ page.url | prepend: site.baseurl }}" aria-current="true">{{ lang | upcase }}</a></li>
+        {% assign locale = site.locales[lang] %}
+        {% if locale.baseurl == page_locale.baseurl %}
+        <li><a href="{{ page.url | prepend: site.baseurl }}" aria-current="true">{{ locale.name }}</a></li>
         {% else %}
-        {% assign translation = translated_pages | where: "lang", lang | first %}
-        {% if translation %}
-        <li><a href="{{ translation.url | prepend: site.baseurl }}">{{ lang | upcase }}</a></li>
+        {% assign localized_page = localized_pages | where: "lang", lang | first %}
+        {% if localized_page %}
+        <li><a href="{{ localized_page.url | prepend: site.baseurl }}">{{ locale.name }}</a></li>
         {% else %}
-        <li><a>{{ lang | upcase }}</a></li>
+        <li><a>{{ locale.name }}</a></li>
         {% endif %}
         {% endif %}
         {% endfor %}

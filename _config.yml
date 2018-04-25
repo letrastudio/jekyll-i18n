@@ -1,12 +1,27 @@
 ---
 title: Jekyll I18n
-timezone: Europe/Lisbon
-lang: [en, pt, es, zh]
 description: A boilerplate solution for plugin-free multilingual sites.
 url: https://letrastudio.github.io
 baseurl: /jekyll-i18n
 github_username: letrastudio
 
+timezone: Europe/Lisbon
+lang: [en-US, pt-PT, es-ES, zh-Hant]
+locales:
+  en-US:
+    name: English
+    baseurl: /
+  pt-PT:
+    name: Português
+    baseurl: /pt
+  es-ES:
+    name: Español
+    baseurl: /es
+  zh-Hant:
+    name: 繁體中文
+    baseurl: /zh
+
+collections_dir: collections
 collections:
   pages:
     output: true
@@ -21,6 +36,7 @@ collections:
     output: true
     permalink: /zh/:path/
   posts:
+    output: true
     permalink: /:categories/:year/:month/:day/:title/
   posts_pt:
     output: true
@@ -41,66 +57,65 @@ collections:
 defaults:
 - scope:
     path: ''
+  values:
+    lang: en-US
+- scope:
+    path: ''
     type: pages
   values:
     layout: page
-    lang: en
+    lang: en-US
 - scope:
     path: ''
     type: pages_pt
   values:
     layout: page
-    lang: pt
+    lang: pt-PT
 - scope:
     path: ''
     type: pages_es
   values:
     layout: page
-    lang: es
+    lang: es-ES
 - scope:
     path: ''
     type: pages_zh
   values:
     layout: page
-    lang: zh
+    lang: zh-Hant
 - scope:
     path: ''
     type: posts
   values:
     layout: post
-    lang: en
+    lang: en-US
 - scope:
     path: ''
     type: posts_pt
   values:
     layout: post
-    lang: pt
+    lang: pt-PT
 - scope:
     path: ''
     type: posts_es
   values:
     layout: post
-    lang: es
+    lang: es-ES
 - scope:
     path: ''
     type: posts_zh
   values:
     layout: post
-    lang: zh
+    lang: zh-Hant
 - scope:
     path: ''
     type: photos
   values:
     layout: photo
-    lang: en
+    lang: en-US
 - scope:
     path: ''
     type: photos_pt
   values:
     layout: photo
-    lang: pt
-
-collections_dir: collections
-markdown: kramdown
-sass:
-  style: compressed
+    lang: pt-PT
