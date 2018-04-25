@@ -66,6 +66,7 @@
   summary {
     padding: $half-padding $base-padding;
     color: $medium-gray;
+    background: gainsboro;
   }
   &[open] summary {
     color: inherit;
