@@ -10,7 +10,6 @@ lang: [en-US, pt-PT, es-ES, zh-Hant]
 locales:
   en-US:
     name: English
-    baseurl: /
   pt-PT:
     name: Português
     baseurl: /pt

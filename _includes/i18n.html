@@ -38,7 +38,7 @@
 {% for lang in site.lang %}
   {% unless lang == page_lang %}
     {% assign locale = site.locales[lang] %}
-    {% if locale.baseurl == "" or locale.baseurl == "/" %}
+    {% if locale.baseurl == nil or locale.baseurl == "" or locale.baseurl == "/" %}
       {% assign collection_suffix = nil %}
       {% assign collection_name = page_collection_basename %}
     {% else %}
