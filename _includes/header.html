@@ -29,7 +29,7 @@
         {% if localized_page %}
         <li><a href="{{ localized_page.url | prepend: site.baseurl }}" lang="{{ lang }}">{{ locale.name }}</a></li>
         {% else %}
-        <li><a lang="{{ lang }}">{{ locale.name }}</a></li>
+        <li><a href="{{ locale.baseurl | append: '/' | prepend: site.baseurl }}" class="not-available" lang="{{ lang }}">{{ locale.name }}</a></li>
         {% endif %}
         {% endif %}
         {% endfor %}

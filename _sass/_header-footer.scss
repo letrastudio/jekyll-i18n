@@ -43,14 +43,13 @@
     &[href] {
       color: $action-color;
     }
-    &:not([href]) {
-      color: $medium-gray;
-      cursor: not-allowed;
-    }
     &[aria-current],
     &[href]:hover {
       border-bottom: 2px solid;
     }
+  }
+  a.not-available {
+    color: $medium-gray;
   }
 }
 
