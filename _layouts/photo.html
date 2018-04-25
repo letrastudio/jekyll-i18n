@@ -17,11 +17,15 @@ layout: default
     {% endif %}
   </figure>
   
-  <p>
-    👤 {{ page.author | default: fallback_page.author }}<br>
-    📅 {{ page.date | default: fallback_page.date | date: "%Y-%m-%d" }}<br>
-    🗺 {{ page.location | default: fallback_page.location }}<br>
-    🔗 <a href="{{ page.link | default: fallback_page.link }}">unsplash.com</a>
-  </p>
+  <hr>
+  
+  <div class="text-container">
+    <p>
+      👤 {{ page.author | default: fallback_page.author }}<br>
+      📅 {{ page.date | default: fallback_page.date | date: "%Y-%m-%d" }}<br>
+      🗺 {{ page.location | default: fallback_page.location }}<br>
+      🔗 <a href="{{ page.link | default: fallback_page.link }}">unsplash.com</a>
+    </p>
+  </div>
   
 </div>
