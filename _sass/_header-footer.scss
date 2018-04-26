@@ -71,9 +71,20 @@ html[dir="rtl"] .site-nav {
 .banner {
   background-size: cover;
   background-position: center center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 15em;
   @include media($large-screen-up) {
     height: 30em;
+  }
+  
+  .page-headline {
+    color: white;
+    margin: 0;
+    @include media($large-screen-up) {
+      font-size: 8em;
+    }
   }
 }
 
