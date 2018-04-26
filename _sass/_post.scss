@@ -21,3 +21,13 @@
   font-size: 0.875em;
   margin: 1em 0 0;
 }
+
+.blog-list {
+  li + li {
+    margin-top: $half-padding;
+  }
+  .post-title {
+    font-size: 1.5em;
+    margin: 0;
+  }
+}
