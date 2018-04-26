@@ -22,7 +22,7 @@ layout: default
   <div class="text-container">
     <p>
       <strong><span aria-hidden="true">👤 </span>{{ localized.author }}:</strong> {{ page.author | default: fallback_page.author }}<br>
-      <strong><span aria-hidden="true">📅 </span>{{ localized.date }}:</strong> {{ page.date | default: fallback_page.date | date: "%Y-%m-%d" }}<br>
+      <strong><span aria-hidden="true">📅 </span>{{ localized.date }}:</strong> {% assign page_date = page.date | default: fallback_page.date %}{% include localized_date.html date=page_date %}<br>
       <strong><span aria-hidden="true">🗺 </span>{{ localized.location }}:</strong> {{ page.location | default: fallback_page.location }}<br>
       <strong><span aria-hidden="true">🔗 </span>{{ localized.link }}:</strong> <a href="{{ page.link | default: fallback_page.link }}">unsplash.com</a>
     </p>

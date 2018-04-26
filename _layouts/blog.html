@@ -15,7 +15,7 @@ layout: default
     {% for post in site[posts_collection] %}
     <li>
       <h2 class="post-title"><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h2>
-      <small class="post-meta">{{ page.date | date: "%B %-d, %Y" }}</small>
+      <small class="post-meta">{% include localized_date.html date=post.date %}</small>
     </li>
     {% endfor %}
   </ul>

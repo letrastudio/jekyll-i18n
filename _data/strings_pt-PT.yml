@@ -6,15 +6,15 @@ date: Data
 location: Localização
 link: Link
 
-month-1: Janeiro
-month-2: Fevereiro
-month-3: Março
-month-4: Abril
-month-5: Maio
-month-6: Junho
-month-7: Julho
-month-8: Agosto
-month-9: Setembro
-month-10: Outubro
-month-11: Novembro
-month-12: Dezembro
+month_1: Janeiro
+month_2: Fevereiro
+month_3: Março
+month_4: Abril
+month_5: Maio
+month_6: Junho
+month_7: Julho
+month_8: Agosto
+month_9: Setembro
+month_10: Outubro
+month_11: Novembro
+month_12: Dezembro
