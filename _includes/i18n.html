@@ -2,10 +2,8 @@
 
 {% comment %} check if there is more than one language {% endcomment %}
 {% if site.lang.first %}
-  {% assign page_lang = page.lang | default: site.lang[0] %}
   {% assign default_lang = site.lang[0] %}
 {% else %}
-  {% assign page_lang = page.lang | default: site.lang %}
   {% assign default_lang = site.lang %}
 {% endif %}
 
@@ -23,7 +21,7 @@
   {% assign content_id = path_in_collection | slice: 0, base_content_id_length | append: page.slug %}
 {% endif %}
 
-{% assign page_locale = site.locales[page_lang] %}
+{% assign page_locale = site.locales[page.lang] %}
 {% assign locale_code = page_locale.baseurl | remove: "/" %}
 {% if locale_code == "" %}
   {% assign page_collection_suffix = nil %}
@@ -36,7 +34,7 @@
 
 {% assign localized_collections = "" | split: "," %}
 {% for lang in site.lang %}
-  {% unless lang == page_lang %}
+  {% unless lang == page.lang %}
     {% assign locale = site.locales[lang] %}
     {% if locale.baseurl == nil or locale.baseurl == "" or locale.baseurl == "/" %}
       {% assign collection_suffix = nil %}
@@ -76,5 +74,5 @@
 
 {% assign fallback_page = localized_pages | where: "lang", default_lang | first %}
 
-{% assign localized_ref = page_lang | prepend: "strings_" %}
+{% assign localized_ref = page.lang | prepend: "strings_" %}
 {% assign localized = site.data[localized_ref] %}
