@@ -5,4 +5,4 @@ order: 1
 content_id: about
 ---
 
-Este site é um boilerplate simplificado para um site Jekyll com conteúdo multilingue, sem uso de plugins.
+Este site é um boilerplate simplificado para o Jekyll com conteúdo multilingue, sem uso de plugins.
