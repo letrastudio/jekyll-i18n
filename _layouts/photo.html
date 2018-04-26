@@ -6,9 +6,9 @@ layout: default
 
 <div class="photo wrapper">
   
-  <header class="page-header">
+  <div class="page-header">
     <h1 class="page-title">{{ page.title }}</h1>
-  </header>
+  </div>
 
   <figure>
     <img src="{{ page.image | default: fallback_page.image | prepend: site.baseurl }}" {% if page.image_alt %}alt="{{ page.image_alt }}"{% endif %}>
