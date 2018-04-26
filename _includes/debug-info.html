@@ -12,7 +12,13 @@
       </tr>
       <tr>
         <th>page_locale.baseurl</th>
-        <td>{% if page_locale.baseurl.size > 0 %}{{ page_locale.baseurl }}{% else %}{{ page_locale.baseurl | inspect }}{% endif %}</td>
+        <td>
+          {% if page_locale.baseurl.size > 0 %}
+          {{ page_locale.baseurl }}
+          {% else %}
+          <i>{{ page_locale.baseurl | inspect }}</i>
+          {% endif %}
+        </td>
       </tr>
       <tr>
         <th>page.slug</th>
@@ -40,7 +46,7 @@
           {% if page_collection_suffix %}
           {{ page_collection_suffix }}
           {% else %}
-          {{ page_collection_suffix | inspect }}
+          <i>{{ page_collection_suffix | inspect }}</i>
           {% endif %}
         </td>
       </tr>
@@ -66,7 +72,7 @@
           {% if fallback_page %}
           <a href="{{ site.baseurl }}{{ fallback_page.url }}">{{ fallback_page.title }}</a>
           {% else %}
-          {{ fallback_page | inspect }}
+          <i>{{ fallback_page | inspect }}</i>
           {% endif %}
         </td>
       </tr>
