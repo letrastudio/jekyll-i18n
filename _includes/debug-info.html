@@ -51,13 +51,13 @@
         </td>
       </tr>
       <tr>
-        <th>localized_collections</th>
-        <td>{{ localized_collections | join: ", " }}</td>
+        <th>collection_localizations</th>
+        <td>{{ collection_localizations | join: ", " }}</td>
       </tr>
       <tr>
-        <th>localized_pages</th>
+        <th>page_localizations</th>
         <td>
-          {% for page in localized_pages %}
+          {% for page in page_localizations %}
           <a href="{{ site.baseurl }}{{ page.url }}">{{ page.lang }}</a>{% unless forloop.last %},{% endunless %}
           {% endfor %}
         </td>
