@@ -71,6 +71,9 @@
 {% endfor %}
 
 {% assign fallback_page = page_localizations | where: "lang", default_lang | first %}
+{% if fallback_page.lang == page.lang %}
+  {% assign fallback_page = nil %}
+{% endif %}
 
 {% assign localized_ref = page.lang | prepend: "strings_" %}
 {% assign localized = site.data[localized_ref] %}
