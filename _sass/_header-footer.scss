@@ -86,6 +86,7 @@ html[dir="rtl"] .site-nav {
   .page-headline {
     color: white;
     margin: 0;
+    font-weight: 200;
     @include media($large-screen-up) {
       font-size: 8em;
     }

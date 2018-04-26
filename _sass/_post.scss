@@ -30,4 +30,11 @@
     font-size: 1.5em;
     margin: 0;
   }
+  
+  a {
+    color: cornflowerblue;
+    &:hover {
+      border-bottom: 2px solid;
+    }
+  }
 }
