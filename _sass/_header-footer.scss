@@ -93,6 +93,7 @@ html[dir="rtl"] .site-nav {
     padding: $half-padding $base-padding;
     color: $medium-gray;
     background: gainsboro;
+    cursor: pointer;
   }
   &[open] summary {
     color: inherit;
