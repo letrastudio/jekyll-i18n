@@ -37,16 +37,16 @@ collections:
     permalink: /ar/:path/
   posts:
     output: true
-    permalink: /:categories/:year/:month/:day/:title/
+    permalink: /blog/:categories/:title/
   posts_pt:
     output: true
-    permalink: /pt/:categories/:year/:month/:day/:title/
+    permalink: /pt/blog/:categories/:title/
   posts_zh:
     output: true
-    permalink: /zh/:categories/:year/:month/:day/:title/
+    permalink: /zh/boke/:categories/:title/
   posts_ar:
     output: true
-    permalink: /ar/:categories/:year/:month/:day/:title/
+    permalink: /ar/mudawana/:categories/:title/
   photos:
     output: true
     permalink: /photos/:path/
