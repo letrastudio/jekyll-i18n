@@ -4,20 +4,26 @@
     color: $medium-gray;
     background: gainsboro;
     cursor: pointer;
+    text-align: center;
   }
   &[open] summary {
     color: inherit;
   }
 }
 
-.debug-wrapper {
+.debug-panel {
   background: black;
   color: yellowgreen;
-  padding: $base-padding;
   font-family: SF Mono, monospace;
   font-size: 0.75em;
-  overflow-x: scroll;
   direction: ltr;
+  padding: 0 $base-padding;
+  
+  > .wrapper {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: $page-width - 2 * $base-padding;
+  }
   
   a {
     text-decoration: underline;
@@ -27,27 +33,35 @@
     background: transparent;
   }
   
-  table {
+  > .wrapper > * {
     margin: 0;
-    min-width: 48em;
   }
-  table + table {
+  > .wrapper >  * + * {
     margin-top: $half-padding;
-  }
-  th {
-    width: 16em;
-  }
-  td {
-    color: white;
-    width: 100%;
-  }
-  th, td {
-    border: none;
-    padding: 0.125em 1em 0.125em 0;
   }
   
   i {
     font-style: normal;
     color: #888;
+  }
+  
+  dd {
+    color: white;
+    padding-left: $half-padding;
+  }
+  
+  @supports (display: grid) {
+    @include media(min-width 40em) {
+      dl {
+        display: grid;
+        grid-template-columns: 16em minmax(16em, 1fr);
+      }
+      dt {
+        grid-column: 1;
+      }
+      dd {
+        grid-column: 2;
+      }
+    }
   }
 }
