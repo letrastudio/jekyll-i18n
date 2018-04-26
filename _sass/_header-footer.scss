@@ -1,3 +1,10 @@
+.site-header > .wrapper {
+  padding-bottom: $half-padding;
+  @include media($large-screen-up) {
+    padding-bottom: $base-padding;
+  }
+}
+
 .site-title {
   font-size: 2em;
   font-weight: 900;
@@ -6,26 +13,23 @@
 }
 
 .site-nav {
+  font-weight: 500;
   margin-top: $base-padding;
   ul {
-    padding-top: $half-padding;
+    padding: $half-padding 0;
     border-top: 1px solid $blue;
-    
-    & + ul {
-      margin-top: $half-padding;
-    }
   }
   @include media($large-screen-up) {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-top: 0;
+    margin-top: $half-padding;
     
     ul {
+      padding: 0;
       border-top: none;
       
       & + ul {
-        margin-top: 0;
         margin-left: $base-padding * 2;
       }
     }
