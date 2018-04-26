@@ -7,7 +7,7 @@
   {% assign month_ref = include.date | date: "%-m" | prepend: "month_" %}
   {% assign month = localized[month_ref] %}
   {% assign year = include.date | date: "%Y" %}
-  {% capture date %}{{ day }} de {{ month }}, {{ year }}{% endcapture %}
+  {% capture date %}{{ day }} {{ month }} {{ year }}{% endcapture %}
 {% else %}
   {% assign date = include.date | date: "%Y-%m-%d" %}
 {% endif %}
