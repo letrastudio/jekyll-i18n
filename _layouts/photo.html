@@ -11,7 +11,7 @@ layout: default
   </div>
 
   <figure>
-    <img src="{{ page.image | default: fallback_page.image | prepend: site.baseurl }}" {% if page.image_alt %}alt="{{ page.image_alt }}"{% endif %}>
+    <img src="{{ page.image | default: fallback_page.image | prepend: site.baseurl }}" {% if page.image_alt %}alt="{{ page.image_alt }}"{% endif %}>
     {% if page.caption %}
     <figcaption>{{ page.caption }}</figcaption>
     {% endif %}
