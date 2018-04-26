@@ -1,17 +1,27 @@
-.grid {
-  display: grid;
-  grid-gap: $base-padding;
-  grid-template-columns: 1fr;
-  @include media($medium-screen-up) {
-    grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));
-  }
-}
-
 .grid-item {
   background: whitesmoke;
-  
+
   p {
     padding: 1em;
     margin: 0;
+  }
+  
+  & + .grid-item {
+    margin-top: $base-padding;
+  }
+}
+
+@supports (display: grid) {
+  .grid {
+    display: grid;
+    grid-gap: $base-padding;
+    grid-template-columns: 1fr;
+    @include media($medium-screen-up) {
+      grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));
+    }
+  }
+  
+  .grid-item + .grid-item{
+    margin-top: 0;
   }
 }
