@@ -20,6 +20,8 @@
           {% endif %}
         </td>
       </tr>
+    </table>
+    <table>
       <tr>
         <th>page.slug</th>
         <td>{{ page.slug }}</td>
@@ -32,6 +34,8 @@
         <th>page_content_id</th>
         <td>{{ page_content_id }}</td>
       </tr>
+    </table>
+    <table>
       <tr>
         <th>page.collection</th>
         <td>{{ page.collection }}</td>
@@ -62,7 +66,9 @@
           {% endfor %}
         </td>
       </tr>
-      <tr>
+    </table>
+    <table>
+      <tr hidden>
         <th>default_lang</th>
         <td>{{ default_lang }}</td>
       </tr>
@@ -70,7 +76,7 @@
         <th>fallback_page</th>
         <td>
           {% if fallback_page %}
-          <a href="{{ site.baseurl }}{{ fallback_page.url }}">{{ fallback_page.title }}</a>
+          <a href="{{ site.baseurl }}{{ fallback_page.url }}">{{ fallback_page.lang }}</a>
           {% else %}
           <i>{{ fallback_page | inspect }}</i>
           {% endif %}

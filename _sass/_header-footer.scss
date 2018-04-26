@@ -126,6 +126,9 @@ html[dir="rtl"] .site-nav {
     margin: 0;
     min-width: 48em;
   }
+  table + table {
+    margin-top: $half-padding;
+  }
   th {
     width: 16em;
   }
