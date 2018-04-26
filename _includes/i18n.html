@@ -8,17 +8,17 @@
 {% endif %}
 
 {% if page.content_id %}
-  {% assign content_id_first_character = page.content_id | slice: 0 %}
-  {% if content_id_first_character != "/" %}
-    {% assign content_id = page.content_id | prepend: "/" %}
+  {% assign page_content_id_first_character = page.content_id | slice: 0 %}
+  {% if page_content_id_first_character != "/" %}
+    {% assign page_content_id = page.content_id | prepend: "/" %}
   {% else %}
-    {% assign content_id = page.content_id %}
+    {% assign page_content_id = page.content_id %}
   {% endif %}
 {% else %}
   {% assign path_in_collection = page.path | remove_first: "_" | remove_first: page.collection %}
   {% assign filename = path_in_collection | split: "/" | last %}
   {% assign base_content_id_length = path_in_collection | size | minus: filename.size %}
-  {% assign content_id = path_in_collection | slice: 0, base_content_id_length | append: page.slug %}
+  {% assign page_content_id = path_in_collection | slice: 0, base_content_id_length | append: page.slug %}
 {% endif %}
 
 {% assign page_locale = site.locales[page.lang] %}
@@ -66,7 +66,7 @@
       {% assign test_base_content_id_length = test_path_in_collection | size | minus: test_filename.size %}
       {% assign test_content_id = test_path_in_collection | slice: 0, test_base_content_id_length | append: document.slug %}
     {% endif %}
-    {% if test_content_id == content_id %}
+    {% if test_content_id == page_content_id %}
       {% assign localized_pages = localized_pages | push: document %}
     {% endif %}
   {% endfor %}
