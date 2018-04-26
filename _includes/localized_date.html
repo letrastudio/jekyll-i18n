@@ -1,7 +1,7 @@
 {% assign localized_ref = page.lang | prepend: "strings_" %}
 {% assign localized = site.data[localized_ref] %}
 {% if page.lang == "en-US" %}
-  {% assign date = include.date | date_to_long_string: "ordinal", "US" %}
+  {% assign date = include.date | date_to_long_string %}
 {% elsif page.lang == "pt-PT" %}
   {% assign day = include.date | date: "%-d" %}
   {% assign month_ref = include.date | date: "%-m" | prepend: "month_" %}
