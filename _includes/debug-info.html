@@ -4,18 +4,14 @@
     <div class="wrapper">
     
       <dl>
-        <dt>page.lang</dt>
-        <dd>{{ page.lang }}</dd>
-        <dt>page_locale.name</dt>
-        <dd>{{ page_locale.name }}</dd>
-        <dt>page_locale.baseurl</dt>
-        <dd>
-          {% if page_locale.baseurl.size > 0 %}
-          {{ page_locale.baseurl }}
-          {% else %}
-          <i>{{ page_locale.baseurl | inspect }}</i>
-          {% endif %}
-        </dd>
+        <dt>page.locale</dt>
+        <dd>{{ page.locale }}</dd>
+        <dt>locale.name</dt>
+        <dd>{{ locale.name }}</dd>
+        <dt>locale.lang</dt>
+        <dd>{{ locale.lang }}</dd>
+        <dt hidden>locale_baseurl</dt>
+        <dd hidden>{{ locale_baseurl }}</dd>
       </dl>
   
       <dl>
@@ -45,20 +41,22 @@
         <dt>page_localizations</dt>
         <dd>
           {% for page in page_localizations %}
-          <a href="{{ site.baseurl }}{{ page.url }}">{{ page.lang }}</a>{% unless forloop.last %},{% endunless %}
+          <a href="{{ site.baseurl }}{{ page.url }}">{{ page.locale }}</a>{% unless forloop.last %},{% endunless %}
           {% endfor %}
         </dd>
+        <dt hidden>localized_ref</dt>
+        <dd hidden>{{ localized_ref }}</dd>
       </dl>
       
       <dl>
-        <dt hidden>default_lang</dt>
-        <dd hidden>{{ default_lang }}</dd>
-        <dt>fallback_page</dt>
+        <dt>default_locale.lang</dt>
+        <dd>{{ default_locale.lang }}</dd>
+        <dt>default_locale_page</dt>
         <dd>
-          {% if fallback_page %}
-          <a href="{{ site.baseurl }}{{ fallback_page.url }}">{{ fallback_page.lang }}</a>
+          {% if default_locale_page %}
+          <a href="{{ site.baseurl }}{{ default_locale_page.url }}">{{ default_locale_page.locale }}</a>
           {% else %}
-          <i>{{ fallback_page | inspect }}</i>
+          <i>{{ default_locale_page | inspect }}</i>
           {% endif %}
         </dd>
       </dl>

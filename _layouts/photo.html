@@ -11,7 +11,7 @@ layout: default
   </div>
 
   <figure>
-    <img src="{{ page.image | default: fallback_page.image | prepend: site.baseurl }}" {% if page.image_alt %}alt="{{ page.image_alt }}"{% endif %}>
+    <img src="{{ page.image | default: default_locale_page.image | prepend: site.baseurl }}" {% if page.image_alt %}alt="{{ page.image_alt }}"{% endif %}>
     {% if page.caption %}
     <figcaption>{{ page.caption }}</figcaption>
     {% endif %}
@@ -21,10 +21,10 @@ layout: default
   
   <div class="text-container">
     <p>
-      <strong><span aria-hidden="true">👤 </span>{{ localized.author }}:</strong> {{ page.author | default: fallback_page.author }}<br>
-      <strong><span aria-hidden="true">📅 </span>{{ localized.date }}:</strong> {% assign page_date = page.date | default: fallback_page.date %}{% include localized_date.html date=page_date %}<br>
-      <strong><span aria-hidden="true">🗺 </span>{{ localized.location }}:</strong> {{ page.location | default: fallback_page.location }}<br>
-      <strong><span aria-hidden="true">🔗 </span>{{ localized.link }}:</strong> <a href="{{ page.link | default: fallback_page.link }}">unsplash.com</a>
+      <strong><span aria-hidden="true">👤 </span>{{ localized.author }}:</strong> {{ page.author | default: default_locale_page.author }}<br>
+      <strong><span aria-hidden="true">📅 </span>{{ localized.date }}:</strong> {% assign page_date = page.date | default: default_locale_page.date %}{% include localized_date.html date=page_date %}<br>
+      <strong><span aria-hidden="true">🗺 </span>{{ localized.location }}:</strong> {{ page.location | default: default_locale_page.location }}<br>
+      <strong><span aria-hidden="true">🔗 </span>{{ localized.link }}:</strong> <a href="{{ page.link | default: default_locale_page.link }}">unsplash.com</a>
     </p>
   </div>
   

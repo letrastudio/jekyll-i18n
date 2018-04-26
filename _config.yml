@@ -4,21 +4,22 @@ description: A boilerplate solution for plugin-free multilingual sites.
 url: https://letrastudio.github.io
 baseurl: /jekyll-i18n
 github_username: letrastudio
-
 timezone: Europe/Lisbon
-lang: [en-US, pt-PT, zh-Hant, ar]
+lang: en
+
 locales:
-  en-US:
+  default:
     name: English
-  pt-PT:
+    lang: en
+  pt:
     name: Português
-    baseurl: /pt
-  zh-Hant:
+    lang: pt-PT
+  zh:
     name: 繁體中文
-    baseurl: /zh
+    lang: zh-Hant
   ar:
     name: عربى
-    baseurl: /ar
+    lang: ar
     direction: rtl
 
 collections_dir: collections
@@ -58,64 +59,64 @@ defaults:
 - scope:
     path: ''
   values:
-    lang: en-US
+    locale: default
 - scope:
     path: ''
     type: pages
   values:
     layout: page
-    lang: en-US
+    locale: default
 - scope:
     path: ''
     type: pages_pt
   values:
     layout: page
-    lang: pt-PT
+    locale: pt
 - scope:
     path: ''
     type: pages_zh
   values:
     layout: page
-    lang: zh-Hant
+    locale: zh
 - scope:
     path: ''
     type: pages_ar
   values:
     layout: page
-    lang: ar
+    locale: ar
 - scope:
     path: ''
     type: posts
   values:
     layout: post
-    lang: en-US
+    locale: default
 - scope:
     path: ''
     type: posts_pt
   values:
     layout: post
-    lang: pt-PT
+    locale: pt
 - scope:
     path: ''
     type: posts_zh
   values:
     layout: post
-    lang: zh-Hant
+    locale: zh
 - scope:
     path: ''
     type: posts_ar
   values:
     layout: post
-    lang: ar
+    locale: ar
 - scope:
     path: ''
     type: photos
   values:
     layout: photo
-    lang: en-US
+    locale: default
 - scope:
     path: ''
     type: photos_pt
   values:
     layout: photo
-    lang: pt-PT
+    locale: pt

@@ -6,14 +6,11 @@
 
   <link rel="canonical" href="{{ site.url }}{{ site.baseurl }}{{ page.url }}">
   
-  {% for lang in site.lang %}
-  {% assign locale = site.locales[lang] %}
-  {% if locale.baseurl != page_locale.baseurl %}
-  {% assign localized_page = localized_pages | where: "lang", lang | first %}
-  {% if localized_page %}
+  {% for localized_page in page_localizations %}
+  {% unless localized_page.locale == page.locale %}
+  {% assign lang = site.locales[localized_page.locale].lang %}
   <link rel="alternate" hreflang="{{ lang }}" href="{{ site.url }}{{ site.baseurl }}{{ localized_page.url }}">
-  {% endif %}
-  {% endif %}
+  {% endunless %}
   {% endfor %}
   
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/main.css?{{ site.time | date: '%s%N' }}">

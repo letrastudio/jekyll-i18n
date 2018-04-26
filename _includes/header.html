@@ -1,7 +1,7 @@
 <header class="site-header" role="banner">
   <div class="wrapper">
-
-    <a class="site-title" href="{{ site.baseurl }}{{ page_locale.baseurl | append: '/' | replace: '//', '/' }}">{{ site.title | escape }}</a>
+    
+    <a class="site-title" href="{{ site.baseurl }}{{ locale_baseurl }}/">{{ site.title | escape }}</a>
 
     {% assign pages_collection = "pages" | append: page_collection_suffix %}
 
@@ -20,16 +20,20 @@
       </ul>
 
       <ul class="lang-switcher" aria-label="{{ localized.language_selector }}">
-        {% for lang in site.lang %}
-        {% assign locale = site.locales[lang] %}
-        {% if locale.baseurl == page_locale.baseurl %}
-        <li><a href="{{ page.url | prepend: site.baseurl }}" aria-current="true" lang="{{ lang }}">{{ locale.name }}</a></li>
+        {% for locale in site.locales %}
+        {% if locale[0] == page.locale %}
+        <li><a href="{{ page.url | prepend: site.baseurl }}" aria-current="true" lang="{{ locale[1].lang }}">{{ locale[1].name }}</a></li>
         {% else %}
-        {% assign localized_page = page_localizations | where: "lang", lang | first %}
+        {% assign localized_page = page_localizations | where: "locale", locale[0] | first %}
         {% if localized_page %}
-        <li><a href="{{ localized_page.url | prepend: site.baseurl }}" lang="{{ lang }}">{{ locale.name }}</a></li>
+        <li><a href="{{ localized_page.url | prepend: site.baseurl }}" lang="{{ locale[1].lang }}">{{ locale[1].name }}</a></li>
         {% else %}
-        <li><a href="{{ locale.baseurl | append: '/' | prepend: site.baseurl }}" class="not-available" lang="{{ lang }}">{{ locale.name }}</a></li>
+        {% if locale[0] == "default" %}
+          {% assign link_locale_baseurl = "" %}
+        {% else %}
+          {% assign link_locale_baseurl = "/" | append: locale[0] %}
+        {% endif %}
+        <li><a href="{{ site.baseurl }}{{ link_locale_baseurl }}/" class="not-available" lang="{{ locale[1].lang }}">{{ locale[1].name }}</a></li>
         {% endif %}
         {% endif %}
         {% endfor %}
