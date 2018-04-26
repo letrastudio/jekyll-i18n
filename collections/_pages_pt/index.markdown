@@ -1,6 +1,6 @@
 ---
 layout: homepage
-title: Página Inicial
+title: Homepage
 order: 0
 permalink: "/pt/"
 headline: Olá!
