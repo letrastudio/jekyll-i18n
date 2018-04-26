@@ -9,17 +9,35 @@
   margin: 0;
 }
 
-.page-headline {
-  font-size: 4em;
-  font-weight: 300;
-  line-height: 1;
-  margin: 0 0 $half-padding;
-}
-
 .page-meta {
   color: $medium-gray;
   font-size: 0.875em;
   margin: 1em 0 0;
+}
+
+.banner {
+  background-color: $dark-gray;
+  background-size: cover;
+  background-position: center center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 15em;
+  
+  .headline {
+    color: white;
+    margin: 0;
+    line-height: 1;
+    font-weight: 200;
+    font-size: 4em;
+  }
+
+  @include media($large-screen-up) {
+    height: 30em;
+    .headline {
+      font-size: 8em;
+    }
+  }
 }
 
 .blog-list {
