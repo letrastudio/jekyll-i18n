@@ -21,7 +21,11 @@
     }
   }
   
-  .grid-item + .grid-item{
-    margin-top: 0;
+  .grid-item {
+    display: flex;
+
+    & + .grid-item {
+      margin-top: 0;
+    }
   }
 }
