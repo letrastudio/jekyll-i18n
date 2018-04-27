@@ -1,11 +1,8 @@
 ---
 title: Jekyll I18n
-description: A boilerplate solution for plugin-free multilingual sites.
 url: https://letrastudio.github.io
 baseurl: /jekyll-i18n
 github_username: letrastudio
-timezone: Europe/Lisbon
-lang: en
 
 locales:
   default:
