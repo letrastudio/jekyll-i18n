@@ -75,5 +75,5 @@
   {% assign page_default = nil %}
 {% endif %}
 
-{% assign localized_ref = page_collection_suffix | prepend: "strings" %}
-{% assign localized = site.data[localized_ref] %}
+{% assign strings_ref = page_collection_suffix | prepend: "strings" %}
+{% assign locale_strings = site.data[strings_ref] %}

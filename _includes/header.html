@@ -6,7 +6,7 @@
     {% assign pages_collection = "pages" | append: page_collection_suffix %}
 
     <nav class="site-nav">
-      <ul class="pages-nav" aria-label="{{ localized.site_navigation }}">
+      <ul class="pages-nav" aria-label="{{ locale_strings.site_navigation }}">
         {% assign current_url = page.url %}
         {% assign pages = site[pages_collection] %}
         {% if pages.size > 0 %}
@@ -19,7 +19,7 @@
         {% endfor %}
       </ul>
 
-      <ul class="lang-switcher" aria-label="{{ localized.language_selector }}">
+      <ul class="lang-switcher" aria-label="{{ locale_strings.language_selector }}">
         {% for locale in site.locales %}
         {% assign locale_label = locale[0] %}
         {% assign locale_obj = locale[1] %}

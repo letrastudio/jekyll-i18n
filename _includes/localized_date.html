@@ -1,14 +1,11 @@
-{% assign localized_ref = page_collection_suffix | prepend: "strings" %}
-{% assign localized = site.data[localized_ref] %}
+{% assign date = include.date | date: "%Y-%m-%d" %}
 {% if locale.lang == "en" or locale.lang == "en-US" %}
   {% assign date = include.date | date_to_long_string %}
 {% elsif locale.lang == "pt" or locale.lang == "pt-PT" %}
   {% assign day = include.date | date: "%-d" %}
   {% assign month_ref = include.date | date: "%-m" | prepend: "month_" %}
-  {% assign month = localized[month_ref] %}
+  {% assign month = locale_strings[month_ref] %}
   {% assign year = include.date | date: "%Y" %}
   {% capture date %}{{ day }} {{ month }} {{ year }}{% endcapture %}
-{% else %}
-  {% assign date = include.date | date: "%Y-%m-%d" %}
 {% endif %}
 {{ date }}

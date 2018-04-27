@@ -21,10 +21,10 @@ layout: default
   
   <div class="text-container">
     <p>
-      <strong><span aria-hidden="true">👤 </span>{{ localized.author }}:</strong> {{ page.author | default: page_default.author }}<br>
-      <strong><span aria-hidden="true">📅 </span>{{ localized.date }}:</strong> {% assign page_date = page.date | default: page_default.date %}{% include localized_date.html date=page_date %}<br>
-      <strong><span aria-hidden="true">🗺 </span>{{ localized.location }}:</strong> {{ page.location | default: page_default.location }}<br>
-      <strong><span aria-hidden="true">🔗 </span>{{ localized.link }}:</strong> <a href="{{ page.link | default: page_default.link }}">unsplash.com</a>
+      <strong><span aria-hidden="true">👤 </span>{{ locale_strings.author }}:</strong> {{ page.author | default: page_default.author }}<br>
+      <strong><span aria-hidden="true">📅 </span>{{ locale_strings.date }}:</strong> {% assign page_date = page.date | default: page_default.date %}{% include localized_date.html date=page_date %}<br>
+      <strong><span aria-hidden="true">🗺 </span>{{ locale_strings.location }}:</strong> {{ page.location | default: page_default.location }}<br>
+      <strong><span aria-hidden="true">🔗 </span>{{ locale_strings.link }}:</strong> <a href="{{ page.link | default: page_default.link }}">unsplash.com</a>
     </p>
   </div>
   
