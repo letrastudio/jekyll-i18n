@@ -70,9 +70,9 @@
   {% endfor %}
 {% endfor %}
 
-{% assign default_locale_page = page_locales | where: "locale", "default" | first %}
-{% if default_locale_page.locale == page.locale %}
-  {% assign default_locale_page = nil %}
+{% assign page_default = page_locales | where: "locale", "default" | first %}
+{% if page_default.locale == page.locale %}
+  {% assign page_default = nil %}
 {% endif %}
 
 {% assign localized_ref = page_collection_suffix | prepend: "strings" %}

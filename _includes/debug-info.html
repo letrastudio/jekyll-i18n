@@ -50,17 +50,12 @@
         </dd>
         <dt hidden>localized_ref</dt>
         <dd hidden>{{ localized_ref }}</dd>
-      </dl>
-      
-      <dl>
-        <dt>default_locale.lang</dt>
-        <dd>{{ default_locale.lang }}</dd>
-        <dt>default_locale_page</dt>
+        <dt>page_default</dt>
         <dd>
-          {% if default_locale_page %}
-          <a href="{{ site.baseurl }}{{ default_locale_page.url }}">{{ default_locale_page.locale }}</a>
+          {% if page_default %}
+          <a href="{{ site.baseurl }}{{ page_default.url }}">{{ page_default.locale }}</a>
           {% else %}
-          <i>{{ default_locale_page | inspect }}</i>
+          <i>{{ page_default | inspect }}</i>
           {% endif %}
         </dd>
       </dl>
