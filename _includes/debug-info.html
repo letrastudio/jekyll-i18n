@@ -48,8 +48,8 @@
         <dd hidden>{{ collection_locales | join: ", " }}</dd>
         <dt>page_locales</dt>
         <dd>
-          {% for page in page_locales %}
-          <a href="{{ site.baseurl }}{{ page.url }}">{{ page.locale }}</a>{% unless forloop.last %},{% endunless %}
+          {% for localized_page in page_locales %}
+          <a href="{{ site.baseurl }}{{ localized_page.url }}">{{ localized_page.locale }}</a>{% unless forloop.last %},{% endunless %}
           {% endfor %}
         </dd>
         <dt>page_default</dt>

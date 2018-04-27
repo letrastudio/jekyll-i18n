@@ -12,31 +12,31 @@
         {% if pages.size > 0 %}
         {% assign pages = pages | sort: "order" %}
         {% endif %}
-        {% for page in pages %}
-        {% if page.title %}
-        <li><a href="{{ page.url | prepend: site.baseurl }}" {% if page.url == current_url %}aria-current="page"{% endif %}>{{ page.title | escape }}</a></li>
+        {% for p in pages %}
+        {% if p.title %}
+        <li><a href="{{ p.url | prepend: site.baseurl }}" {% if p.url == current_url %}aria-current="page"{% endif %}>{{ p.title | escape }}</a></li>
         {% endif %}
         {% endfor %}
       </ul>
 
       <ul class="lang-switcher" aria-label="{{ locale_strings.language_selector }}">
-        {% for locale in site.locales %}
-        {% assign locale_label = locale[0] %}
-        {% assign locale_obj = locale[1] %}
+        {% for loc in site.locales %}
+        {% assign loc_label = loc[0] %}
+        {% assign loc_object = loc[1] %}
         {% assign attributes = "" %}
-        {% if locale_label == page.locale %}
+        {% if loc_label == page.locale %}
           {% assign url = page.url %}
           {% assign attributes = 'aria-current="true"' %}
         {% else %}
-          {% assign localized_page = page_locales | where: "locale", locale_label | first %}
+          {% assign localized_page = page_locales | where: "locale", loc_label | first %}
           {% if localized_page %}
             {% assign url = localized_page.url %}
           {% else %}
-            {% assign url = locale_label | prepend: '/' | remove: '/default' | append: "/" %}
+            {% assign url = loc_label | prepend: '/' | remove: '/default' | append: "/" %}
             {% assign attributes = 'class="not-available"' %}
           {% endif %}
         {% endif %}
-        <li><a href="{{ site.baseurl }}{{ url }}" lang="{{ locale_obj.lang }}" {{ attributes }}>{{ locale_obj.name }}</a></li>
+        <li><a href="{{ site.baseurl }}{{ url }}" lang="{{ loc_object.lang }}" {{ attributes }}>{{ loc_object.name }}</a></li>
         {% endfor %}
       </ul>
     </nav>

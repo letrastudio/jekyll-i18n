@@ -33,13 +33,13 @@
 {% endif %}
 
 {% assign collection_locales = "" | split: "," %}
-{% for locale in site.locales %}
-  {% assign locale_label = locale[0] %}
-  {% if locale_label == "default" %}
+{% for loc in site.locales %}
+  {% assign loc_label = loc[0] %}
+  {% if loc_label == "default" %}
     {% assign collection_suffix = nil %}
     {% assign collection_name = page_collection_basename %}
   {% else %}
-    {% assign collection_suffix = locale_label | prepend: "_" %}
+    {% assign collection_suffix = loc_label | prepend: "_" %}
     {% assign collection_name = page_collection_basename | append: collection_suffix %}
   {% endif %}
   {% assign collection_obj = site.collections | where: "label", collection_name | first %}
