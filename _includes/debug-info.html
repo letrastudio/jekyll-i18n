@@ -2,7 +2,7 @@
   <summary>Debug Info</summary>
   <div class="debug-panel">
     <div class="wrapper">
-    
+      
       <dl>
         <dt>page.locale</dt>
         <dd>{{ page.locale }}</dd>
@@ -13,16 +13,20 @@
         <dt hidden>locale_baseurl</dt>
         <dd hidden>{{ locale_baseurl }}</dd>
       </dl>
-  
+      
       <dl>
         <dt>page.slug</dt>
         <dd>{{ page.slug }}</dd>
         <dt>page.path</dt>
         <dd>{{ page.path }}</dd>
+        <dt hidden>page.url</dt>
+        <dd hidden>{{ page.url }}</dd>
+        <dt>page.id</dt>
+        <dd>{{ page.id }}</dd>
         <dt>page_content_id</dt>
         <dd>{{ page_content_id }}</dd>
       </dl>
-  
+      
       <dl>
         <dt>page.collection</dt>
         <dd>{{ page.collection }}</dd>
@@ -36,8 +40,8 @@
           <i>{{ page_collection_suffix | inspect }}</i>
           {% endif %}
         </dd>
-        <dt>collection_localizations</dt>
-        <dd>{{ collection_localizations | join: ", " }}</dd>
+        <dt hidden>collection_localizations</dt>
+        <dd hidden>{{ collection_localizations | join: ", " }}</dd>
         <dt>page_localizations</dt>
         <dd>
           {% for page in page_localizations %}
