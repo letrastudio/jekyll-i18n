@@ -24,7 +24,7 @@
         {% assign loc_label = loc[0] %}
         {% assign loc_object = loc[1] %}
         {% assign attributes = "" %}
-        {% if loc_label == page.locale %}
+        {% if loc_label == locale_label %}
           {% assign url = page.url %}
           {% assign attributes = 'aria-current="true"' %}
         {% else %}

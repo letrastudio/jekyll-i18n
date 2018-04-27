@@ -7,7 +7,7 @@
   <link rel="canonical" href="{{ site.url }}{{ site.baseurl }}{{ page.url }}">
   
   {% for localized_page in page_locales %}
-  {% unless localized_page.locale == page.locale %}
+  {% unless localized_page.locale == locale_label %}
   {% assign lang = site.locales[localized_page.locale].lang %}
   <link rel="alternate" hreflang="{{ lang }}" href="{{ site.url }}{{ site.baseurl }}{{ localized_page.url }}">
   {% endunless %}
