@@ -4,8 +4,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% if page.title %}{{ site.title | escape }} — {{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
 
-  <link rel="canonical" href="{{ site.url }}{{ site.baseurl }}{{ page.url }}">
-  
   {% for localized_page in page_locales %}
   {% unless localized_page.locale == locale_label %}
   {% assign lang = site.locales[localized_page.locale].lang %}
