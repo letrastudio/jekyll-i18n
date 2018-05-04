@@ -28,7 +28,7 @@
           {% assign url = page.url %}
           {% assign attributes = 'aria-current="true"' %}
         {% else %}
-          {% assign localized_page = page_locales | where: "locale", loc_label | first %}
+          {% assign localized_page = page_localized | where: "locale", loc_label | first %}
           {% if localized_page %}
             {% assign url = localized_page.url %}
           {% else %}

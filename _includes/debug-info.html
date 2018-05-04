@@ -44,11 +44,11 @@
           <i>{{ page_collection_suffix | inspect }}</i>
           {% endif %}
         </dd>
-        <dt hidden>collection_locales</dt>
-        <dd hidden>{{ collection_locales | join: ", " }}</dd>
-        <dt>page_locales</dt>
+        <dt hidden>collection_localized</dt>
+        <dd hidden>{{ collection_localized | join: ", " }}</dd>
+        <dt>page_localized</dt>
         <dd>
-          {% for localized_page in page_locales %}
+          {% for localized_page in page_localized %}
           <a href="{{ site.baseurl }}{{ localized_page.url }}">{{ localized_page.locale }}</a>{% unless forloop.last %},{% endunless %}
           {% endfor %}
         </dd>
