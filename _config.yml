@@ -63,57 +63,72 @@ defaults:
   values:
     layout: page
     locale: default
+    lang: en
 - scope:
     path: ''
     type: pages_pt
   values:
     layout: page
     locale: pt
+    lang: pt-PT
 - scope:
     path: ''
     type: pages_zh
   values:
     layout: page
     locale: zh
+    lang: zh-Hant
 - scope:
     path: ''
     type: pages_ar
   values:
     layout: page
     locale: ar
+    lang: ar
 - scope:
     path: ''
     type: posts
   values:
     layout: post
     locale: default
+    lang: en
 - scope:
     path: ''
     type: posts_pt
   values:
     layout: post
     locale: pt
+    lang: pt-PT
 - scope:
     path: ''
     type: posts_zh
   values:
     layout: post
     locale: zh
+    lang: zh-Hant
 - scope:
     path: ''
     type: posts_ar
   values:
     layout: post
     locale: ar
+    lang: ar
 - scope:
     path: ''
     type: photos
   values:
     layout: photo
     locale: default
+    lang: en
 - scope:
     path: ''
     type: photos_pt
   values:
     layout: photo
     locale: pt
+    lang: pt-PT
+
+plugins:
+- jekyll-sitemap
+- jekyll-seo-tag
+- jekyll-feed
