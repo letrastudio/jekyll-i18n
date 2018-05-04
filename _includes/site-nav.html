@@ -1,0 +1,16 @@
+<nav class="site-nav">
+  <ul>
+    {% assign current_url = page.url %}
+    {% assign pages_collection = "pages" | append: page_collection_suffix %}
+    {% assign pages = site[pages_collection] | sort: "order" %}
+    {% for page in pages %}
+    {% if page.title %}
+    <li>
+      <a href="{{ page.url | prepend: site.baseurl }}" {% if page.url == current_url %}aria-current="page"{% endif %}>
+        {{ page.title | escape }}
+      </a>
+    </li>
+    {% endif %}
+    {% endfor %}
+  </ul>
+</nav>

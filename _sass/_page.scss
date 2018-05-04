@@ -15,27 +15,42 @@
   margin: 1em 0 0;
 }
 
+$banner-max-height: 30em;
+$headline-max-size: 16em;
+
 .banner {
+  position: relative;
   background-color: $dark-gray;
-  background-size: cover;
-  background-position: center center;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 15em;
   
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
   .headline {
     color: white;
     margin: 0;
     line-height: 1;
-    font-weight: 200;
+    font-weight: 100;
+    text-align: center;
+    padding: $base-padding;
+    position: absolute;
     font-size: 4em;
   }
 
-  @include media($large-screen-up) {
-    height: 30em;
+  height: #{$banner-max-height / ($page-width/1rem/100) / 1em}vw;
+  .headline {
+    font-size: #{$headline-max-size / ($page-width/1rem/100) / 1em}vw;
+  }
+  @include media($full-width-up) {
+    height: $banner-max-height;
     .headline {
-      font-size: 8em;
+      font-size: $headline-max-size;
     }
   }
 }

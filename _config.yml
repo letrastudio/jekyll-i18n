@@ -2,7 +2,6 @@
 title: Jekyll I18n
 url: https://letrastudio.github.io
 baseurl: /jekyll-i18n
-github_username: letrastudio
 
 locales:
   default:

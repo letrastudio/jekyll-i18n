@@ -12,10 +12,10 @@
   line-height: 1;
 }
 
-.site-nav {
+.navigation {
   font-weight: 500;
   margin-top: $base-padding;
-  ul {
+  nav {
     padding: $half-padding 0;
     border-top: 1px solid $blue;
   }
@@ -25,11 +25,11 @@
     justify-content: space-between;
     margin-top: $half-padding;
     
-    ul {
+    nav {
       padding: 0;
       border-top: none;
       
-      & + ul {
+      & + nav {
         margin-left: $base-padding * 2;
       }
     }
@@ -57,9 +57,9 @@
   }
 }
 
-html[dir="rtl"] .site-nav {
+html[dir="rtl"] .navigation {
   @include media($large-screen-up) {
-    ul + ul {
+    nav + nav {
       margin-left: 0;
       margin-right: $base-padding * 2;
     }

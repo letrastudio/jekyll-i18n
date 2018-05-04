@@ -3,9 +3,12 @@ layout: default
 ---
 
 {% include i18n.html obj=page %}
-<div class="banner" style="background-image: url('{{ page.banner_image | default: page_default.banner_image | prepend: site.baseurl }}')">
+
+<div class="banner">
+  <img src="{{ page.banner_image | default: page_default.banner_image | prepend: site.baseurl }}">
   <h1 class="headline">{{ page.headline }}</h1>
 </div>
+
 <div class="page wrapper">
   
   <div class="page-content text-container">

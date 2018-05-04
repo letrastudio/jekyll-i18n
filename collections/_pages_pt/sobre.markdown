@@ -1,6 +1,5 @@
 ---
 title: Sobre
-layout: page
 order: 1
 content_id: about
 ---

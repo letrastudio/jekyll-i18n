@@ -2,44 +2,11 @@
   <div class="wrapper">
     
     <a class="site-title" href="{{ site.baseurl }}{{ locale_baseurl }}/">{{ site.title | escape }}</a>
-
-    {% assign pages_collection = "pages" | append: page_collection_suffix %}
-
-    <nav class="site-nav">
-      <ul class="pages-nav" aria-label="{{ locale_strings.site_navigation }}">
-        {% assign current_url = page.url %}
-        {% assign pages = site[pages_collection] %}
-        {% if pages.size > 0 %}
-        {% assign pages = pages | sort: "order" %}
-        {% endif %}
-        {% for p in pages %}
-        {% if p.title %}
-        <li><a href="{{ p.url | prepend: site.baseurl }}" {% if p.url == current_url %}aria-current="page"{% endif %}>{{ p.title | escape }}</a></li>
-        {% endif %}
-        {% endfor %}
-      </ul>
-
-      <ul class="lang-switcher" aria-label="{{ locale_strings.language_selector }}">
-        {% for loc in site.locales %}
-        {% assign loc_label = loc[0] %}
-        {% assign loc_object = loc[1] %}
-        {% assign attributes = "" %}
-        {% if loc_label == locale_label %}
-          {% assign url = page.url %}
-          {% assign attributes = 'aria-current="true"' %}
-        {% else %}
-          {% assign localized_page = page_localized | where: "locale", loc_label | first %}
-          {% if localized_page %}
-            {% assign url = localized_page.url %}
-          {% else %}
-            {% assign url = loc_label | prepend: '/' | remove: '/default' | append: "/" %}
-            {% assign attributes = 'class="not-available"' %}
-          {% endif %}
-        {% endif %}
-        <li><a href="{{ site.baseurl }}{{ url }}" lang="{{ loc_object.lang }}" {{ attributes }}>{{ loc_object.name }}</a></li>
-        {% endfor %}
-      </ul>
-    </nav>
-
+    
+    <div class="navigation">
+      {% include site-nav.html %}
+      {% include lang-switcher.html %}
+    </div>
+    
   </div>
 </header>

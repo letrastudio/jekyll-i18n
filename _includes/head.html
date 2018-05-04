@@ -2,7 +2,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% if page.title %}{{ site.title | escape }} — {{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
+  <title>{{ site.title | escape }}{% if page.title %} — {{ page.title | escape }}{% endif %}</title>
 
   {% for localized_page in page_localized %}
   {% unless localized_page.locale == locale_label %}
@@ -11,7 +11,7 @@
   {% endunless %}
   {% endfor %}
   
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/main.css?{{ site.time | date: '%s%N' }}">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/main.css">
   
   {% seo title=false %}
 </head>

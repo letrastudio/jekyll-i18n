@@ -1,0 +1,20 @@
+<nav class="lang-switcher">
+  <ul>
+    {% for locale in site.locales %}
+    {% assign label = locale[0] %}
+    {% assign locale_object = locale[1] %}
+    <li>
+      {% if label == page.locale %}
+      <a href="{{ page.url | prepend: site.baseurl }}" lang="{{ locale_object.lang }}" aria-current="true">{{ locale_object.name }}</a>
+      {% else %}
+        {% assign localized_page = page_localized | where: "locale", label | first %}
+        {% if localized_page %}
+        <a href="{{ localized_page.url | prepend: site.baseurl }}" lang="{{ locale_object.lang }}">{{ locale_object.name }}</a>
+        {% else %}
+        <a href="{{ label | prepend: '/' | remove: '/default' | append: '/' | prepend: site.baseurl }}" lang="{{ locale_object.lang }}" class="not-available">{{ locale_object.name }}</a>
+        {% endif %}
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</nav>

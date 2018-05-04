@@ -4,14 +4,20 @@
     <div class="wrapper">
       
       <dl>
-        <dt>locale_label</dt>
-        <dd>{{ locale_label }}</dd>
+        <dt>page.locale</dt>
+        <dd>{{ page.locale }}</dd>
         <dt>locale.name</dt>
         <dd>{{ locale.name }}</dd>
         <dt>locale.lang</dt>
         <dd>{{ locale.lang }}</dd>
         <dt>locale_baseurl</dt>
-        <dd>{{ locale_baseurl }}</dd>
+        <dd>
+          {% if locale_baseurl.size > 0 %}
+          {{ locale_baseurl }}
+          {% else %}
+          <i>{{ locale_baseurl | inspect }}</i>
+          {% endif %}
+        </dd>
         <dt>locale_strings</dt>
         <dd><i>{{ locale_strings.size }} strings</i></dd>
         <dt hidden>strings_ref</dt>
