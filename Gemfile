@@ -1,6 +1,4 @@
 source "https://rubygems.org"
 
-gem "jekyll", "3.8.0"
-gem "jekyll-sitemap"
-gem "jekyll-seo-tag"
-gem "jekyll-feed"
+gem "jekyll", "3.7.3"
+gem "github-pages", group: :jekyll_plugins
