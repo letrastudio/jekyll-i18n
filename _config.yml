@@ -1,7 +1,11 @@
 ---
-title: Jekyll I18n
+title: Jekyll Vanilla I18n
 url: https://letrastudio.github.io
 baseurl: /jekyll-i18n
+repository: letrastudio/jekyll-i18n
+description: A sane, plugin-free solution for internationalized Jekyll sites.
+twitter:
+  username: letrastudio
 
 locales:
   default:
@@ -131,3 +135,4 @@ plugins:
 - jekyll-sitemap
 - jekyll-seo-tag
 - jekyll-feed
+- jekyll-github-metadata

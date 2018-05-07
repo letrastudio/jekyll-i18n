@@ -4,4 +4,4 @@ order: 1
 content_id: about
 ---
 
-Este site é um boilerplate simplificado para o Jekyll com conteúdo multilingue, sem uso de plugins.
+**[{{ site.github.repository_name }}]({{ site.github.url }})** é uma solução sensata para sites Jekyll internacionalizados, livre de plugins.

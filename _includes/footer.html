@@ -1,7 +1,17 @@
-<footer class="site-footer" role="contentinfo">
+<footer class="site-footer" role="contentinfo" lang="en" dir="ltr">
   <div class="wrapper">
+    
+    <p>
+      <strong>{{ site.github.repository_name }}</strong><br>
+      {{ site.description }}<br>
+      Made by <a href="https://twitter.com/{{ site.twitter.username }}">@{{ site.twitter.username }}</a>
+    </p>
 
-    <p><a lang="en" dir="ltr" href="https://github.com/letrastudio">@letrastudio on GitHub</a></p>
+    <p>
+      <a class="github-button" href="https://github.com/{{ site.repository }}" data-size="large" aria-label="View {{ site.repository }} on GitHub">View on GitHub</a>
+    </p>
     
   </div>
 </footer>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>

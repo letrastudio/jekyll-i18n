@@ -3,4 +3,4 @@ title: About
 order: 1
 ---
 
-This site is a bare-bones Jekyll boilerplate meant to show how to set up multilingual content without using plugins.
+**[{{ site.github.repository_name }}]({{ site.github.url }})** is a sane, plugin-free solution for internationalized Jekyll sites.
