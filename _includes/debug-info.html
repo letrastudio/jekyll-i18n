@@ -73,3 +73,36 @@
     </div>
   </div>
 </details>
+
+<script>
+  
+  var debugPanel = document.querySelector(".debug");
+  
+  function setCookie(val) {
+    var now = new Date();
+    var time = now.getTime();
+    var seconds_to_expire = 43200;
+    time += seconds_to_expire * 1000;
+    now.setTime(time);
+    document.cookie = "debugisopen=" + val.toString() + "; expires=" + now.toUTCString() + "; path=/";
+  };
+  
+  document.addEventListener("DOMContentLoaded", function() {
+    var cookieVal = document.cookie.replace(/(?:(?:^|.*;\s*)debugisopen\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+    if (cookieVal == "true") {
+      debugPanel.setAttribute("open", "open");
+    } else if (cookieVal == "false") {
+      debugPanel.removeAttribute("open");
+    }
+  });
+  
+  debugPanel.addEventListener("toggle", function() {
+    console.log("toggle event!");
+    if (debugPanel.open) {
+      setCookie(true);
+    } else {
+      setCookie(false);
+    };
+  });
+  
+</script>
