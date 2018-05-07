@@ -1,5 +1,14 @@
 language_selector: 語言選擇器
 
 date_formats:
+  full: "%Y年%-m月%e日%A"
   long: "%Y年%-m月%e日"
   short: "%e/%-m/%Y"
+  weekdays:
+    Sunday: 星期日
+    Monday: 星期一
+    Tuesday: 星期二
+    Wednesday: 星期三
+    Thursday: 星期四
+    Friday: 星期五
+    Saturday: 星期六

@@ -1,6 +1,7 @@
 language_selector: اختيار اللغة
 
 date_formats:
+  full: "%A ، %e %B %Y"
   long: "%e %B %Y"
   short: "%d/%m/%Y"
   months:
@@ -16,3 +17,11 @@ date_formats:
     October: أكتوبر
     November: نوفمبر
     December: ديسمبر
+  weekdays:
+    Sunday: الأحد
+    Monday: الاثنين
+    Tuesday: الثلاثاء
+    Wednesday: الأربعاء
+    Thursday: الخميس
+    Friday: الجمعة
+    Saturday: السبت

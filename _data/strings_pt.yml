@@ -6,6 +6,7 @@ location: Localização
 link: Link
 
 date_formats:
+  full: "%A, %e de %B de %Y"
   long: "%e %B %Y"
   short: "%d-%m-%Y"
   months:
@@ -21,3 +22,11 @@ date_formats:
     October: Outubro
     November: Novembro
     December: Dezembro
+  weekdays:
+    Sunday: Domingo
+    Monday: Segunda-feira
+    Tuesday: Terça-feira
+    Wednesday: Quarta-feira
+    Thursday: Quinta-feira
+    Friday: Sexta-feira
+    Saturday: Sábado

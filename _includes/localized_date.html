@@ -5,4 +5,9 @@
   {% assign month = locale_strings.date_formats.months[month_ref] %}
   {% assign date = date | replace: month_ref, month %}
 {% endif %}
+{% if locale_strings.date_formats.weekdays %}
+  {% assign weekday_ref = include.date | date: "%A" | strip %}
+  {% assign weekday = locale_strings.date_formats.weekdays[weekday_ref] %}
+  {% assign date = date | replace: weekday_ref, weekday %}
+{% endif %}
 {{ date }}

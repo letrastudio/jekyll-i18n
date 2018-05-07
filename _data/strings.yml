@@ -6,5 +6,6 @@ location: Location
 link: Link
 
 date_formats:
+  full: "%A, %e %B %Y"
   long: "%B %e, %Y"
   short: "%m/%d/%Y"
