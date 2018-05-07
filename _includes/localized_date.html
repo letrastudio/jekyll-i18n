@@ -1,11 +1,8 @@
-{% assign date = include.date | date: "%Y-%m-%d" %}
-{% if locale.lang == "en" or locale.lang == "en-US" %}
-  {% assign date = include.date | date_to_long_string %}
-{% elsif locale.lang == "pt" or locale.lang == "pt-PT" %}
-  {% assign day = include.date | date: "%-d" %}
-  {% assign month_ref = include.date | date: "%-m" | prepend: "month_" %}
-  {% assign month = locale_strings[month_ref] %}
-  {% assign year = include.date | date: "%Y" %}
-  {% capture date %}{{ day }} {{ month }} {{ year }}{% endcapture %}
+{% assign date_format = locale_strings.date_formats[include.format] | default: "%Y-%m-%d" %}
+{% assign date = include.date | date: date_format %}
+{% if locale_strings.date_formats.months %}
+  {% assign month_ref = include.date | date: "%B" | strip %}
+  {% assign month = locale_strings.date_formats.months[month_ref] %}
+  {% assign date = date | replace: month_ref, month %}
 {% endif %}
 {{ date }}

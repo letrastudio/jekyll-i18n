@@ -1,1 +1,5 @@
 language_selector: 語言選擇器
+
+date_formats:
+  long: "%Y年%-m月%e日"
+  short: "%e/%-m/%Y"

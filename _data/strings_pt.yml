@@ -5,15 +5,19 @@ date: Data
 location: Localização
 link: Link
 
-month_1: Janeiro
-month_2: Fevereiro
-month_3: Março
-month_4: Abril
-month_5: Maio
-month_6: Junho
-month_7: Julho
-month_8: Agosto
-month_9: Setembro
-month_10: Outubro
-month_11: Novembro
-month_12: Dezembro
+date_formats:
+  long: "%e %B %Y"
+  short: "%d-%m-%Y"
+  months:
+    January: Janeiro
+    February: Fevereiro
+    March: Março
+    April: Abril
+    May: Maio
+    June: Junho
+    July: Julho
+    August: Agosto
+    September: Setembro
+    October: Outubro
+    November: Novembro
+    December: Dezembro

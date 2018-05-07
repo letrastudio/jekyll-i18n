@@ -1,1 +1,18 @@
 language_selector: اختيار اللغة
+
+date_formats:
+  long: "%e %B %Y"
+  short: "%d/%m/%Y"
+  months:
+    January: يناير
+    February: فبراير
+    March: مارس
+    April: أبريل
+    May: مايو
+    June: يونيو
+    July: يوليو
+    August: أغسطس
+    September: سبتمبر
+    October: أكتوبر
+    November: نوفمبر
+    December: ديسمبر
