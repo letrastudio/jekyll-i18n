@@ -2,7 +2,7 @@
 layout: homepage
 title: الصفحة الرئيسية
 order: 0
-permalink: "/ar/"
+permalink: "/ae/"
 headline: مرحبا
 ---
 

@@ -2,7 +2,7 @@
 layout: homepage
 title: 主頁
 order: 0
-permalink: "/zh/"
+permalink: "/mo/"
 headline: 你好
 ---
 

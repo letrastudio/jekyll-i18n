@@ -10,12 +10,12 @@ locales:
   pt:
     name: Português
     lang: pt-PT
-  zh:
+  mo:
     name: 繁體中文
-    lang: zh-Hant
-  ar:
+    lang: zh-Hant-MO
+  ae:
     name: عربى
-    lang: ar
+    lang: ar-AE
     direction: rtl
 
 collections_dir: collections
@@ -26,24 +26,24 @@ collections:
   pages_pt:
     output: true
     permalink: /pt/:path/
-  pages_zh:
+  pages_mo:
     output: true
-    permalink: /zh/:path/
-  pages_ar:
+    permalink: /mo/:path/
+  pages_ae:
     output: true
-    permalink: /ar/:path/
+    permalink: /ae/:path/
   posts:
     output: true
     permalink: /blog/:categories/:title/
   posts_pt:
     output: true
     permalink: /pt/blog/:categories/:title/
-  posts_zh:
+  posts_mo:
     output: true
-    permalink: /zh/boke/:categories/:title/
-  posts_ar:
+    permalink: /mo/boke/:categories/:title/
+  posts_ae:
     output: true
-    permalink: /ar/mudawana/:categories/:title/
+    permalink: /ae/mudawana/:categories/:title/
   photos:
     output: true
     permalink: /photos/:path/
@@ -72,18 +72,18 @@ defaults:
     lang: pt-PT
 - scope:
     path: ''
-    type: pages_zh
+    type: pages_mo
   values:
     layout: page
-    locale: zh
-    lang: zh-Hant
+    locale: mo
+    lang: zh-Hant-MO
 - scope:
     path: ''
-    type: pages_ar
+    type: pages_ae
   values:
     layout: page
-    locale: ar
-    lang: ar
+    locale: ae
+    lang: ar-AE
 - scope:
     path: ''
     type: posts
@@ -100,18 +100,18 @@ defaults:
     lang: pt-PT
 - scope:
     path: ''
-    type: posts_zh
+    type: posts_mo
   values:
     layout: post
-    locale: zh
-    lang: zh-Hant
+    locale: mo
+    lang: zh-Hant-MO
 - scope:
     path: ''
-    type: posts_ar
+    type: posts_ae
   values:
     layout: post
-    locale: ar
-    lang: ar
+    locale: ae
+    lang: ar-AE
 - scope:
     path: ''
     type: photos
