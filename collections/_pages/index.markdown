@@ -3,7 +3,7 @@ layout: homepage
 title: Home
 order: 0
 permalink: "/"
-headline: Hello!
+headline: Hello
 banner_image: /assets/images/patrick-fore-562330-unsplash.jpg
 ---
 
