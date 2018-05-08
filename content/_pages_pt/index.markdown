@@ -1,8 +1,8 @@
 ---
-layout: homepage
 title: Homepage
-order: 0
 permalink: "/pt/"
+layout: homepage
+order: 0
 headline: Olá
 ---
 
