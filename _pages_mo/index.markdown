@@ -1,8 +1,8 @@
 ---
-layout: homepage
 title: 主頁
-order: 0
 permalink: "/mo/"
+layout: homepage
+order: 0
 headline: 你好
 ---
 

@@ -1,8 +1,8 @@
 ---
-layout: homepage
 title: الصفحة الرئيسية
-order: 0
 permalink: "/ae/"
+layout: homepage
+order: 0
 headline: مرحبا
 ---
 
