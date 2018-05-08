@@ -2,14 +2,14 @@
 title: Jekyll Vanilla I18n
 timezone: UTC
 collections:
-  pages:
-    title: Pages
-    output: true
-    permalink: "/:path/"
   pages_ae:
     title: Pages AE
     output: true
     permalink: "/ae/:path/"
+  pages:
+    title: Pages EN
+    output: true
+    permalink: "/:path/"
   pages_mo:
     title: Pages MO
     output: true
