@@ -22,7 +22,6 @@ locales:
     lang: ar-AE
     direction: rtl
 
-collections_dir: content
 collections:
   pages:
     output: true
