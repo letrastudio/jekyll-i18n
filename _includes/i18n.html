@@ -4,7 +4,9 @@
 {% assign locale = site.locales[locale_label] %}
 {% assign default_locale = site.locales.default %}
 
-{% if locale_label == "default" %}
+{% if locale.baseurl %}
+  {% assign locale_baseurl = locale.baseurl %}
+{% elsif locale_label == "default" %}
   {% assign locale_baseurl = "" %}
 {% else %}
   {% assign locale_baseurl = "/" | append: locale_label %}

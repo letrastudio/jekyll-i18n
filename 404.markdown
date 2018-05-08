@@ -7,6 +7,15 @@ Go back to the homepage:
 
 <ul>
 {% for locale in site.locales %}
-<li><a href="{{ site.baseurl }}{{ locale[0] | prepend: "/" | remove: "/default" }}/" lang="{{ locale[1].lang }}">{{ locale[1].name }}</a></li>
+  {% assign label = locale[0] %}
+  {% assign locale_object = locale[1] %}
+  {% if locale_object.baseurl %}
+    {% assign locale_baseurl = locale_object.baseurl %}
+  {% elsif label == "default" %}
+    {% assign locale_baseurl = "" %}
+  {% else %}
+    {% assign locale_baseurl = "/" | append: label %}
+  {% endif %}
+  <li><a href="{{ site.baseurl }}{{ locale_baseurl }}/" lang="{{ locale_object.lang }}">{{ locale_object.name }}</a></li>
 {% endfor %}
 </ul>

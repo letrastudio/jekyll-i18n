@@ -11,7 +11,14 @@
         {% if localized_page %}
         <a href="{{ localized_page.url | prepend: site.baseurl }}" lang="{{ locale_object.lang }}">{{ locale_object.name }}</a>
         {% else %}
-        <a href="{{ label | prepend: '/' | remove: '/default' | append: '/' | prepend: site.baseurl }}" lang="{{ locale_object.lang }}" class="not-available">{{ locale_object.name }}</a>
+        {% if locale_object.baseurl %}
+          {% assign baseurl = locale_object.baseurl %}
+        {% elsif label == "default" %}
+          {% assign baseurl = "" %}
+        {% else %}
+          {% assign baseurl = "/" | append: label %}
+        {% endif %}
+        <a href="{{ baseurl | prepend: site.baseurl }}/" lang="{{ locale_object.lang }}" class="not-available">{{ locale_object.name }}</a>
         {% endif %}
       {% endif %}
     </li>
