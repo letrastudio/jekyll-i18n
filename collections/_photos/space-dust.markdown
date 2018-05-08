@@ -1,6 +1,6 @@
 ---
 title: Space Dust
-date: 2018-02-16
+date_published: 2018-02-16
 location: 
 author: Patrick Fore
 image: /assets/images/patrick-fore-562330-unsplash.jpg

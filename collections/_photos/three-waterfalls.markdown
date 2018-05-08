@@ -1,6 +1,6 @@
 ---
 title: Three Waterfalls
-date: 2017-10-04
+date_published: 2017-10-04
 location: Vik, Iceland
 author: Chris Liverani
 image: /assets/images/chris-liverani-401112-unsplash.jpg

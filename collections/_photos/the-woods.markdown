@@ -1,6 +1,6 @@
 ---
 title: The Woods
-date: 2018-04-20
+date_published: 2018-04-20
 location: Issaquah, United States
 author: John Westrock
 image: /assets/images/john-westrock-638059-unsplash.jpg

@@ -24,11 +24,11 @@ layout: default
       <strong>{{ locale_strings.author }}:</strong>
         {{ page.author | default: page_default.author }}<br>
       <strong>{{ locale_strings.date }}:</strong>
-        {% assign page_date = page.date | default: page_default.date %}{% include localized_date.html date=page_date %}<br>
+        {% assign date_published = page.date_published | default: page_default.date_published %}{% include localized_date.html date=date_published format="long" %}<br>
       <strong>{{ locale_strings.location }}:</strong>
         {{ page.location | default: page_default.location }}<br>
       <strong>{{ locale_strings.link }}:</strong>
-        <a href="{{ page.link | default: page_default.link }}">unsplash.com</a>
+        <a href="{{ page.link | default: page_default.link }}" target="_blank" rel="noopener">unsplash.com</a>
     </p>
   </div>
   
