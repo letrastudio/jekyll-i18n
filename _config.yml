@@ -1,49 +1,60 @@
 ---
 title: Jekyll Vanilla I18n
-timezone: UTC
+url: https://letrastudio.github.io
+baseurl: /jekyll-i18n
+repository: letrastudio/jekyll-i18n
+description: A sane, plugin-free solution for internationalized Jekyll sites.
+twitter:
+  username: letrastudio
+
+locales:
+  default:
+    name: English
+    lang: en
+  pt:
+    name: Português
+    lang: pt-PT
+  mo:
+    name: 繁體中文
+    lang: zh-Hant-MO
+  ae:
+    name: عربى
+    lang: ar-AE
+    direction: rtl
+
+collections_dir: content
 collections:
-  pages_ae:
-    title: Pages AE
-    output: true
-    permalink: "/ae/:path/"
   pages:
-    title: Pages EN
     output: true
-    permalink: "/:path/"
-  pages_mo:
-    title: Pages MO
-    output: true
-    permalink: "/mo/:path/"
+    permalink: /:path/
   pages_pt:
-    title: Pages PT
     output: true
-    permalink: "/pt/:path/"
-  photos:
-    title: Photos
+    permalink: /pt/:path/
+  pages_mo:
     output: true
-    permalink: "/photos/:path/"
-  photos_pt:
-    title: Photos PT
+    permalink: /mo/:path/
+  pages_ae:
     output: true
-    permalink: "/pt/fotografias/:path/"
+    permalink: /ae/:path/
   posts:
-    title: Posts
     output: true
-  posts_ae:
-    title: Posts AE
-    output: true
-    permalink: "/ae/mudawana/:categories/:title/"
-  posts_mo:
-    title: Posts MO
-    output: true
-    permalink: "/mo/boke/:categories/:title/"
+    permalink: /blog/:categories/:title/
   posts_pt:
-    title: Posts PT
     output: true
-    permalink: "/pt/blog/:categories/:title/"
-  uploads:
-    title: Uploads
+    permalink: /pt/blog/:categories/:title/
+  posts_mo:
     output: true
+    permalink: /mo/boke/:categories/:title/
+  posts_ae:
+    output: true
+    permalink: /ae/mudawana/:categories/:title/
+  photos:
+    output: true
+    permalink: /photos/:path/
+  photos_pt:
+    output: true
+    permalink: /pt/fotografias/:path/
+
 defaults:
 - scope:
     path: ''
@@ -119,31 +130,9 @@ defaults:
     layout: photo
     locale: pt
     lang: pt-PT
-url: https://letrastudio.github.io
-baseurl: "/jekyll-i18n"
-repository: letrastudio/jekyll-i18n
-description: A sane, plugin-free solution for internationalized Jekyll sites.
-twitter:
-  username: letrastudio
-locales:
-  default:
-    name: English
-    lang: en
-  pt:
-    name: Português
-    lang: pt-PT
-  mo:
-    name: 繁體中文
-    lang: zh-Hant-MO
-  ae:
-    name: عربى
-    lang: ar-AE
-    direction: rtl
+
 plugins:
 - jekyll-sitemap
 - jekyll-seo-tag
 - jekyll-feed
 - jekyll-github-metadata
-exclude:
-- README.markdown
-- LICENSE
