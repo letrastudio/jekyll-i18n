@@ -56,79 +56,37 @@ collections:
 
 defaults:
 - scope:
-    path: ''
-  values:
-    locale: default
-- scope:
-    path: ''
-    type: pages
+    path: '_pages*/'
   values:
     layout: page
-    locale: default
-    lang: en
 - scope:
-    path: ''
-    type: pages_pt
+    path: '_posts*/'
   values:
-    layout: page
+    layout: post
+- scope:
+    path: '_photos*/'
+  values:
+    layout: photo
+- scope:
+    path: '*_pt/'
+  values:
     locale: pt
     lang: pt-PT
 - scope:
-    path: ''
-    type: pages_mo
+    path: '*_mo/'
   values:
-    layout: page
     locale: mo
     lang: zh-Hant-MO
 - scope:
-    path: ''
-    type: pages_ae
+    path: '*_ae/'
   values:
-    layout: page
     locale: ae
     lang: ar-AE
 - scope:
     path: ''
-    type: posts
   values:
-    layout: post
     locale: default
     lang: en
-- scope:
-    path: ''
-    type: posts_pt
-  values:
-    layout: post
-    locale: pt
-    lang: pt-PT
-- scope:
-    path: ''
-    type: posts_mo
-  values:
-    layout: post
-    locale: mo
-    lang: zh-Hant-MO
-- scope:
-    path: ''
-    type: posts_ae
-  values:
-    layout: post
-    locale: ae
-    lang: ar-AE
-- scope:
-    path: ''
-    type: photos
-  values:
-    layout: photo
-    locale: default
-    lang: en
-- scope:
-    path: ''
-    type: photos_pt
-  values:
-    layout: photo
-    locale: pt
-    lang: pt-PT
 
 plugins:
 - jekyll-sitemap
