@@ -2,7 +2,6 @@
 layout: homepage
 title: Homepage
 order: 0
-permalink: "/pt/"
 headline: Olá
 ---
 

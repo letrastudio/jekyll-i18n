@@ -87,6 +87,22 @@ defaults:
   values:
     locale: default
     lang: en
+- scope:
+    path: '_pages/index.markdown'
+  values:
+    permalink: "/"
+- scope:
+    path: '_pages_pt/index.markdown'
+  values:
+    permalink: "/pt/"
+- scope:
+    path: '_pages_mo/index.markdown'
+  values:
+    permalink: "/mo/"
+- scope:
+    path: '_pages_ae/index.markdown'
+  values:
+    permalink: "/ae/"
 
 plugins:
 - jekyll-sitemap
