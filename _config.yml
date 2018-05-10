@@ -88,19 +88,19 @@ defaults:
     locale: default
     lang: en
 - scope:
-    path: '_pages/index.markdown'
+    path: '_pages/index.*'
   values:
     permalink: "/"
 - scope:
-    path: '_pages_pt/index.markdown'
+    path: '_pages_pt/index.*'
   values:
     permalink: "/pt/"
 - scope:
-    path: '_pages_mo/index.markdown'
+    path: '_pages_mo/index.*'
   values:
     permalink: "/mo/"
 - scope:
-    path: '_pages_ae/index.markdown'
+    path: '_pages_ae/index.*'
   values:
     permalink: "/ae/"
 
