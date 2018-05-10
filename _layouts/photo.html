@@ -24,7 +24,7 @@ layout: default
       <strong>{{ locale_strings.author }}:</strong>
         {{ page.author | default: page_default.author }}<br>
       <strong>{{ locale_strings.date }}:</strong>
-        {% assign date_published = page.date_published | default: page_default.date_published %}{% include localized_date.html date=date_published format="long" %}<br>
+        {% assign date_published = page.date_published | default: page_default.date_published %}{% include localized-date.html date=date_published format="long" %}<br>
       <strong>{{ locale_strings.location }}:</strong>
         {{ page.location | default: page_default.location }}<br>
       <strong>{{ locale_strings.link }}:</strong>
