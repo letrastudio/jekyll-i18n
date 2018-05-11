@@ -10,13 +10,13 @@ twitter:
 locales:
   default:
     name: English
-    lang: en
+    lang: en-US
   pt:
     name: Português
     lang: pt-PT
   mo:
     name: 繁體中文
-    lang: zh-Hant-MO
+    lang: zh-MO
   ae:
     name: عربى
     lang: ar-AE
@@ -76,7 +76,7 @@ defaults:
     path: '*_mo/'
   values:
     locale: mo
-    lang: zh-Hant-MO
+    lang: zh-MO
 - scope:
     path: '*_ae/'
   values:
@@ -86,7 +86,7 @@ defaults:
     path: ''
   values:
     locale: default
-    lang: en
+    lang: en-US
 - scope:
     path: '_pages/index.*'
   values:
