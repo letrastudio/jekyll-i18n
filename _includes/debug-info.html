@@ -70,6 +70,8 @@
       
       <pre hidden>{{ page | inspect }}</pre>
       
+      <button id="unhide-button" onclick="unhideAll()">More</button>
+      
     </div>
   </div>
 </details>
@@ -104,5 +106,13 @@
       setCookie(false);
     };
   });
+  
+  function unhideAll() {
+    var elements = document.querySelectorAll(".debug [hidden]");
+    for (var i=0; i < elements.length; i++) {
+      elements[i].removeAttribute("hidden");
+    }
+    document.querySelector("#unhide-button").setAttribute("hidden", "hidden");
+  }
   
 </script>
