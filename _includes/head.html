@@ -13,13 +13,5 @@
   {% endunless %}
   {% endfor %}
   
-  <meta property="og:locale" content="{{ locale.lang | replace: "-", "_" }}" />
-  {% for localized_page in localized_pages %}
-  {% unless localized_page.locale == page.locale %}
-  {% assign lang = site.locales[localized_page.locale].lang %}
-  <meta property="og:locale:alternate" content="{{ lang | replace: "-", "_" }}" />
-  {% endunless %}
-  {% endfor %}
-  
   {% seo title=false %}
 </head>
