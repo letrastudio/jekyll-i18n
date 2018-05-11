@@ -3,16 +3,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ site.title | escape }}{% if page.title %} — {{ page.title | escape }}{% endif %}</title>
-
+  
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/main.css">
   
-  {% seo title=false %}
-
   {% for localized_page in localized_pages %}
   {% unless localized_page.locale == page.locale %}
   {% assign lang = site.locales[localized_page.locale].lang %}
   <link rel="alternate" hreflang="{{ lang }}" href="{{ site.url }}{{ site.baseurl }}{{ localized_page.url }}">
+  {% endunless %}
+  {% endfor %}
+  
+  <meta property="og:locale" content="{{ locale.lang }}" />
+  {% for localized_page in localized_pages %}
+  {% unless localized_page.locale == page.locale %}
+  {% assign lang = site.locales[localized_page.locale].lang %}
   <meta property="og:locale:alternate" content="{{ lang | replace: "-", "_" }}" />
   {% endunless %}
   {% endfor %}
+  
+  {% seo title=false %}
 </head>
