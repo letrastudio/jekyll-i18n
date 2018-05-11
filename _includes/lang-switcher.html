@@ -7,7 +7,7 @@
       {% if label == page.locale %}
       <a href="{{ page.url | prepend: site.baseurl }}" lang="{{ locale_object.lang }}" aria-current="true">{{ locale_object.name }}</a>
       {% else %}
-        {% assign localized_page = page_localized | where: "locale", label | first %}
+        {% assign localized_page = localized_pages | where: "locale", label | first %}
         {% if localized_page %}
         <a href="{{ localized_page.url | prepend: site.baseurl }}" lang="{{ locale_object.lang }}">{{ locale_object.name }}</a>
         {% else %}

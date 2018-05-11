@@ -11,7 +11,7 @@ layout: default
   </div>
 
   <figure>
-    <img src="{{ page.image | default: page_default.image | prepend: site.baseurl }}" {% if page.image_alt %}alt="{{ page.image_alt }}"{% endif %}>
+    <img src="{{ page.image | default: default_page.image | prepend: site.baseurl }}" {% if page.image_alt %}alt="{{ page.image_alt }}"{% endif %}>
     {% if page.caption %}
     <figcaption>{{ page.caption }}</figcaption>
     {% endif %}
@@ -22,13 +22,13 @@ layout: default
   <div class="text-container">
     <p>
       <strong>{{ locale_strings.author }}:</strong>
-        {{ page.author | default: page_default.author }}<br>
+        {{ page.author | default: default_page.author }}<br>
       <strong>{{ locale_strings.date }}:</strong>
-        {% assign date_published = page.date_published | default: page_default.date_published %}{% include localized-date.html date=date_published format="long" %}<br>
+        {% assign date_published = page.date_published | default: default_page.date_published %}{% include localized-date.html date=date_published format="long" %}<br>
       <strong>{{ locale_strings.location }}:</strong>
-        {{ page.location | default: page_default.location }}<br>
+        {{ page.location | default: default_page.location }}<br>
       <strong>{{ locale_strings.link }}:</strong>
-        <a href="{{ page.link | default: page_default.link }}" target="_blank" rel="noopener">unsplash.com</a>
+        <a href="{{ page.link | default: default_page.link }}" target="_blank" rel="noopener">unsplash.com</a>
     </p>
   </div>
   

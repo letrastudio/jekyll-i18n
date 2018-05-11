@@ -49,7 +49,7 @@
   {% endif %}
 {% endfor %}
 
-{% assign page_localized = "" | split: "," %}
+{% assign localized_pages = "" | split: "," %}
 {% for localized_collection in collection_localized %}
   {% for document in site[localized_collection] %}
     {% if document.content_id %}
@@ -66,15 +66,15 @@
       {% assign test_content_id = test_path_in_collection | slice: 0, test_base_content_id_length | append: document.slug %}
     {% endif %}
     {% if test_content_id == content_id %}
-      {% assign page_localized = page_localized | push: document %}
+      {% assign localized_pages = localized_pages | push: document %}
       {% break %}
     {% endif %}
   {% endfor %}
 {% endfor %}
 
-{% assign page_default = page_localized | where: "locale", "default" | first %}
-{% if page_default.locale == page.locale %}
-  {% assign page_default = nil %}
+{% assign default_page = localized_pages | where: "locale", "default" | first %}
+{% if default_page.locale == page.locale %}
+  {% assign default_page = nil %}
 {% endif %}
 
 {% assign strings_ref = page_collection_suffix | prepend: "strings" %}

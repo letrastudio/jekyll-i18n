@@ -52,18 +52,18 @@
         </dd>
         <dt hidden>collection_localized</dt>
         <dd hidden>{{ collection_localized | join: ", " }}</dd>
-        <dt>page_localized</dt>
+        <dt>localized_pages</dt>
         <dd>
-          {% for localized_page in page_localized %}
+          {% for localized_page in localized_pages %}
           <a href="{{ site.baseurl }}{{ localized_page.url }}">{{ localized_page.locale }}</a>{% unless forloop.last %},{% endunless %}
           {% endfor %}
         </dd>
-        <dt>page_default</dt>
+        <dt>default_page</dt>
         <dd>
-          {% if page_default %}
-          <a href="{{ site.baseurl }}{{ page_default.url }}">{{ page_default.locale }}</a>
+          {% if default_page %}
+          <a href="{{ site.baseurl }}{{ default_page.url }}">{{ default_page.locale }}</a>
           {% else %}
-          <i>{{ page_default | inspect }}</i>
+          <i>{{ default_page | inspect }}</i>
           {% endif %}
         </dd>
       </dl>

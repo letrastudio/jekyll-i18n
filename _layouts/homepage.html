@@ -5,7 +5,7 @@ layout: default
 {% include i18n.html obj=page %}
 
 <div class="banner">
-  <img src="{{ page.banner_image | default: page_default.banner_image | prepend: site.baseurl }}" alt="">
+  <img src="{{ page.banner_image | default: default_page.banner_image | prepend: site.baseurl }}" alt="">
   <h1 class="headline">{{ page.headline }}</h1>
 </div>
 
