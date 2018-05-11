@@ -1,7 +1,6 @@
 {% assign page = include.obj %}
 
 {% assign locale = site.locales[page.locale] %}
-{% assign default_locale = site.locales.default %}
 
 {% if locale.baseurl %}
   {% assign locale_baseurl = locale.baseurl %}
