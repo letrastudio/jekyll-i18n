@@ -8,6 +8,7 @@
   {% unless localized_page.locale == page.locale %}
   {% assign lang = site.locales[localized_page.locale].lang %}
   <link rel="alternate" hreflang="{{ lang }}" href="{{ site.url }}{{ site.baseurl }}{{ localized_page.url }}">
+  <meta property="og:locale:alternate" content="{{ lang | replace: '-', '_' }}" />
   {% endunless %}
   {% endfor %}
   
