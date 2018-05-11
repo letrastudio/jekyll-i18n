@@ -1,15 +1,14 @@
 {% assign page = include.obj %}
 
-{% assign locale_label = page.locale %}
-{% assign locale = site.locales[locale_label] %}
+{% assign locale = site.locales[page.locale] %}
 {% assign default_locale = site.locales.default %}
 
 {% if locale.baseurl %}
   {% assign locale_baseurl = locale.baseurl %}
-{% elsif locale_label == "default" %}
+{% elsif page.locale == "default" %}
   {% assign locale_baseurl = "" %}
 {% else %}
-  {% assign locale_baseurl = "/" | append: locale_label %}
+  {% assign locale_baseurl = "/" | append: page.locale %}
 {% endif %}
 
 {% if page.content_id %}
@@ -26,11 +25,11 @@
   {% assign content_id = path_in_collection | slice: 0, base_content_id_length | append: page.slug %}
 {% endif %}
 
-{% if locale_label == "default" %}
+{% if page.locale == "default" %}
   {% assign page_collection_suffix = nil %}
   {% assign page_collection_basename = page.collection %}
 {% else %}
-  {% assign page_collection_suffix = locale_label | prepend: "_" %}
+  {% assign page_collection_suffix = page.locale | prepend: "_" %}
   {% assign page_collection_basename_length = page.collection.size | minus: page_collection_suffix.size %}
   {% assign page_collection_basename = page.collection | slice: 0, page_collection_basename_length %}
 {% endif %}
@@ -75,7 +74,7 @@
 {% endfor %}
 
 {% assign page_default = page_localized | where: "locale", "default" | first %}
-{% if page_default.locale == locale_label %}
+{% if page_default.locale == page.locale %}
   {% assign page_default = nil %}
 {% endif %}
 
