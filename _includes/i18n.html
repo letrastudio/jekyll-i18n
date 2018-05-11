@@ -33,7 +33,7 @@
   {% assign page_collection_basename = obj.collection | slice: 0, page_collection_basename_length %}
 {% endif %}
 
-{% assign collection_localized = "" | split: "," %}
+{% assign localized_collections = "" | split: "," %}
 {% for loc in site.locales %}
   {% assign loc_label = loc[0] %}
   {% if loc_label == "default" %}
@@ -45,12 +45,12 @@
   {% endif %}
   {% assign collection_obj = site.collections | where: "label", collection_name | first %}
   {% if collection_obj.output == true %}
-    {% assign collection_localized = collection_localized | push: collection_name %}
+    {% assign localized_collections = localized_collections | push: collection_name %}
   {% endif %}
 {% endfor %}
 
 {% assign localized_pages = "" | split: "," %}
-{% for localized_collection in collection_localized %}
+{% for localized_collection in localized_collections %}
   {% for document in site[localized_collection] %}
     {% if document.content_id %}
       {% assign test_content_id_first_character = document.content_id | slice: 0 %}

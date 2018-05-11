@@ -50,8 +50,8 @@
           <i>{{ page_collection_suffix | inspect }}</i>
           {% endif %}
         </dd>
-        <dt hidden>collection_localized</dt>
-        <dd hidden>{{ collection_localized | join: ", " }}</dd>
+        <dt hidden>localized_collections</dt>
+        <dd hidden>{{ localized_collections | join: ", " }}</dd>
         <dt>localized_pages</dt>
         <dd>
           {% for localized_page in localized_pages %}
