@@ -2,7 +2,7 @@
 layout: default
 ---
 
-{% include i18n.html obj=page %}
+{% include i18n.html %}
 
 <div class="banner">
   <img src="{{ page.banner_image | default: default_page.banner_image | prepend: site.baseurl }}" alt="">

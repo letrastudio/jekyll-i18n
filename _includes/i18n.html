@@ -1,4 +1,4 @@
-{% assign page = include.obj %}
+{% assign page = include.obj | default: page %}
 
 {% assign locale = site.locales[page.locale] %}
 
