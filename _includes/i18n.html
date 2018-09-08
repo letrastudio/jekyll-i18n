@@ -11,17 +11,13 @@
 {% endif %}
 
 {% if obj.content_id %}
-  {% assign content_id_first_character = obj.content_id | slice: 0 %}
-  {% if content_id_first_character != "/" %}
-    {% assign content_id = obj.content_id | prepend: "/" %}
-  {% else %}
-    {% assign content_id = obj.content_id %}
-  {% endif %}
+  {% assign content_id = obj.content_id %}
 {% else %}
   {% if obj.collection %}
-    {% assign path_in_collection = obj.path | remove_first: "_" | remove_first: obj.collection %}
+    {% assign collection_path = obj.collection | prepend: "_" | append: "/" %}
+    {% assign path_in_collection = obj.path | remove_first: collection_path %}
   {% else %}
-    {% assign path_in_collection = obj.path | prepend: "/" %}
+    {% assign path_in_collection = obj.path %}
   {% endif %}
   {% assign filename = path_in_collection | split: "/" | last %}
   {% assign base_content_id_length = path_in_collection | size | minus: filename.size %}
@@ -59,17 +55,13 @@
 {% for localized_collection in localized_collections %}
   {% for document in site[localized_collection] %}
     {% if document.content_id %}
-      {% assign test_content_id_first_character = document.content_id | slice: 0 %}
-      {% if test_content_id_first_character != "/" %}
-        {% assign test_content_id = document.content_id | prepend: "/" %}
-      {% else %}
-        {% assign test_content_id = document.content_id %}
-      {% endif %}
+      {% assign test_content_id = document.content_id %}
     {% else %}
       {% if document.collection %}
-        {% assign test_path_in_collection = document.path | remove_first: "_" | remove_first: document.collection %}
+        {% assign collection_path = document.collection | prepend: "_" | append: "/" %}
+        {% assign test_path_in_collection = document.path | remove_first: collection_path %}
       {% else %}
-        {% assign test_path_in_collection = document.path | prepend: "/" %}
+        {% assign test_path_in_collection = document.path %}
       {% endif %}
       {% assign test_filename = test_path_in_collection | split: "/" | last %}
       {% assign test_base_content_id_length = test_path_in_collection | size | minus: test_filename.size %}
