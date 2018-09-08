@@ -27,9 +27,6 @@ locales:
     direction: rtl
 
 collections:
-  pages:
-    output: true
-    permalink: /:path/
   pages_pt:
     output: true
     permalink: /pt/:path/
@@ -59,6 +56,10 @@ collections:
     permalink: /pt/fotografias/:path/
 
 defaults:
+- scope:
+    type: pages
+  values:
+    layout: page
 - scope:
     path: '_pages*/'
   values:
@@ -91,10 +92,6 @@ defaults:
   values:
     locale: default
     lang: en-US
-- scope:
-    path: '_pages/index.*'
-  values:
-    permalink: "/"
 - scope:
     path: '_pages_pt/index.*'
   values:
