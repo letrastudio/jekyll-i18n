@@ -10,12 +10,12 @@
         <dd>{{ locale.name }}</dd>
         <dt>locale.lang</dt>
         <dd>{{ locale.lang }}</dd>
-        <dt>locale_baseurl</dt>
+        <dt>locale.baseurl</dt>
         <dd>
-          {% if locale_baseurl.size > 0 %}
-          {{ locale_baseurl }}
+          {% if locale.baseurl.size > 0 %}
+          {{ locale.baseurl }}
           {% else %}
-          <i>{{ locale_baseurl | inspect }}</i>
+          <i>{{ locale.baseurl | inspect }}</i>
           {% endif %}
         </dd>
         <dt>locale_strings</dt>

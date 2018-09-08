@@ -9,13 +9,6 @@ layout: page
 {% for locale in site.locales %}
   {% assign label = locale[0] %}
   {% assign locale_object = locale[1] %}
-  {% if locale_object.baseurl %}
-    {% assign locale_baseurl = locale_object.baseurl %}
-  {% elsif label == "default" %}
-    {% assign locale_baseurl = "" %}
-  {% else %}
-    {% assign locale_baseurl = "/" | append: label %}
-  {% endif %}
-  <li><a href="{{ site.baseurl }}{{ locale_baseurl }}/" lang="{{ locale_object.lang }}">{{ locale_object.name }}</a></li>
+  <li><a href="{{ site.baseurl }}{{ locale_object.baseurl }}/" lang="{{ locale_object.lang }}">{{ locale_object.name }}</a></li>
 {% endfor %}
 </ul>

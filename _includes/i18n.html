@@ -2,14 +2,6 @@
 
 {% assign locale = site.locales[obj.locale] %}
 
-{% if locale.baseurl %}
-  {% assign locale_baseurl = locale.baseurl %}
-{% elsif obj.locale == "default" %}
-  {% assign locale_baseurl = "" %}
-{% else %}
-  {% assign locale_baseurl = "/" | append: obj.locale %}
-{% endif %}
-
 {% if obj.content_id %}
   {% assign content_id = obj.content_id %}
 {% else %}

@@ -9,15 +9,19 @@ twitter:
 
 locales:
   default:
+    baseurl: ""
     name: English
     lang: en-US
   pt:
+    baseurl: /pt
     name: Português
     lang: pt-PT
   mo:
+    baseurl: /mo
     name: 繁體中文
     lang: zh-MO
   ae:
+    baseurl: /ae
     name: عربى
     lang: ar-AE
     direction: rtl
