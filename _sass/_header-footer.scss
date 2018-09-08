@@ -1,7 +1,7 @@
 .site-header > .wrapper {
-  padding-bottom: $half-padding;
+  padding-bottom: $box-padding * 0.5;
   @include media($large-screen-up) {
-    padding-bottom: $base-padding;
+    padding-bottom: $box-padding;
   }
 }
 
@@ -10,29 +10,35 @@
   font-weight: 900;
   text-transform: uppercase;
   line-height: 1;
+  &[href] {
+    color: inherit
+  }
 }
 
 .navigation {
   font-weight: 500;
-  margin-top: $base-padding;
+  margin-top: $box-padding;
   nav {
-    padding: $half-padding 0;
+    padding: $box-padding * 0.5 0;
     border-top: 1px solid $blue;
   }
   @include media($large-screen-up) {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-top: $half-padding;
+    margin-top: $box-padding * 0.5;
     
     nav {
       padding: 0;
       border-top: none;
       
       & + nav {
-        margin-left: $base-padding * 2;
+        margin-left: $box-padding * 2;
       }
     }
+  }
+  ul {
+    margin: 0;
   }
   li {
     display: inline-block;
@@ -44,9 +50,6 @@
   a {
     padding: 0.125em 0;
     
-    &[href] {
-      color: $action-color;
-    }
     &[aria-current],
     &[href]:hover {
       border-bottom: 2px solid;
@@ -61,7 +64,7 @@ html[dir="rtl"] .navigation {
   @include media($large-screen-up) {
     nav + nav {
       margin-left: 0;
-      margin-right: $base-padding * 2;
+      margin-right: $box-padding * 2;
     }
   }
   li {
@@ -74,8 +77,4 @@ html[dir="rtl"] .navigation {
 
 .site-footer {
   text-align: center;
-
-  a {
-    text-decoration: underline;
-  }
 }

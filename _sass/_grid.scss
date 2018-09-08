@@ -7,14 +7,14 @@
   }
   
   & + .grid-item {
-    margin-top: $base-padding;
+    margin-top: $box-padding;
   }
 }
 
 @supports (display: grid) {
   .grid {
     display: grid;
-    grid-gap: $base-padding;
+    grid-gap: $box-padding;
     grid-template-columns: 1fr;
     @include media($medium-screen-up) {
       grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));

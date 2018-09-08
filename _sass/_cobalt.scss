@@ -1,0 +1,794 @@
+
+    /////////    ////////    //////////      ////////    ///     /////////////
+  ///          ///      ///  ///      ///  ///      ///  ///          ///
+  ///          ///      ///  //////////    ////////////  ///          ///
+  ///          ///      ///  ///      ///  ///      ///  ///          ///
+    /////////    ////////    //////////    ///      ///  ///////////  ///
+
+/*!=============================================================================
+// Cobalt 1.1
+// https://github.com/letrastudio/cobalt
+// Copyright 2018 João Beleza Freire
+// MIT License
+// =============================================================================
+*/
+
+
+
+
+// Core Variables
+// -----------------------------------------------------------------------------
+
+// Dimensions
+$text-spacing: 1em;             // for localized spacing based on font-size
+$box-padding: 2rem;             // for unified padding in layout elements
+$text-max-width: 35em;          // maximum width for text elements
+$page-max-width: 56rem;         // maximum width for page layout
+
+// Colors
+$black-gray:  hsl(0, 0%, 16%);
+$white-gray:  hsl(0, 0%, 96%);
+$dark-gray:   mix($black-gray, $white-gray, 75%);
+$medium-gray: mix($black-gray, $white-gray, 50%);
+$light-gray:  mix($black-gray, $white-gray, 25%);
+$blue: royalblue;
+
+$sans-serif: (
+  "Helvetica Neue",
+  "Helvetica",
+  sans-serif
+);
+
+$serif: (
+  "Georgia",
+  serif
+);
+
+$monospace: (
+  "SF Mono",
+  "Menlo",
+  "Consolas",
+  monospace
+);
+
+$system-font: (
+  system-ui,
+  -apple-system,
+  "Segoe UI",
+  "Roboto",
+  sans-serif
+);
+
+$all-headings: (
+  'h1',
+  'h2',
+  'h3',
+  'h4',
+  'h5',
+  'h6'
+);
+
+$text-block-elements: (
+  'p',
+  'blockquote',
+  'ul',
+  'ol',
+  'dl',
+  'details'
+);
+
+$media-elements: (
+  'img',
+  'video',
+  'picture',
+  'svg'
+);
+
+$embed-elements: (
+  'iframe',
+  'object',
+  'embed'
+);
+
+$all-buttons: (
+  'button',
+  'input[type="button"]',
+  'input[type="reset"]',
+  'input[type="submit"]',
+);
+
+$all-text-inputs: (
+  'input[type="color"]',
+  'input[type="date"]',
+  'input[type="datetime-local"]',
+  'input[type="email"]',
+  'input[type="month"]',
+  'input[type="number"]',
+  'input[type="password"]',
+  'input[type="search"]',
+  'input[type="tel"]',
+  'input[type="text"]',
+  'input[type="time"]',
+  'input[type="url"]',
+  'input[type="week"]',
+  'input:not([type])',
+  'textarea',
+);
+
+
+
+
+// Mixins
+// -----------------------------------------------------------------------------
+
+// Media Queries
+// Output media type is "all".
+// Usage examples:
+// @include media(min-width 60rem)
+// @include media(max-width 20rem, min-aspect-ratio "5/4")
+@mixin media($args...) {
+  $query: "";
+  @each $arg in $args {
+    $query: $query + " and (" + nth($arg, 1) + ": " + nth($arg, 2) + ")";
+  }
+  @media all #{$query} {
+    @content;
+  }
+}
+
+// Flush Margins
+// Recursively removes top and bottom margins from first and last children
+// (respectively), up to a limit set in `$count`. This serves to "clip" top- and
+// bottom-most margins of children when a container element creates a block
+// formatting context (e.g. by setting vertical padding).
+// Example output, with `$count` equal to 2:
+// >:first-child, >:first-child>:first-child { margin-top: 0 };
+// >:last-child, >:last-child>:last-child { margin-bottom: 0 };
+@mixin flush-margins($count: 1) {
+  $first-child: ();
+  $last-child: ();
+  @for $i from 1 through $count {
+    $first-selector: "";
+    $last-selector: "";
+    @for $n from 1 through $i {
+      $first-selector: $first-selector + ">:first-child";
+      $last-selector: $last-selector + ">:last-child";
+    };
+    $first-child: append($first-child, $first-selector, "comma");
+    $last-child: append($last-child, $last-selector, "comma");
+  }
+  #{$first-child} {
+    margin-top: 0;
+  }
+  #{$last-child} {
+    margin-bottom: 0;
+  }
+}
+
+// Aspect Ratio Containers
+// https://alistapart.com/article/creating-intrinsic-ratios-for-video
+// Should only contain one child element. A selector for the child element can
+// be optionally passed as an argument. The container's width must be 100%; for
+// non-flow layout, Grid or Flexbox is recommended.
+// Usage examples:
+// @include aspect-ratio(16/9)
+// @include aspect-ratio(1, img)
+@mixin aspect-ratio($ratio, $child: "*") {
+  position: relative;
+  padding-top: 1 / $ratio * 100%;
+  > #{$child} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    object-fit: cover;
+  }
+}
+
+// Clear Floats
+// https://css-tricks.com/snippets/css/clear-fix/
+@mixin clearfix {
+  &:after {
+    content: "";
+    clear: both;
+    display: block;
+  }
+}
+
+// Image Replacement
+// http://www.zeldman.com/2012/03/01/replacing-the-9999px-hack-new-image-replacement/
+@mixin hide-text {
+  overflow: hidden;
+  text-indent: 101%;
+  white-space: nowrap;
+}
+
+// Hide Visually
+// https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+@mixin hide-visually {
+  position: absolute !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  overflow: hidden;
+}
+
+// Set vertical margins using $text-spacing multipliers
+// Can take one or two values for $vertical (single values apply to top/bottom).
+@mixin spacing($vertical) {
+  @if $vertical == 0 or ( nth($vertical, 1) == 0 and nth($vertical, 2) == 0 ) {
+    margin: 0;
+  } @else if length($vertical) == 1 {
+    margin: $text-spacing * $vertical 0;
+  } @else {
+    @if nth($vertical, 1) == 0 {
+      margin: 0 0 $text-spacing * nth($vertical, 2);
+    } @else if nth($vertical, 2) == 0 {
+      margin: $text-spacing * nth($vertical, 1) 0 0;
+    } @else {
+      margin: $text-spacing * nth($vertical, 1) 0 $text-spacing * nth($vertical, 2);
+    }
+  }
+}
+
+// Remove the unit of a length
+// https://css-tricks.com/snippets/sass/strip-unit-function/
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+  @return $number;
+}
+
+
+
+
+// Variables
+// -----------------------------------------------------------------------------
+
+// Inspired by Thoughtbot's Bitters
+// https://github.com/thoughtbot/bitters
+
+@import "variables";
+
+// Options
+$link-underlines: false !default;
+$blockquote-gutters: true !default;
+$reset-list-styles: false !default;
+$limit-text-width: true !default;
+$limit-body-width: true !default;
+
+// Page
+$body-margin: 0 auto !default;
+$body-padding: $box-padding !default;
+$body-background-color: white !default;
+
+// Typography
+$base-font-family: $system-font !default;
+$heading-font-family: $base-font-family !default;
+$base-line-height: 1.5 !default;
+$heading-line-height: 1.25 !default;
+$h1-font-size: 2em !default;
+$h2-font-size: 1.5em !default;
+$h3-font-size: 1.25em !default;
+$h4-font-size: 1em !default;
+$h5-font-size: 1em !default;
+$h6-font-size: 1em !default;
+$figcaption-font-size: 0.875em !default;
+$list-indent: 2em !default;
+$blockquote-indent: 1em !default;
+
+// Spacing
+$heading-spacing: 2 1 !default;
+$paragraph-spacing: 1 !default;
+$blockquote-spacing: 1 !default;
+$list-spacing: 1 !default;
+$details-spacing: 1 !default;
+$figure-spacing: 2 !default;
+$figure-children-spacing: 0.5 !default;
+$table-spacing: 2 !default;
+$pre-spacing: 2 !default;
+$hr-spacing: 2 !default;
+
+// Font Colors
+$base-font-color: $black-gray !default;
+$faded-font-color: $dark-gray !default;
+$blockquote-font-color: $faded-font-color !default;
+$figcaption-font-color: $faded-font-color !default;
+$link-color: $blue !default;
+$link-hover-color: darken($link-color, 10%) !default;
+$link-active-color: darken($link-color, 20%) !default;
+
+// Borders
+$base-border-color: $light-gray !default;
+$base-border-width: 1px !default;
+$base-border: $base-border-width solid $base-border-color !default;
+$base-border-radius: 0.25em !default;
+
+
+
+
+// Cross-Browser Standard Rules
+// -----------------------------------------------------------------------------
+
+// Some properties adapted from normalize.css
+// http://necolas.github.io/normalize.css/
+
+html {
+  box-sizing: border-box;
+  -webkit-text-size-adjust: 100%;
+  // avoid automatic orientation-based text size changes in iOS Safari
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;          // preserve box-sizing inheritance
+}
+
+body {
+  word-wrap: break-word;        // same as `overflow-wrap`, for IE and Edge
+  overflow-wrap: break-word;    // prevent very long words from overflowing
+}
+
+main,
+details {
+  display: block;               // correct display in older browsers
+}
+
+summary {
+  display: list-item;           // correct display in older browsers
+}
+
+[hidden] {
+  display: none;                // correct display in older browsers
+}
+
+abbr[title] {
+  cursor: help;                 // let browsers decide on text-decoration
+}
+
+b, strong {
+  font-weight: bolder;          // correct font weight in Chrome, Edge, Safari
+}
+
+small, sub, sup {
+  font-size: 0.75em;            // standardize on an integer (16 * 0.75 = 12px)
+}
+
+sub, sup {
+  line-height: 0;               // avoid affecting normal line-height
+}
+
+
+
+
+// Base Styles
+// -----------------------------------------------------------------------------
+
+body {
+  background: $body-background-color;
+  color: $base-font-color;
+  font-family: $base-font-family;
+  line-height: $base-line-height;
+  margin: $body-margin;
+  @if $body-padding > 0 {
+    padding: $body-padding;
+  }
+  @if $limit-body-width == true {
+    max-width: $page-max-width;
+  }
+}
+
+a[href] {
+  color: $link-color;
+  @if $link-underlines == false {
+    text-decoration: none;
+  }
+  &:hover {
+    color: $link-hover-color;
+  }
+  &:active {
+    color: $link-active-color;
+  }
+}
+
+p {
+  @include spacing($paragraph-spacing);
+}
+
+#{$all-headings} {
+  font-family: $heading-font-family;
+  line-height: $heading-line-height;
+  @include spacing($heading-spacing);
+}
+
+h1 { font-size: $h1-font-size }
+h2 { font-size: $h2-font-size }
+h3 { font-size: $h3-font-size }
+h4 { font-size: $h4-font-size }
+h5 { font-size: $h5-font-size }
+h6 { font-size: $h6-font-size }
+
+blockquote {
+  color: $blockquote-font-color;
+  padding: 0 $blockquote-indent;
+  @include spacing($blockquote-spacing);
+  @if $blockquote-gutters == true {
+    border-left: $base-border;
+    @supports (-webkit-border-start: 1px) {
+      border-left: 0;
+      -webkit-border-start: $base-border;
+    }
+    @supports (border-inline-start: 1px) {
+      border-left: 0;
+      border-inline-start: $base-border;
+    }
+  }
+}
+
+ul, ol, dl {
+  @include spacing($list-spacing);
+}
+
+ul, ol {
+  padding: 0;
+  @if $reset-list-styles == true {
+    list-style-type: none;
+  }
+  
+  ul, ol {
+    margin: 0;
+  }
+}
+
+dd {
+  margin: 0;
+}
+
+@if $reset-list-styles != true {
+  ul, ol, dd {
+    padding-left: $list-indent;
+    @supports (-webkit-padding-start: 1em) {
+      padding-left: 0;
+      -webkit-padding-start: $list-indent;
+    }
+    @supports (padding-inline-start: 1em) {
+      padding-left: 0;
+      padding-inline-start: $list-indent;
+    }
+  }
+  ul {
+    list-style-type: disc;
+  }
+  ol {
+    list-style-type: decimal;
+  }
+  dt {
+    font-weight: bolder;
+  }
+}
+
+figure {
+  @include spacing($figure-spacing);
+  > *:nth-child(n) {
+    // :nth-child(n) increases specificity, so `.class` selectors are overridden
+    @include spacing($figure-children-spacing);
+  }
+  > {
+    #{$media-elements, $embed-elements} {
+      display: block;
+    }
+  }
+}
+
+figcaption {
+  color: $figcaption-font-color;
+  font-size: $figcaption-font-size;
+}
+
+details {
+  @include spacing($details-spacing);
+}
+
+summary {
+  #{$all-headings} {            // summary may contain a single heading element
+    display: inline;            // ignore margins and align with triangle icon
+  }
+}
+
+hr {
+  border: 0;
+  border-bottom: $base-border;
+  @include spacing($hr-spacing);
+}
+
+#{$media-elements, $embed-elements} {
+  max-width: 100%;              // avoid horizontal overflow
+}
+
+#{$media-elements} {
+  height: auto;                 // correct elements with `height` HTML attribute
+}
+
+#{$embed-elements} {
+  border: 0;                    // remove default `frameborder`
+  display: block;
+}
+
+@if $limit-text-width == true {
+  #{$text-block-elements, $all-headings} {
+    max-width: $text-max-width;
+  }
+}
+
+
+
+
+// Tables
+// -----------------------------------------------------------------------------
+
+$include-table-styles: true !default;
+
+$table-border: $base-border !default;
+$table-padding: $text-spacing !default;
+$thead-background-color: $white-gray !default;
+
+@if $include-table-styles == true {
+  
+  table {
+    border: $table-border;
+    border-collapse: collapse;
+    width: 100%;
+    @include spacing($table-spacing);
+  }
+  
+  caption, thead, tfoot, tbody th {
+    background-color: $thead-background-color;
+  }
+  
+  caption, th, td {
+    padding: $table-padding;
+    text-align: left;
+    text-align: start;
+    vertical-align: middle;
+    @include flush-margins(1);
+  }
+  
+  caption {
+    border: $table-border;
+    border-bottom: 0;
+    &[align="bottom"] {
+      border-top: 0;
+      border-bottom: $table-border;
+    }
+  }
+  
+  thead {
+    border-bottom: $table-border;
+  }
+  
+  tfoot, tbody + tbody {
+    border-top: $table-border;
+  }
+  
+  th, td {
+    &:not(:last-child) {
+      border-right: $table-border;
+    }
+  }
+  
+  tr:not(:last-child) {
+    th, td {
+      border-bottom: $table-border;
+    }
+  }
+}
+
+
+
+
+// Code
+// -----------------------------------------------------------------------------
+
+$include-code-styles: true !default;
+
+$code-font-color: $black-gray !default;
+$code-background-color: $white-gray !default;
+$code-border-radius: $base-border-radius !default;
+$code-font-size: 0.9375em !default;
+$code-padding: 0.0625em 0.25em !default;
+
+$pre-font-color: $code-font-color !default;
+$pre-background-color: $code-background-color !default;
+$pre-border-radius: $code-border-radius !default;
+$pre-font-size: 0.8125rem !default;
+$pre-line-height: 1.5 !default;
+$pre-padding: 1rem !default;
+$pre-tab-size: 2 !default;
+
+@if $include-code-styles == true {
+  
+  pre, code, samp, kbd {
+    font-family: $monospace;
+  }
+  
+  code, samp, kbd {
+    background-color: $code-background-color;
+    border-radius: $code-border-radius;
+    color: $code-font-color;
+    font-size: $code-font-size;
+    padding: $code-padding;
+  }
+  
+  pre code, code code {           // reset styles and avoid compounding font-size
+    background-color: transparent;
+    font-size: 1em;
+    padding: 0;
+  }
+  
+  pre {
+    background-color: $pre-background-color;
+    border-radius: $pre-border-radius;
+    color: $pre-font-color;
+    border: $base-border;
+    font-size: $pre-font-size;
+    line-height: $pre-line-height;
+    overflow: auto;
+    padding: $pre-padding;
+    tab-size: $pre-tab-size;
+    word-wrap: normal;            // same as `overflow-wrap`, for IE and Edge
+    overflow-wrap: normal;        // never break words, overflow is expected
+    @include spacing($pre-spacing);
+  }
+}
+
+
+
+
+// Forms
+// -----------------------------------------------------------------------------
+
+$include-form-styles: true !default;
+
+$button-padding: 0.5em !default;
+$input-padding: $button-padding !default;
+$button-color: $blue !default;
+$button-hover-color: darken($button-color, 10%) !default;
+$button-active-color: darken($button-color, 20%) !default;
+$button-font-color: white !default;
+$input-box-shadow: inset 0 1px 3px rgba(black, 0.1) !default;
+$input-placeholder-color: rgba($base-font-color, 0.4) !default;
+
+$form-element-spacing: 0.5 !default;
+$fieldset-spacing: 1 !default;
+
+@if $include-form-styles == true {
+  
+  button,
+  input,
+  select,
+  textarea {
+    font-family: inherit;
+    font-size: 1em;
+  }
+  
+  #{$all-buttons} {
+    -webkit-appearance: button;
+    background-color: $button-color;
+    border: $base-border-width solid transparent;
+    border-radius: $base-border-radius;
+    color: $button-font-color;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: bold;
+    margin: 0;
+    max-width: 100%;
+    padding: $button-padding;
+    text-align: center;
+    vertical-align: middle;
+    white-space: normal;
+    
+    &:hover {
+      background-color: $button-hover-color;
+    }
+    &:active {
+      background-color: $button-active-color;
+    }
+    &:disabled {
+      background-color: $button-color;
+    }
+  }
+  
+  #{$all-text-inputs},
+  input[type="file"] {
+    -webkit-appearance: none;
+    background-color: transparent;
+    border: $base-border;
+    border-radius: $base-border-radius;
+    box-shadow: $input-box-shadow;
+    color: inherit;
+    display: block;
+    @if length($input-padding) <= 2 {
+      height: nth($input-padding, 1) * 2 + strip-unit($base-line-height) * 1em;
+    } @else {
+      height: nth($input-padding, 1) + nth($input-padding, 3) + strip-unit($base-line-height) * 1em;
+    }
+    padding: $input-padding;
+    width: 100%;
+    @include spacing($form-element-spacing);
+  }
+  
+  input[type="range"],
+  select {
+    display: block;
+    width: 100%;
+    @include spacing($form-element-spacing);
+  }
+  
+  input[type="file"] {
+    height: auto;
+    line-height: 0;
+  }
+  
+  input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+  }
+  
+  textarea {
+    @if length($input-padding) <= 2 {
+      min-height: (nth($input-padding, 1) * 2 + strip-unit($base-line-height) * 1em) * 2;
+    } @else {
+      min-height: (nth($input-padding, 1) + nth($input-padding, 3) + strip-unit($base-line-height) * 1em) * 2;
+    }
+    resize: vertical;
+  }
+  
+  input::placeholder {
+    color: $input-placeholder-color;
+  }
+  
+  button:disabled,
+  input:not([type="radio"]):not([type="checkbox"]):disabled {
+    opacity: 0.5;
+  }
+  
+  button:disabled,
+  input:disabled {
+    cursor: unset;
+  }
+  
+  label {
+    font-weight: bolder;
+    @include spacing($form-element-spacing);
+  }
+  
+  fieldset {
+    background-color: transparent;
+    border: $base-border;
+    border-radius: $base-border-radius;
+    min-width: auto;
+    padding: $text-spacing / 2 $text-spacing $text-spacing;
+    @include spacing($fieldset-spacing);
+    
+    > :first-child,
+    > legend + * {
+      margin-top: 0;
+    }
+    
+    > :last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  legend {
+    font-weight: bolder;
+  }
+}
+
+
+

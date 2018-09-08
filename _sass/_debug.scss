@@ -1,6 +1,7 @@
 .debug {
+  margin: 0;
   summary {
-    padding: $half-padding $base-padding;
+    padding: $box-padding * 0.5 $box-padding;
     color: $medium-gray;
     background: gainsboro;
     cursor: pointer;
@@ -17,19 +18,21 @@
   font-family: SF Mono, monospace;
   font-size: 0.875em;
   direction: ltr;
-  padding: 0 $base-padding;
+  padding: 0 $box-padding;
   
   > .wrapper {
     padding-left: 0;
     padding-right: 0;
-    max-width: $page-width - 2 * $base-padding;
+    max-width: $page-max-width - 2 * $box-padding;
   }
   
   a {
+    color: inherit;
     text-decoration: underline;
   }
   
   pre {
+    color: inherit;
     background: transparent;
   }
   
@@ -47,7 +50,7 @@
   
   dd {
     color: white;
-    padding-left: $half-padding;
+    padding-left: $box-padding * 0.5;
   }
   
   @supports (display: grid) {

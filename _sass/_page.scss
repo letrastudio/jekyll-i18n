@@ -1,7 +1,7 @@
 .page-header {
   border-bottom: 1px solid;
-  padding-bottom: $base-padding;
-  margin-bottom: $base-padding;
+  padding-bottom: $box-padding;
+  margin-bottom: $box-padding;
 }
 
 .page-title {
@@ -38,14 +38,14 @@ $headline-max-size: 16em;
     line-height: 1;
     font-weight: 100;
     text-align: center;
-    padding: $base-padding;
+    padding: $box-padding;
     position: absolute;
     font-size: 4em;
   }
 
-  height: #{$banner-max-height / ($page-width/1rem/100) / 1em}vw;
+  height: #{$banner-max-height / ($page-max-width/1rem/100) / 1em}vw;
   .headline {
-    font-size: #{$headline-max-size / ($page-width/1rem/100) / 1em}vw;
+    font-size: #{$headline-max-size / ($page-max-width/1rem/100) / 1em}vw;
   }
   @include media($full-width-up) {
     height: $banner-max-height;
@@ -57,17 +57,10 @@ $headline-max-size: 16em;
 
 .blog-list {
   li + li {
-    margin-top: $half-padding;
+    margin-top: $box-padding * 0.5;
   }
   .post-title {
     font-size: 1.5em;
     margin: 0;
-  }
-  
-  a {
-    color: cornflowerblue;
-    &:hover {
-      border-bottom: 2px solid;
-    }
   }
 }

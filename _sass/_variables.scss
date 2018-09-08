@@ -1,0 +1,181 @@
+// Cobalt Options
+// -----------------------------------------------------------------------------
+
+$link-underlines: false;
+// Apply `text-decoration: underline` to all links
+
+$blockquote-gutters: true;
+// Style blockquotes with email-style gutter lines
+
+$reset-list-styles: true;
+// Remove list indentation and markers
+
+$limit-text-width: false;
+// Apply $text-max-width to text block elements and headings
+
+$limit-body-width: true;
+// Apply $page-max-width to body element
+
+$include-table-styles: true;
+$include-code-styles: true;
+$include-form-styles: true;
+
+
+
+
+// Base Dimensions
+// -----------------------------------------------------------------------------
+
+$text-spacing: 1em;             // for localized spacing based on font-size
+$box-padding: 2rem;             // for unified padding in layout elements
+$text-max-width: 34em;          // maximum width for text elements
+$page-max-width: 68rem;         // maximum width for page layout
+
+
+
+
+// Colors
+// -----------------------------------------------------------------------------
+
+$black-gray:  hsl(0, 0%, 20%);
+$white-gray:  hsl(0, 0%, 96%);
+// bump saturation a bit for warm reddish grays
+// and change hue to 240 for cool blueish grays
+
+$dark-gray:   mix($black-gray, $white-gray, 75%);
+$medium-gray: mix($black-gray, $white-gray, 50%);
+$light-gray:  mix($black-gray, $white-gray, 25%);
+
+$blue: cornflowerblue;
+
+// Add custom colors here...
+
+
+
+
+// Base Styles
+// -----------------------------------------------------------------------------
+
+// Page
+$body-margin: null;
+$body-padding: 0;
+$body-background-color: #efefef;
+$main-background-color: white;
+
+// Typography
+$base-font-family: null;
+$heading-font-family: null;
+$base-line-height: null;
+$heading-line-height: null;
+$h1-font-size: null;
+$h2-font-size: null;
+$h3-font-size: null;
+$h4-font-size: null;
+$h5-font-size: null;
+$h6-font-size: null;
+$figcaption-font-size: null;
+$list-indent: null;
+$blockquote-indent: null;
+
+// Spacing
+$heading-spacing: null;
+$paragraph-spacing: null;
+$blockquote-spacing: null;
+$list-spacing: null;
+$details-spacing: null;
+$figure-spacing: null;
+$figure-children-spacing: null;
+$table-spacing: null;
+$pre-spacing: null;
+$hr-spacing: null;
+
+// Font Colors
+$base-font-color: null;
+$faded-font-color: null;
+$blockquote-font-color: null;
+$figcaption-font-color: null;
+$link-color: $blue;
+$link-hover-color: darken($link-color, 10%);
+$link-active-color: $link-hover-color;
+
+// Borders
+$base-border-color: null;
+$base-border-width: null;
+$base-border: null;
+$base-border-radius: null;
+
+
+
+
+// Tables
+// -----------------------------------------------------------------------------
+
+$table-border: null;
+$table-padding: null;
+$thead-background-color: null;
+
+
+
+
+// Code
+// -----------------------------------------------------------------------------
+
+$code-font-color: null;
+$code-background-color: null;
+$code-border-radius: null;
+$code-font-size: null;
+$code-padding: null;
+
+$pre-font-color: null;
+$pre-background-color: null;
+$pre-border-radius: null;
+$pre-font-size: null;
+$pre-line-height: null;
+$pre-padding: null;
+$pre-tab-size: null;
+
+
+
+
+// Forms
+// -----------------------------------------------------------------------------
+
+$button-padding: null;
+$input-padding: null;
+$button-color: null;
+$button-hover-color: null;
+$button-active-color: null;
+$button-font-color: null;
+$input-box-shadow: null;
+$input-placeholder-color: null;
+
+$form-element-spacing: null;
+$fieldset-spacing: null;
+
+
+
+
+// Media Queries
+// -----------------------------------------------------------------------------
+
+$small-screen-down: max-width  25rem; //  400px @ 16px root
+$medium-screen-up:  min-width  35rem; //  560px @ 16px root
+$large-screen-up:   min-width  60rem; //  960px @ 16px root
+$xlarge-screen-up:  min-width  75rem; // 1200px @ 16px root
+$xxlarge-screen-up: min-width 100rem; // 1600px @ 16px root
+$full-width-up: min-width $page-max-width;
+$landscape: min-aspect-ratio "5/4";
+$portrait:  max-aspect-ratio "4/5";
+$very-wide: min-aspect-ratio "2/1";
+$very-tall: max-aspect-ratio "1/2";
+
+
+
+
+// Project Variables
+// -----------------------------------------------------------------------------
+
+// Add project-specific variables here...
+
+
+

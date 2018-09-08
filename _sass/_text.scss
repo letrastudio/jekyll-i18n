@@ -1,0 +1,51 @@
+// Readable styles for body text
+.text {
+  
+  // Links in .text are always underlined
+  @if $link-underlines == false {
+    a[href] {
+      text-decoration: underline;
+    }
+  }
+  
+  // Lists in .text are always styled
+  @if $reset-list-styles == true {
+    ul, ol, dd {
+      padding-left: $list-indent;
+      @supports (-webkit-padding-start: 1em) {
+        padding-left: 0;
+        -webkit-padding-start: $list-indent;
+      }
+      @supports (padding-inline-start: 1em) {
+        padding-left: 0;
+        padding-inline-start: $list-indent;
+      }
+    }
+    ul {
+      list-style-type: disc;
+    }
+    ol {
+      list-style-type: decimal;
+    }
+    dt {
+      font-weight: bolder;
+    }
+  }
+  
+  // Add margins to media and embed elements
+  > {
+    #{$media-elements, $embed-elements}, .embed-container {
+      display: block;
+      @include spacing(2);
+    }
+  }
+  
+  // Constrain widths of text elements
+  #{$text-block-elements} { max-width: $text-max-width }
+  h1 { max-width: $text-max-width / strip-unit($h1-font-size) }
+  h2 { max-width: $text-max-width / strip-unit($h2-font-size) }
+  h3 { max-width: $text-max-width / strip-unit($h3-font-size) }
+  h4 { max-width: $text-max-width / strip-unit($h4-font-size) }
+  h5 { max-width: $text-max-width / strip-unit($h5-font-size) }
+  h6 { max-width: $text-max-width / strip-unit($h6-font-size) }
+}

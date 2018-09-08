@@ -1,0 +1,24 @@
+main {
+  background-color: $main-background-color;
+}
+
+// Basic building block for layout
+.wrapper {
+  margin: 0 auto;
+  max-width: $page-max-width;
+  padding: $box-padding;
+  @include flush-margins(3);
+}
+
+// Constrain any element to standard line width
+.text-wrapper {
+  max-width: $text-max-width;
+}
+
+.wrapper.text-wrapper {
+  box-sizing: content-box;
+  max-width: $text-max-width;
+  > * {
+    box-sizing: border-box;
+  }
+}
