@@ -35,29 +35,17 @@
 
 {% comment %} List of localized pages {% endcomment %}
 {% assign localized_pages = "" | split: "," %}
+{% assign current_content_id = content_id %}
 {% for localized_collection in localized_collections %}
   {% for document in site[localized_collection] %}
-    {% if document.content_id %}
-      {% assign test_content_id = document.content_id %}
-    {% else %}
-      {% if document.collection %}
-        {% assign collection_path = document.collection | prepend: "_" | append: "/" %}
-        {% assign test_path_in_collection = document.path | remove_first: collection_path %}
-      {% else %}
-        {% assign test_path_in_collection = document.path %}
-      {% endif %}
-      {% assign test_filename = test_path_in_collection | split: "/" | last %}
-      {% assign test_base_content_id_length = test_path_in_collection | size | minus: test_filename.size %}
-      {% assign test_slug_fallback = test_filename | split: "." | pop | join: "." %}
-      {% assign test_slug = document.slug | default: test_slug_fallback %}
-      {% assign test_content_id = test_path_in_collection | slice: 0, test_base_content_id_length | append: test_slug %}
-    {% endif %}
-    {% if test_content_id == content_id %}
+    {% include content_id.html obj=document %}
+    {% if content_id == current_content_id %}
       {% assign localized_pages = localized_pages | push: document %}
       {% break %}
     {% endif %}
   {% endfor %}
 {% endfor %}
+{% assign content_id = current_content_id %}
 
 {% comment %} Assign default page {% endcomment %}
 {% assign default_page = localized_pages | where: "locale", "default" | first %}
