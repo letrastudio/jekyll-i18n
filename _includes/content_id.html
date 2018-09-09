@@ -1,0 +1,17 @@
+{% assign obj = include.obj | default: page %}
+
+{% if obj.content_id %}
+  {% assign content_id = obj.content_id %}
+{% else %}
+  {% if obj.collection %}
+    {% assign collection_path = obj.collection | prepend: "_" | append: "/" %}
+    {% assign path_in_collection = obj.path | remove_first: collection_path %}
+  {% else %}
+    {% assign path_in_collection = obj.path %}
+  {% endif %}
+  {% assign filename = path_in_collection | split: "/" | last %}
+  {% assign base_content_id_length = path_in_collection | size | minus: filename.size %}
+  {% assign slug_fallback = filename | split: "." | pop | join: "." %}
+  {% assign slug = obj.slug | default: slug_fallback %}
+  {% assign content_id = path_in_collection | slice: 0, base_content_id_length | append: slug %}
+{% endif %}
