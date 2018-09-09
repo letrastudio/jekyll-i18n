@@ -55,4 +55,4 @@
 
 {% comment %} String localization {% endcomment %}
 {% assign strings_ref = page_collection_suffix | prepend: "strings" %}
-{% assign locale_strings = site.data[strings_ref] %}
+{% assign strings = site.data[strings_ref] %}

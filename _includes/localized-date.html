@@ -1,13 +1,13 @@
-{% assign date_format = locale_strings.date_formats[include.format] | default: "%Y-%m-%d" %}
+{% assign date_format = strings.date_formats[include.format] | default: "%Y-%m-%d" %}
 {% assign date = include.date | date: date_format %}
-{% if locale_strings.date_formats.months %}
+{% if strings.date_formats.months %}
   {% assign month_ref = include.date | date: "%B" | strip %}
-  {% assign month = locale_strings.date_formats.months[month_ref] %}
+  {% assign month = strings.date_formats.months[month_ref] %}
   {% assign date = date | replace: month_ref, month %}
 {% endif %}
-{% if locale_strings.date_formats.weekdays %}
+{% if strings.date_formats.weekdays %}
   {% assign weekday_ref = include.date | date: "%A" | strip %}
-  {% assign weekday = locale_strings.date_formats.weekdays[weekday_ref] %}
+  {% assign weekday = strings.date_formats.weekdays[weekday_ref] %}
   {% assign date = date | replace: weekday_ref, weekday %}
 {% endif %}
 {{ date }}
