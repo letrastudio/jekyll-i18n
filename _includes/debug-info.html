@@ -20,8 +20,8 @@
         </dd>
         <dt>locale_strings</dt>
         <dd>{% for string in locale_strings %}{{ string[0] }}{% unless forloop.last %}, {% endunless %}{% endfor %}</dd>
-        <dt hidden>strings_ref</dt>
-        <dd hidden>{{ strings_ref }}</dd>
+        <dt>strings_ref</dt>
+        <dd>{{ strings_ref }}</dd>
       </dl>
       
       <dl>
@@ -44,18 +44,18 @@
       <dl>
         <dt hidden>page.collection</dt>
         <dd hidden>{{ page.collection }}</dd>
-        <dt hidden>page_collection_basename</dt>
-        <dd hidden>{{ page_collection_basename }}</dd>
-        <dt hidden>page_collection_suffix</dt>
-        <dd hidden>
+        <dt>page_collection_basename</dt>
+        <dd>{{ page_collection_basename }}</dd>
+        <dt>page_collection_suffix</dt>
+        <dd>
           {% if page_collection_suffix %}
           {{ page_collection_suffix }}
           {% else %}
           <i>{{ page_collection_suffix | inspect }}</i>
           {% endif %}
         </dd>
-        <dt hidden>localized_collections</dt>
-        <dd hidden>{{ localized_collections | join: ", " }}</dd>
+        <dt>localized_collections</dt>
+        <dd>{{ localized_collections | join: ", " }}</dd>
         <dt>localized_pages</dt>
         <dd>
           {% for localized_page in localized_pages %}
