@@ -9,9 +9,5 @@
   {% else %}
     {% assign path_in_collection = obj.path %}
   {% endif %}
-  {% assign filename = path_in_collection | split: "/" | last %}
-  {% assign base_content_id_length = path_in_collection | size | minus: filename.size %}
-  {% assign slug_fallback = filename | split: "." | pop | join: "." %}
-  {% assign slug = obj.slug | default: slug_fallback %}
-  {% assign content_id = path_in_collection | slice: 0, base_content_id_length | append: slug %}
+  {% assign content_id = path_in_collection | split: "." | pop | join: "." %}
 {% endif %}
