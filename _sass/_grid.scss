@@ -1,11 +1,4 @@
 .grid-item {
-  background: whitesmoke;
-
-  p {
-    padding: 1em;
-    margin: 0;
-  }
-  
   & + .grid-item {
     margin-top: $box-padding;
   }
@@ -22,8 +15,6 @@
   }
   
   .grid-item {
-    display: flex;
-
     & + .grid-item {
       margin-top: 0;
     }
