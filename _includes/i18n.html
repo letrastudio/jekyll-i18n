@@ -6,30 +6,20 @@
 {% comment %} Generate content_id {% endcomment %}
 {% include content_id.html obj=obj %}
 
-{% comment %} Collection basename and suffix {% endcomment %}
-{% if obj.locale == "default" %}
-  {% assign page_collection_suffix = nil %}
-  {% assign page_collection_basename = obj.collection | default: "pages" %}
-{% else %}
-  {% assign page_collection_suffix = obj.locale | prepend: "_" %}
-  {% assign page_collection_basename_length = obj.collection.size | minus: page_collection_suffix.size %}
-  {% assign page_collection_basename = obj.collection | slice: 0, page_collection_basename_length %}
-{% endif %}
-
 {% comment %} List of localized collections {% endcomment %}
 {% assign localized_collections = "" | split: "," %}
-{% for loc in site.locales %}
-  {% assign loc_label = loc[0] %}
-  {% if loc_label == "default" %}
-    {% assign collection_suffix = nil %}
-    {% assign collection_name = page_collection_basename %}
+{% for locale in site.locales %}
+  {% assign locale_label = locale[0] %}
+  {% if locale_label == "default" %}
+    {% assign locale_collection_suffix = nil %}
+    {% assign locale_collection_name = obj.collection_basename %}
   {% else %}
-    {% assign collection_suffix = loc_label | prepend: "_" %}
-    {% assign collection_name = page_collection_basename | append: collection_suffix %}
+    {% assign locale_collection_suffix = locale_label | prepend: "_" %}
+    {% assign locale_collection_name = obj.collection_basename | append: locale_collection_suffix %}
   {% endif %}
-  {% assign collection_obj = site.collections | where: "label", collection_name | first %}
-  {% if collection_obj.output == true or collection_name == "pages" %}
-    {% assign localized_collections = localized_collections | push: collection_name %}
+  {% assign collection_obj = site.collections | where: "label", locale_collection_name | first %}
+  {% if collection_obj.output == true or locale_collection_name == "pages" %}
+    {% assign localized_collections = localized_collections | push: locale_collection_name %}
   {% endif %}
 {% endfor %}
 
@@ -54,5 +44,5 @@
 {% endif %}
 
 {% comment %} String localization {% endcomment %}
-{% assign strings_ref = page_collection_suffix | prepend: "strings" %}
+{% assign strings_ref = obj.collection_suffix | prepend: "strings" %}
 {% assign strings = site.data[strings_ref] %}

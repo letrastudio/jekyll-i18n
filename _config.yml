@@ -60,33 +60,40 @@ defaults:
     type: pages
   values:
     layout: page
+    collection_basename: pages
 - scope:
     path: '_pages*/'
   values:
     layout: page
+    collection_basename: pages
 - scope:
     path: '_posts*/'
   values:
     layout: post
+    collection_basename: posts
 - scope:
     path: '_photos*/'
   values:
     layout: photo
+    collection_basename: photos
 - scope:
     path: '*_pt/'
   values:
     locale: pt
     lang: pt-PT
+    collection_suffix: _pt
 - scope:
     path: '*_mo/'
   values:
     locale: mo
     lang: zh-MO
+    collection_suffix: _mo
 - scope:
     path: '*_ae/'
   values:
     locale: ae
     lang: ar-AE
+    collection_suffix: _ae
 - scope:
     path: ''
   values:

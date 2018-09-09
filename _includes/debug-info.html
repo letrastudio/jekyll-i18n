@@ -44,14 +44,14 @@
       <dl>
         <dt hidden>page.collection</dt>
         <dd hidden>{{ page.collection }}</dd>
-        <dt>page_collection_basename</dt>
-        <dd>{{ page_collection_basename }}</dd>
-        <dt>page_collection_suffix</dt>
+        <dt>page.collection_basename</dt>
+        <dd>{{ page.collection_basename }}</dd>
+        <dt>page.collection_suffix</dt>
         <dd>
-          {% if page_collection_suffix %}
-          {{ page_collection_suffix }}
+          {% if page.collection_suffix %}
+          {{ page.collection_suffix }}
           {% else %}
-          <i>{{ page_collection_suffix | inspect }}</i>
+          <i>{{ page.collection_suffix | inspect }}</i>
           {% endif %}
         </dd>
         <dt>localized_collections</dt>
