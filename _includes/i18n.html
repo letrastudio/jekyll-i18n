@@ -1,7 +1,9 @@
 {% assign obj = include.obj | default: page %}
 
+{% comment %} Create {{ locale }} {% endcomment %}
 {% assign locale = site.locales[obj.locale] %}
 
+{% comment %} Generate content_id {% endcomment %}
 {% if obj.content_id %}
   {% assign content_id = obj.content_id %}
 {% else %}
@@ -18,6 +20,7 @@
   {% assign content_id = path_in_collection | slice: 0, base_content_id_length | append: slug %}
 {% endif %}
 
+{% comment %} Collection basename and suffix {% endcomment %}
 {% if obj.locale == "default" %}
   {% assign page_collection_suffix = nil %}
   {% assign page_collection_basename = obj.collection | default: "pages" %}
@@ -27,6 +30,7 @@
   {% assign page_collection_basename = obj.collection | slice: 0, page_collection_basename_length %}
 {% endif %}
 
+{% comment %} List of localized collections {% endcomment %}
 {% assign localized_collections = "" | split: "," %}
 {% for loc in site.locales %}
   {% assign loc_label = loc[0] %}
@@ -43,6 +47,7 @@
   {% endif %}
 {% endfor %}
 
+{% comment %} List of localized pages {% endcomment %}
 {% assign localized_pages = "" | split: "," %}
 {% for localized_collection in localized_collections %}
   {% for document in site[localized_collection] %}
@@ -68,10 +73,12 @@
   {% endfor %}
 {% endfor %}
 
+{% comment %} Assign default page {% endcomment %}
 {% assign default_page = localized_pages | where: "locale", "default" | first %}
 {% if default_page.locale == obj.locale %}
   {% assign default_page = nil %}
 {% endif %}
 
+{% comment %} String localization {% endcomment %}
 {% assign strings_ref = page_collection_suffix | prepend: "strings" %}
 {% assign locale_strings = site.data[strings_ref] %}
