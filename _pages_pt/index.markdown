@@ -1,7 +1,6 @@
 ---
 layout: homepage
 title: Homepage
-order: 0
 headline: Olá
 ---
 

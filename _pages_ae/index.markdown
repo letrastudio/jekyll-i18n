@@ -1,7 +1,6 @@
 ---
 layout: homepage
 title: الصفحة الرئيسية
-order: 0
 headline: مرحبا
 ---
 

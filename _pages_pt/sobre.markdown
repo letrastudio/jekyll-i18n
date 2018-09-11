@@ -1,6 +1,5 @@
 ---
 title: Sobre
-order: 1
 content_id: about
 ---
 
