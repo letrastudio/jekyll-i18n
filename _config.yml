@@ -4,7 +4,7 @@ url: https://letrastudio.github.io
 baseurl: /jekyll-i18n
 repository: letrastudio/jekyll-i18n
 description: A sane plugin-free solution for internationalized Jekyll sites.
-twitter:
+github:
   username: letrastudio
 
 locales:
