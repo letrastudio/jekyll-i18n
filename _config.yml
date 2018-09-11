@@ -117,3 +117,5 @@ plugins:
 - jekyll-seo-tag
 - jekyll-feed
 - jekyll-github-metadata
+
+navigation: [index, about, blog, photos]

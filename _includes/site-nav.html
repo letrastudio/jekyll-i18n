@@ -2,15 +2,19 @@
   <ul>
     {% assign current_url = page.url %}
     {% assign pages_collection = "pages" | append: page.collection_suffix %}
-    {% assign pages = site[pages_collection] | sort: "order" %}
-    {% for page in pages %}
-    {% if page.title %}
-    <li>
-      <a href="{{ page.url | prepend: site.baseurl }}" {% if page.url == current_url %}aria-current="page"{% endif %}>
-        {{ page.title | escape }}
-      </a>
-    </li>
-    {% endif %}
+    {% assign pages = site[pages_collection] %}
+    {% for item in site.navigation %}
+      {% for page in pages %}
+        {% include content_id.html obj=page %}
+        {% if content_id == item %}
+        <li>
+          <a href="{{ page.url | prepend: site.baseurl }}" {% if page.url == current_url %}aria-current="page"{% endif %}>
+            {{ page.title | escape }}
+          </a>
+        </li>
+        {% break %}
+        {% endif %}
+      {% endfor %}
     {% endfor %}
   </ul>
 </nav>
