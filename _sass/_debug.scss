@@ -53,6 +53,10 @@
     padding-left: $box-padding * 0.5;
   }
   
+  dt strong {
+    color: yellow;
+  }
+  
   @supports (display: grid) {
     @include media(min-width 40em) {
       dl {

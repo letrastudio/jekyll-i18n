@@ -18,10 +18,8 @@
           <i>{{ locale.baseurl | inspect }}</i>
           {% endif %}
         </dd>
-        <dt>strings</dt>
+        <dt><strong>strings</strong></dt>
         <dd>{% for string in strings %}{{ string[0] }}{% unless forloop.last %}, {% endunless %}{% endfor %}</dd>
-        <dt hidden>strings_ref</dt>
-        <dd hidden>{{ strings_ref }}</dd>
       </dl>
       
       <dl>
@@ -37,7 +35,7 @@
         <dd>{{ page.id }}</dd>
         <dt>page.content_id</dt>
         <dd>{{ page.content_id }}</dd>
-        <dt>content_id</dt>
+        <dt><strong>content_id</strong></dt>
         <dd>{{ content_id }}</dd>
       </dl>
       
@@ -54,15 +52,15 @@
           <i>{{ page.collection_suffix | inspect }}</i>
           {% endif %}
         </dd>
-        <dt>localized_collections</dt>
+        <dt><strong>localized_collections</strong></dt>
         <dd>{{ localized_collections | join: ", " }}</dd>
-        <dt>localized_pages</dt>
+        <dt><strong>localized_pages</strong></dt>
         <dd>
           {% for localized_page in localized_pages %}
           <a href="{{ site.baseurl }}{{ localized_page.url }}">{{ localized_page.locale }}</a>{% unless forloop.last %},{% endunless %}
           {% endfor %}
         </dd>
-        <dt>default_page</dt>
+        <dt><strong>default_page</strong></dt>
         <dd>
           {% if default_page %}
           <a href="{{ site.baseurl }}{{ default_page.url }}">{{ default_page.locale }}</a>
