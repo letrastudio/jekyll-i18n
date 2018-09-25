@@ -5,7 +5,7 @@
     {% assign pages = site[pages_collection] %}
     {% for content_id in site.navigation %}
       {% for page in pages %}
-        {% include content_id obj=page %}
+        {% include temp_content_id obj=page %}
         {% if temp_content_id == content_id %}
         <li>
           <a href="{{ page.url | prepend: site.baseurl }}" {% if page.url == current_url %}aria-current="page"{% endif %}>

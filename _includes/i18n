@@ -4,7 +4,7 @@
 {% assign temp_locale = site.locales[obj.locale] %}
 
 {% comment %} Generate content_id {% endcomment %}
-{% include content_id obj=obj %}
+{% include temp_content_id obj=obj %}
 
 {% comment %} List of localized collections {% endcomment %}
 {% assign temp_localized_collections = "" | split: "," %}
@@ -28,7 +28,7 @@
 {% assign current_content_id = temp_content_id %}
 {% for localized_collection in temp_localized_collections %}
   {% for document in site[localized_collection] %}
-    {% include content_id obj=document %}
+    {% include temp_content_id obj=document %}
     {% if temp_content_id == current_content_id %}
       {% assign temp_localized_pages = temp_localized_pages | push: document %}
       {% break %}
