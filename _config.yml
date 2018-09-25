@@ -53,6 +53,8 @@ collections:
     output: true
     permalink: /pt/fotografias/:path/
 
+permalink: pretty
+
 defaults:
 - scope:
     type: pages
