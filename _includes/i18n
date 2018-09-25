@@ -1,12 +1,12 @@
 {% assign obj = include.obj | default: page %}
 
-{% comment %} Create {{ locale }} {% endcomment %}
+{% comment %} Get locale {% endcomment %}
 {% assign temp_locale = site.locales[obj.locale] %}
 
-{% comment %} Generate content_id {% endcomment %}
+{% comment %} Get or generate content_id {% endcomment %}
 {% include temp_content_id obj=obj %}
 
-{% comment %} List of localized collections {% endcomment %}
+{% comment %} Generate list of localized collections {% endcomment %}
 {% assign temp_localized_collections = "" | split: "," %}
 {% for locale in site.locales %}
   {% assign locale_label = locale[0] %}
@@ -23,7 +23,7 @@
   {% endif %}
 {% endfor %}
 
-{% comment %} List of localized pages {% endcomment %}
+{% comment %} Generate list of localized pages {% endcomment %}
 {% assign temp_localized_pages = "" | split: "," %}
 {% assign current_content_id = temp_content_id %}
 {% for localized_collection in temp_localized_collections %}
