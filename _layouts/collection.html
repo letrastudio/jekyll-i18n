@@ -11,13 +11,13 @@ layout: default
   <div class="grid">
     {% assign collection = site[page.collection_label] | sort: "slug" %}
     {% for document in collection %}
-    {% include i18n.html obj=document %}
+    {% include i18n.html obj=document temp=true %}
     <div class="grid-item">
       <a href="{{ document.url | prepend: site.baseurl }}" title="{{ document.title }}">
-        <img src="{{ document.image | default: default_page.image | prepend: site.baseurl }}" alt="{{ document.title }}">
+        <img src="{{ document.image | default: temp_default_page.image | prepend: site.baseurl }}" alt="{{ document.title }}">
       </a>
     </div>
     {% endfor %}
   </div>
-
+  
 </div>
