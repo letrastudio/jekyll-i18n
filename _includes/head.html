@@ -8,8 +8,7 @@
   
   {% for localized_page in localized_pages %}
   {% unless localized_page.locale == page.locale %}
-  {% assign lang = site.locales[localized_page.locale].lang %}
-  <link rel="alternate" hreflang="{{ lang }}" href="{{ site.url }}{{ site.baseurl }}{{ localized_page.url }}">
+  <link rel="alternate" hreflang="{{ localized_page.lang }}" href="{{ site.url }}{{ site.baseurl }}{{ localized_page.url }}">
   {% endunless %}
   {% endfor %}
   
