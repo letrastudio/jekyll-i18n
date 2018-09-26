@@ -24,76 +24,64 @@ locales:
 
 The `default` locale is special, assumed to be the primary one, and output to the site root.
 
-Locales are defined by a `label`; in this example, the labels are `default` and `pt`. The `default` locale should be the first one. Typically, that’s the one that builds directly to the site root. Other locales should use their key label as a baseurl — in this example, the `pt` locale would build to `/pt`. To override this behavior, a `baseurl` attribute can be set for each locale, including the default one.
-
-The attributes in this example are both optional, but useful. `lang` should be a valid [Unicode Language Identifier](https://unicode.org/cldr/utility/languageid.jsp) and is primarily used to set the HTML `lang` attribute. `name` is used for naming links in the [language switcher element](/_includes/lang-switcher.html).
-
-For every content type in your site, you need to create multiple mirrored collections — one for each locale. Collections in the `default` locale are named normally:
+Collections need to be mirrored for each locale. Collections in the `default` locale are named normally, while other locales take their labels as a suffix:
 
 ```yaml
 collections:
-  pages:
-    output: true
-    permalink: /:path/
-  posts:
-    output: true
-    permalink: /blog/:categories/:title/
   photos:
     output: true
     permalink: /photos/:path/
-```
-
-Collections for other locales should be suffixed with an underscore and that locale’s label. For example, `posts` matches `posts_pt`. Permalinks need to be set manually for each collection to match the locale label (or the locale’s `baseurl` attribute, if set).
-
-```yaml
-  pages_pt:
-    output: true
-    permalink: /pt/:path/
-  posts_pt:
-    output: true
-    permalink: /pt/blog/:categories/:title/
   photos_pt:
     output: true
     permalink: /pt/fotografias/:path/
 ```
 
-In addition, front matter defaults need to be configured so that `page.locale` is always set. It’s also useful to set `lang` attributes here so that the [jekyll-seo-tag plugin](https://github.com/jekyll/jekyll-seo-tag) can pick them up.
+Permalinks need to be set manually for each collection to match the locale’s `baseurl`.
+
+In addition, a few front matter defaults need to be configured. Glob patterns are helpful here.
+
+To match localized collections to each other, `collection_basename` is used. Any localized `photos` collections should have `collection_basename` set to `photos`:
 
 ```yaml
 defaults:
+- scope:
+    path: '_photos*/'
+  values:
+    collection_basename: photos
+```
+
+And to associate collections with their respective locales, we need some more defaults:
+
+```yaml
 - scope:
     path: '*_pt/'
   values:
     locale: pt
     lang: pt-PT
+    collection_suffix: _pt
 - scope:
     path: ''
   values:
     locale: default
-    lang: en
+    lang: en-US
 ```
 
-Because using a `pages` collection for pages is not standard, `index` documents don’t quite work as normal. For each locale’s `index.markdown` (or `index.html`), a `permalink` must be set manually. This can be done in the documents themselves, or through more front matter defaults:
+Because `pages` collections don’t quite act the same way as regular pages, `index` documents aren’t treated the same way. For each locale’s `index.markdown` (or `index.html`), a `permalink` must be set manually. This can be done in the documents themselves, or through more front matter defaults:
 
 ```yaml
-- scope:
-    path: '_pages/index.*'
-  values:
-    permalink: "/"
 - scope:
     path: '_pages_pt/index.*'
   values:
     permalink: "/pt/"
 ```
 
-Your site’s content should look something like this:
+The site’s content should look something like this:
 
 ```
-├── _pages
-│   ├── about.markdown
-│   ├── blog.markdown
-│   ├── index.markdown
-│   └── photos.markdown
+├── about.markdown
+├── blog.markdown
+├── index.markdown
+├── photos.markdown
 ├── _pages_pt
 │   ├── about.markdown
 │   ├── blog.markdown
@@ -111,19 +99,18 @@ Your site’s content should look something like this:
     └── 2018-01-01-hello.markdown
 ```
 
-If you want to localize your permalinks, feel free to use different filenames for each locale. We’ll add front matter to match them up later.
+To localize permalinks, different filenames can be set for each locale. We’ll add front matter to match them up later.
 
 ```
-├── _pages
-│   ├── about.markdown
-│   ├── blog.markdown
-│   ├── index.markdown
-│   └── photos.markdown
+├── about.markdown
+├── blog.markdown
+├── index.markdown
+├── photos.markdown
 ├── _pages_pt
 │   ├── blog.markdown
 │   ├── fotografias.markdown
 │   ├── index.markdown
-┆   └── sobre.markdown
+│   └── sobre.markdown
 ```
 
 It’s not necessary for each locale to have a copy of every collection, or every file — content can be asymmetric.
@@ -143,15 +130,15 @@ Content matching is automatic when file and folder names are exactly the same. I
         └── page.markdown
 ```
 
-To match them, the `i18n.html` include generates a variable called `content_id`, based on each document’s path inside the collection.
+To match them, the `i18n` include generates a variable called `document_id`, based on each document’s path inside the collection.
 
-Both pages in this example would return the following `content_id`:
+Both pages in this example would return the following `document_id`:
 
 ```
-/subdir/page
+subdir/page
 ```
 
-When filenames don’t match, you can set `content_id` manually via YAML front matter. If your content looks like this:
+When filenames don’t match, `document_id` can be set manually via YAML front matter. Example:
 
 ```
 ├── _pages
@@ -166,68 +153,56 @@ By adding this front matter to `pagina.markdown`, they’ll match:
 
 ```yaml
 ---
-content_id: /subdir/page
+document_id: subdir/page
 ---
 ```
 
-This is better than using matching filenames and setting URL localizations through `page.permalink` because it’s derived from your document’s path in your site source, rather than the compiled site. That means you can change your global permalink style without having to edit your documents.
-
-The initial `/` character is optional. These would match:
-
-```
-/about
-about
-```
+This is better than using matching filenames and setting URL localizations through `page.permalink` because it’s derived from the document’s path in the site source, rather than the compiled site. That means the global permalink style can be changed without requiring changes to documents.
 
 
 
 ## Working with i18n in Liquid
 
-The `i18n.html` include does most of the heavy lifting for making i18n manageable in Liquid. It defines the following variables:
+The `i18n` include does most of the heavy lifting for making i18n manageable in Liquid. It defines the following variables:
 
 | Variable | Description |
 |:--|:--|
 | `locale` | Contains the attributes of the current locale. The same as `site.locales[page.locale]`. |
-| `locale_baseurl` | An empty string if the current locale is `default`, or a slash followed by the current locale’s label otherwise (e.g. `/pt`) . Setting a `baseurl` attribute for the locale in `_config.yml` overrides this value. |
-| `locale_strings` | Contains any localized text strings you’ve defined. More about that later. |
-| `content_id` | Returns either the manually set or automatically generated `content_id` string for the page. |
-| `localized_pages` | An array of objects for all pages matched through `content_id`, including the current page. |
-| `default_page` | The page object of a matched `default` locale version of the current page. Is `nil` if a match isn’t found. Useful for falling back to the default locale when dealing with unlocalized content. |
+| `localized_collections` | An array of labels for all collections matched through `page.collection_basename`. |
+| `localized_pages` | An array of objects for all pages matched through `document_id`, based on `localized_collections`. |
+| `default_page` | The page object of a matched `default` locale version of the current page. Useful for falling back to the default locale when dealing with unlocalized content. |
+| `strings` | Contains any localized text strings defined in `_data`. More on that later. |
+| `document_id` | Returns `page.document_id` or automatically generates a `document_id` string for the page. |
 
-`i18n.html` must be included at the top of every layout requiring i18n features:
+`i18n` must be included at the top of every layout requiring i18n features:
 
 ```liquid
-{% include i18n.html %}
+{% include i18n/i18n %}
 ```
 
-When it’s useful to get i18n variables for a page other than the current one, the `obj` parameter can be passed. It’s important to note that this overwrites the current page’s variables. To restore them, the include must be called again. For example:
+When it’s useful to get i18n variables for a page other than the current one, the `obj` parameter can be passed to the include. To avoid overwriting the current page’s variables, a `temp` parameter can be passed as `true`. This prefixes all i18n variables with `temp_`. Example:
 
 ```liquid
+{% include i18n/i18n %}
+
 <h2>Collection Document IDs</h2>
 {% for document in collection %}
-{% include i18n.html obj=document %}
-<p>{{ content_id }}</p>
+{% include i18n/i18n obj=document temp=true %}
+<p>{{ temp_document_id }}</p>
 {% endfor %}
 
 <h2>Current Page ID</h2>
-{% include i18n.html %}
-<p>{{ content_id }}</p>
+<p>{{ document_id }}</p>
 ```
 
 
 
 ## Content fallbacks
 
-You can use `default_page` to fallback to content in the default locale if it’s not localized:
+`default_page` can be used to fallback to content in the default locale if it’s not localized:
 
 ```yaml
 {{ page.image | default: default_page.image }}
-```
-
-You may even use `localized_pages` to set up a fallback cascade:
-
-```yaml
-{{ page.image | default: localized_pages.pt.image | default: default_page.image }}
 ```
 
 Using these fallbacks means that each localized file only needs to contain localizable content. The `about.markdown` file in the `default` locale might look like this:
@@ -247,7 +222,7 @@ But the localized `sobre.markdown` in the `pt` locale can include just the conte
 ```markdown
 ---
 title: Sobre
-content_id: about
+document_id: about
 ---
 Somos uma empresa fixe.
 ```
@@ -264,10 +239,10 @@ Text strings are defined in `_data` — one YAML file for each locale, named `st
     └── strings.yml
 ```
 
-Any keys you set in these files can be accessed directly through `locale_strings`:
+Any keys set in these files can be accessed directly through the `strings` variable:
 
 ```liquid
-{{ page.locale }}: {{ locale_strings.hello }}
+{{ page.locale }}: {{ strings.hello }}
 ```
 
 ```
@@ -279,7 +254,7 @@ pt: Olá
 
 ## Localizing dates
 
-A special include deals with dates: `localized-date.html`.
+A special include deals with dates: `i18n/date`.
 
 Locale-specific date formats can be set in `strings.yml` data files using the `date_formats` key:
 
@@ -312,7 +287,7 @@ date_formats:
 The include can then be used by passing `date` and `format` parameters. If no format is specified, `%Y-%m-%d` will be used.
 
 ```liquid
-{% include localized-date.html date=page.date format="long" %}
+{% include i18n/date date=page.date format="long" %}
 ```
 
 ```
@@ -324,8 +299,8 @@ pt: 15 Setembro 2016
 
 ## Plugin compatibility
 
-I've tested the Jekyll plug-in trinity with this site:
+I’ve tested the Jekyll plug-in trinity with this site:
 
-- `jekyll-sitemap` includes every page without a problem, but they aren't marked up using [rel="alternate" links](https://support.google.com/webmasters/answer/2620865?hl=en).
-- `jekyll-feed` will only generate a feed for the default `posts` collection. If you want localized feeds, you can use liquid layouts like [jekyll-rss-feeds](https://github.com/snaptortoise/jekyll-rss-feeds) and [jekyll-json-feeds](https://github.com/snaptortoise/jekyll-json-feeds).
-- `jekyll-seo-tag` works fine. `lang` must be set for every collection (using front matter defaults), or else everything will have `og:locale` set to `en-US` (or whatever `site.lang` is set to). Doesn’t create `rel="alternate" hreflang="x"` or `og:locale:alternate` tags, but you can add those yourself.
+- `jekyll-sitemap` includes every page without a problem, but they aren’t marked up using [rel="alternate" links](https://support.google.com/webmasters/answer/2620865?hl=en).
+- `jekyll-feed` will only generate a feed for the default `posts` collection. To get localized feeds, liquid layouts like [jekyll-rss-feeds](https://github.com/snaptortoise/jekyll-rss-feeds) can be used.
+- `jekyll-seo-tag` works fine. `lang` must be set for every collection (using front matter defaults), or else everything will have `og:locale` set to `en-US` (or whatever `site.lang` is set to). Doesn’t create `rel="alternate" hreflang="x"` or `og:locale:alternate` tags, but those can be added manually.
