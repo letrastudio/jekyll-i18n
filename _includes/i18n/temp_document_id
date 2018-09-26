@@ -1,13 +1,13 @@
-{% if include.obj.document_id %}
-  {% assign temp_document_id = include.obj.document_id %}
-{% elsif include.obj %}
-  {% if include.obj.collection %}
-    {% assign collection_path = include.obj.collection | prepend: "_" | append: "/" %}
-    {% assign path_in_collection = include.obj.path | remove_first: collection_path %}
-  {% else %}
-    {% assign path_in_collection = include.obj.path %}
-  {% endif %}
-  {% assign temp_document_id = path_in_collection | split: "." | pop | join: "." %}
-{% else %}
-  {% assign temp_document_id = nil %}
-{% endif %}
+{%- if include.obj.document_id -%}
+  {%- assign temp_document_id = include.obj.document_id -%}
+{%- elsif include.obj -%}
+  {%- if include.obj.collection -%}
+    {%- assign collection_path = include.obj.collection | prepend: "_" | append: "/" -%}
+    {%- assign path_in_collection = include.obj.path | remove_first: collection_path -%}
+  {%- else -%}
+    {%- assign path_in_collection = include.obj.path -%}
+  {%- endif -%}
+  {%- assign temp_document_id = path_in_collection | split: "." | pop | join: "." -%}
+{%- else -%}
+  {%- assign temp_document_id = nil -%}
+{%- endif -%}
