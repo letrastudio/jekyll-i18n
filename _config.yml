@@ -56,6 +56,7 @@ collections:
 permalink: pretty
 
 defaults:
+# set page.collection_basename to match collections
 - scope:
     type: pages
   values:
@@ -76,6 +77,7 @@ defaults:
   values:
     layout: photo
     collection_basename: photos
+# set page.locale, page.lang, page.collection_suffix
 - scope:
     path: '*_pt/'
   values:
@@ -99,6 +101,7 @@ defaults:
   values:
     locale: default
     lang: en-US
+# prevent index pages from publishing to baseurl/index/index.html
 - scope:
     path: '_pages_pt/index.*'
   values:
