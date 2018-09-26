@@ -36,12 +36,7 @@
   {% endfor %}
 {% endfor %}
 {% assign temp_document_id = current_document_id %}
-
-{% comment %} Assign default page {% endcomment %}
 {% assign temp_default_page = temp_localized_pages | where: "locale", "default" | first %}
-{% if temp_default_page.locale == obj.locale %}
-  {% assign temp_default_page = nil %}
-{% endif %}
 
 {% comment %} String localization {% endcomment %}
 {% assign strings_ref = obj.collection_suffix | prepend: "strings" %}
