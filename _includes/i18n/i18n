@@ -42,9 +42,8 @@
 {%- assign strings_ref = obj.collection_suffix | prepend: "strings" -%}
 {%- assign temp_strings = site.data[strings_ref] -%}
 
-{%- comment -%} Set output variables {%- endcomment -%}
-{%- assign temp = include.temp | default: false -%}
-{%- unless temp == true -%}
+{%- comment -%} Set output variables unless include.obj was passed {%- endcomment -%}
+{%- unless include.obj -%}
   {%- assign locale = temp_locale -%}
   {%- assign document_id = temp_document_id -%}
   {%- assign localized_collections = temp_localized_collections -%}
