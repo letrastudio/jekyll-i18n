@@ -3,8 +3,8 @@
 {% comment %} Get locale {% endcomment %}
 {% assign temp_locale = site.locales[obj.locale] %}
 
-{% comment %} Get or generate content_id {% endcomment %}
-{% include temp_content_id obj=obj %}
+{% comment %} Get or generate document_id {% endcomment %}
+{% include temp_document_id obj=obj %}
 
 {% comment %} Generate list of localized collections {% endcomment %}
 {% assign temp_localized_collections = "" | split: "," %}
@@ -25,17 +25,17 @@
 
 {% comment %} Generate list of localized pages {% endcomment %}
 {% assign temp_localized_pages = "" | split: "," %}
-{% assign current_content_id = temp_content_id %}
+{% assign current_document_id = temp_document_id %}
 {% for localized_collection in temp_localized_collections %}
   {% for document in site[localized_collection] %}
-    {% include temp_content_id obj=document %}
-    {% if temp_content_id == current_content_id %}
+    {% include temp_document_id obj=document %}
+    {% if temp_document_id == current_document_id %}
       {% assign temp_localized_pages = temp_localized_pages | push: document %}
       {% break %}
     {% endif %}
   {% endfor %}
 {% endfor %}
-{% assign temp_content_id = current_content_id %}
+{% assign temp_document_id = current_document_id %}
 
 {% comment %} Assign default page {% endcomment %}
 {% assign temp_default_page = temp_localized_pages | where: "locale", "default" | first %}
@@ -51,7 +51,7 @@
 {% assign temp = include.temp | default: false %}
 {% unless temp == true %}
   {% assign locale = temp_locale %}
-  {% assign content_id = temp_content_id %}
+  {% assign document_id = temp_document_id %}
   {% assign localized_collections = temp_localized_collections %}
   {% assign localized_pages = temp_localized_pages %}
   {% assign default_page = temp_default_page %}

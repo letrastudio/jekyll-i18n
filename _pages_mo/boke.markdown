@@ -1,5 +1,5 @@
 ---
 title: 博客
-content_id: blog
+document_id: blog
 layout: blog
 ---
