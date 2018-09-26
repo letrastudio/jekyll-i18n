@@ -1,6 +1,6 @@
 # jekyll-vanilla-i18n
 
-A sane, plugin-free solution for internationalized Jekyll sites.
+Turning Jekyll multilingual is not an easy task. This approach trades complex setup and configuration for simple content management.
 
 Minimum required Jekyll version is 3.7.0, or 3.8.0 if using `collections_dir`.
 
@@ -13,18 +13,22 @@ Locales are configured in `_config.yml`:
 ```yaml
 locales:
   default:
+    baseurl: ""
     lang: en-US
     name: English
   pt:
+    baseurl: /pt
     lang: pt-PT
     name: Português
 ```
 
-The `default` locale should be the first one. Typically, that’s the one that builds directly to the site root. Other locales should use their key label as a baseurl — in this example, the `pt` locale would build to `/pt`. To override this behavior, a `baseurl` attribute can be set for each locale, including the default one.
+The `default` locale is special, assumed to be the primary one, and output to the site root.
+
+Locales are defined by a `label`; in this example, the labels are `default` and `pt`. The `default` locale should be the first one. Typically, that’s the one that builds directly to the site root. Other locales should use their key label as a baseurl — in this example, the `pt` locale would build to `/pt`. To override this behavior, a `baseurl` attribute can be set for each locale, including the default one.
 
 The attributes in this example are both optional, but useful. `lang` should be a valid [Unicode Language Identifier](https://unicode.org/cldr/utility/languageid.jsp) and is primarily used to set the HTML `lang` attribute. `name` is used for naming links in the [language switcher element](/_includes/lang-switcher.html).
 
-For every content type in your site, you need to create multiple mirrored collections — one for each locale. Collections in the `default` locale are named normally:
+For every content type in your site, you need to create multiple mirrored collections — one for each locale. Collections in the `default` locale are named normally:
 
 ```yaml
 collections:
@@ -252,7 +256,7 @@ Somos uma empresa fixe.
 
 ## Localizing text strings
 
-Text strings are defined in `_data` — one YAML file for each locale, named `strings_LOCALE.yml`. The `default` locale file is named `strings.yml`.
+Text strings are defined in `_data` — one YAML file for each locale, named `strings_LOCALE.yml`. The `default` locale file is named `strings.yml`.
 
 ```
 └── _data
@@ -263,7 +267,7 @@ Text strings are defined in `_data` — one YAML file for each locale, named `s
 Any keys you set in these files can be accessed directly through `locale_strings`:
 
 ```liquid
-{{ page.locale }}: {{ locale_strings.hello }}
+{{ page.locale }}: {{ locale_strings.hello }}
 ```
 
 ```
@@ -307,7 +311,7 @@ date_formats:
 
 The include can then be used by passing `date` and `format` parameters. If no format is specified, `%Y-%m-%d` will be used.
 
-```
+```liquid
 {% include localized-date.html date=page.date format="long" %}
 ```
 
