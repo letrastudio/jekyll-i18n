@@ -121,4 +121,8 @@ plugins:
 - jekyll-feed
 - jekyll-github-metadata
 
-navigation: [index, about, blog, photos]
+navigation:
+- index
+- about
+- blog
+- photos
