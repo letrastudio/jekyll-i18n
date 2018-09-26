@@ -1,4 +1,4 @@
-{% include i18n %}
+{% include i18n/i18n %}
 
 <!DOCTYPE html>
 <html lang="{{ locale.lang }}" {% if locale.direction == 'rtl' %}dir="rtl"{% endif %}>
@@ -15,7 +15,7 @@
       {{ content }}
     </main>
     
-    {% include debug-info.html %}
+    {% include i18n/debug.html %}
     
     {% include footer.html %}
 
