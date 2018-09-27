@@ -137,7 +137,7 @@ Document matching is automatic when file and folder names are exactly the same. 
         └── document.markdown
 ```
 
-To match them, the `i18n` include generates a variable called `document_id`, based on each document’s path inside the collection, and excluding the file extension.
+To match them, the `i18n` include (explained below) generates a variable called `document_id`, based on each document’s path relative to the collection folder, and excluding the file extension.
 
 Both documents in this example would return the same `document_id`, so they would match automatically:
 
@@ -156,7 +156,7 @@ When filenames don’t match, `document_id` can be set manually via YAML front m
         └── documento.markdown
 ```
 
-By adding this front matter to `documento.markdown`, they’d match:
+By adding this front matter to `_collection_pt/pasta/documento.markdown`, they’d match:
 
 ```yaml
 ---
@@ -164,13 +164,13 @@ document_id: folder/document
 ---
 ```
 
-This is better than using matching filenames and setting URL localizations through `page.permalink` because it’s derived from the document’s path in the site source, rather than the compiled site. That means the global permalink style can be changed without requiring changes to documents.
+This is preferable than using matching filenames and setting URL localizations through `page.permalink` because it’s derived from the document’s path in the site source, rather than the compiled site. That means the global permalink style can be changed without requiring changes to documents.
 
 
 
 ## Working with i18n in Liquid
 
-The `i18n` include does most of the heavy lifting for making i18n manageable in Liquid. It defines the following variables:
+The [`i18n` include](_includes/i18n/i18n) does most of the heavy lifting for making i18n manageable in Liquid. It defines the following variables:
 
 | Variable | Description |
 |:--|:--|
@@ -202,7 +202,7 @@ When it’s useful to get i18n variables for a document other than the current o
 <p>{{ document_id }}</p>
 ```
 
-Since getting `document_id` is the most common use case, a smaller include that only assigns that variable can be used:
+Since getting `document_id` is the most common use case, a smaller [`document_id` include](_includes/i18n/document_id) that only assigns that variable can be used:
 
 ```liquid
 {% include i18n/document_id %}
@@ -317,7 +317,7 @@ pt: Quinta-feira, 15 de Setembro de 2016
 
 ## Plugin compatibility
 
-I’ve tested the most important GitHub-whitelisted plug-ins:
+I’ve tested the most relevant GitHub-whitelisted plug-ins:
 
 - `jekyll-sitemap` includes every page without a problem, but they aren’t marked up using [rel="alternate" links](https://support.google.com/webmasters/answer/2620865?hl=en).
 - `jekyll-feed` will only generate a feed for the default `posts` collection. Version 0.11.0 will resolve this by adding the ability to [generate feeds for any collection](https://github.com/jekyll/jekyll-feed/pull/228), but it hasn't been whitelisted yet. Liquid layouts like [jekyll-rss-feeds](https://github.com/snaptortoise/jekyll-rss-feeds) can be used in the meantime.
