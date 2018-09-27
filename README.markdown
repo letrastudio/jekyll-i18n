@@ -22,9 +22,9 @@ locales:
     name: Português
 ```
 
-The `default` locale is special, assumed to be the primary one, and output to the site root.
+The `default` locale is special, assumed to be the primary one and to be output to the site root.
 
-Collections need to be mirrored for each locale. Collections in the `default` locale are named normally, while other locales take their labels as a suffix:
+Collections are mirrored for each locale. Collections in the `default` locale are named normally, while other locales take the locale’s label as a suffix:
 
 ```yaml
 collections:
@@ -38,39 +38,39 @@ collections:
 
 Permalinks need to be set manually for each collection to match the locale’s `baseurl`.
 
-In addition, a few front matter defaults need to be configured. Glob patterns are helpful here.
-
-To match localized collections to each other, `collection_basename` is used. Any localized `photos` collections should have `collection_basename` set to `photos`:
+In addition, a few front matter defaults need to be configured (`*` glob patterns are helpful here). To match localized collections to each other, `collection_basename` is used. All `photos` collections across any locales should have `collection_basename` set to `photos`:
 
 ```yaml
 defaults:
 - scope:
-    path: '_photos*/'
+    path: "_photos*/"
   values:
     collection_basename: photos
 ```
 
-And to associate collections with their respective locales, we need some more defaults:
+And to associate collections with their respective locales, some more defaults are needed:
 
 ```yaml
 - scope:
-    path: '*_pt/'
+    path: "*_pt/"
   values:
     locale: pt
     lang: pt-PT
     collection_suffix: _pt
 - scope:
-    path: ''
+    path: ""
   values:
     locale: default
     lang: en-US
 ```
 
-Because `pages` collections don’t quite act the same way as regular pages, `index` documents aren’t treated the same way. For each locale’s `index.markdown` (or `index.html`), a `permalink` must be set manually. This can be done in the documents themselves, or through more front matter defaults:
+Setting `lang` in this way allows plugins like jekyll-seo-tag to pick it up. `collection_suffix` is used in conjunction with `collection_basename` to match collections between locales. Documents in the `default` locale don’t have a `collection_suffix`.
+
+For pages, `pages_LOCALE` collections need to be created as well. The default locale’s pages can be moved to a `pages` collection or left as normal pages. Because collections don’t quite act the same way as regular pages, permalinks for `index` documents won’t work as expected; when using `pretty` permalinks they will output to `/index/index.html`. This can only be avoided by setting `permalink` manually in front matter. This can be done in the documents themselves, or through more defaults:
 
 ```yaml
 - scope:
-    path: '_pages_pt/index.*'
+    path: "_pages_pt/index.*"
   values:
     permalink: "/pt/"
 ```
@@ -102,58 +102,57 @@ The site’s content should look something like this:
 To localize permalinks, different filenames can be set for each locale. We’ll add front matter to match them up later.
 
 ```
-├── about.markdown
-├── blog.markdown
-├── index.markdown
-├── photos.markdown
-├── _pages_pt
-│   ├── blog.markdown
-│   ├── fotografias.markdown
-│   ├── index.markdown
-│   └── sobre.markdown
+├── _photos
+│   ├── photo-1.markdown
+│   └── photo-2.markdown
+├── _photos_pt
+│   ├── fotografia-1.markdown
+│   └── fotografia-2.markdown
 ```
+
+Collection labels themselves are never localized.
 
 It’s not necessary for each locale to have a copy of every collection, or every file — content can be asymmetric.
 
 
 
-## Content matching between locales
+## Document matching between locales
 
-Content matching is automatic when file and folder names are exactly the same. In this example both pages represent the same content:
+Document matching is automatic when file and folder names are exactly the same. In this example both documents represent the same content:
 
 ```
-├── _pages
+├── _collection
 │   └── subdir
-│       └── page.markdown
-└── _pages_pt
+│       └── document.markdown
+└── _collection_pt
     └── subdir
-        └── page.markdown
+        └── document.markdown
 ```
 
-To match them, the `i18n` include generates a variable called `document_id`, based on each document’s path inside the collection.
+To match them, the `i18n` include generates a variable called `document_id`, based on each document’s path inside the collection, and excluding the file extension.
 
-Both pages in this example would return the following `document_id`:
+Both documents in this example would return the following `document_id`:
 
 ```
-subdir/page
+subdir/document
 ```
 
 When filenames don’t match, `document_id` can be set manually via YAML front matter. Example:
 
 ```
-├── _pages
+├── _collection
 │   └── subdir
-│       └── page.markdown
-└── _pages_pt
+│       └── document.markdown
+└── _collection_pt
     └── subpasta
-        └── pagina.markdown
+        └── documento.markdown
 ```
 
-By adding this front matter to `pagina.markdown`, they’ll match:
+By adding this front matter to `documento.markdown`, they’ll match:
 
 ```yaml
 ---
-document_id: subdir/page
+document_id: subdir/document
 ---
 ```
 
@@ -180,19 +179,30 @@ The `i18n` include does most of the heavy lifting for making i18n manageable in 
 {% include i18n/i18n %}
 ```
 
-When it’s useful to get i18n variables for a page other than the current one, the `obj` parameter can be passed to the include. To avoid overwriting the current page’s variables, a `temp` parameter can be passed as `true`. This prefixes all i18n variables with `temp_`. Example:
+When it’s useful to get i18n variables for a document other than the current one, the `obj` parameter can be passed to the include. In this case, all variables will be prefixed with `obj_`, to avoid overwriting the current page’s variables. Example:
 
 ```liquid
 {% include i18n/i18n %}
 
 <h2>Collection Document IDs</h2>
 {% for document in collection %}
-{% include i18n/i18n obj=document temp=true %}
-<p>{{ temp_document_id }}</p>
+{% include i18n/i18n obj=document %}
+<p>{{ obj_document_id }}</p>
 {% endfor %}
 
 <h2>Current Page ID</h2>
 <p>{{ document_id }}</p>
+```
+
+Since getting `document_id` is the most common use case, a smaller include that only assigns that variable can be used:
+
+```liquid
+{% include i18n/document_id %}
+<p>{{ document_id }}</p> <!-- refers to {{ page }} -->
+
+{% assign document = site.collection | first %}
+{% include i18n/document_id obj=document %}
+<p>{{ obj_document_id }}</p> <!-- refers to {{ document }} -->
 ```
 
 
