@@ -1,6 +1,6 @@
 # jekyll-vanilla-i18n
 
-Turning Jekyll multilingual is not an easy task. This approach trades complex setup and configuration for simple content management.
+Turning Jekyll multilingual is not a straightforward task and comes with tradeoffs. This approach trades complex setup and configuration for simple content management.
 
 Minimum required Jekyll version is 3.7.0, or 3.8.0 if using `collections_dir`.
 
