@@ -1,6 +1,6 @@
 # jekyll-i18n
 
-Turning Jekyll multilingual is not a straightforward task and comes with tradeoffs. This approach trades complex setup and configuration for simple content management.
+Creating multi-locale sites with Jekyll without relying on i18n plugins is not a straightforward task, and comes with tradeoffs. This approach requires somewhat complex setup and configuration, in return for simple content management. Also, it works with GitHub Pages! This branch is actually a [GH Pages site](https://letrastudio.github.io/jekyll-i18n/).
 
 Minimum required Jekyll version is 3.7.0, or 3.8.0 if using `collections_dir`.
 
