@@ -272,7 +272,7 @@ pt: Olá
 
 ### Localizing dates
 
-A special include deals with dates: `i18n/date`.
+A special include deals with dates: [`i18n/date`](_includes/i18n/date).
 
 Locale-specific date formats can be set in `strings.yml` data files using the `date_formats` key:
 
