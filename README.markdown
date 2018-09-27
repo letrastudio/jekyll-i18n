@@ -4,6 +4,8 @@ Turning Jekyll multilingual is not a straightforward task and comes with tradeof
 
 Minimum required Jekyll version is 3.7.0, or 3.8.0 if using `collections_dir`.
 
+The [`jekyll-4-proposal` branch](https://github.com/letrastudio/jekyll-i18n/tree/jekyll-4-proposal) builds on this work to explore how native i18n support could hypothetically work in Jekyll 4.0.
+
 
 
 ## Configuration
