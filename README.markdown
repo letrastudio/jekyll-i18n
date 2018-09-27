@@ -164,7 +164,7 @@ document_id: folder/document
 ---
 ```
 
-This is preferable than using matching filenames and setting URL localizations through `page.permalink` because it’s derived from the document’s path in the site source, rather than the compiled site. That means the global permalink style can be changed without requiring changes to documents.
+This is preferable to using matching filenames and setting URL localizations through `page.permalink` because it’s derived from the document’s path in the site source, rather than the compiled site. That means the global permalink style can be changed without requiring changes to documents.
 
 
 
