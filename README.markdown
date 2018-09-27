@@ -1,6 +1,6 @@
 # Jekyll 4.0 i18n proposal
 
-This is a hypothetical solution for native i18n support in Jekyll 4.0.
+This is a hypothetical solution for native internationalization support in Jekyll 4.0.
 
 This branch’s code represents how the master branch’s site would work with that solution in place. The differences can be compared in [this commit](https://github.com/letrastudio/jekyll-i18n/commit/e90895716a61c3929911f7f0f54f6ced96abcbad).
 
