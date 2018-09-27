@@ -18,6 +18,8 @@
           <i>{{ locale.baseurl | inspect }}</i>
           {% endif %}
         </dd>
+        <dt><strong>strings_ref</strong></dt>
+        <dd>{{ strings_ref }}</dd>
         <dt><strong>strings</strong></dt>
         <dd>{% for string in strings %}{{ string[0] }}{% unless forloop.last %}, {% endunless %}{% endfor %}</dd>
       </dl>
