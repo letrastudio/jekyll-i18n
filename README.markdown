@@ -206,11 +206,11 @@ Since getting `document_id` is the most common use case, a smaller include that 
 
 ```liquid
 {% include i18n/document_id %}
-<p>{{ document_id }}</p> <!-- refers to {{ page }} -->
+<p>{{ document_id }}</p>
 
 {% assign document = site.collection | first %}
 {% include i18n/document_id obj=document %}
-<p>{{ obj_document_id }}</p> <!-- refers to {{ document }} -->
+<p>{{ obj_document_id }}</p>
 ```
 
 
@@ -305,20 +305,20 @@ date_formats:
 The include can then be used by passing `date` and `format` parameters. If no format is specified, `%Y-%m-%d` will be used.
 
 ```liquid
-{% include i18n/date date=page.date format="long" %}
+{% include i18n/date date=page.date format="full" %}
 ```
 
 ```
-default: September 15, 2016
-pt: 15 Setembro 2016
+default: Thursday, 15 September 2016
+pt: Quinta-feira, 15 de Setembro de 2016
 ```
 
 
 
 ## Plugin compatibility
 
-I’ve tested the Jekyll plug-in trinity with this site:
+I’ve tested the most important GitHub-whitelisted plug-ins:
 
 - `jekyll-sitemap` includes every page without a problem, but they aren’t marked up using [rel="alternate" links](https://support.google.com/webmasters/answer/2620865?hl=en).
-- `jekyll-feed` will only generate a feed for the default `posts` collection. To get localized feeds, liquid layouts like [jekyll-rss-feeds](https://github.com/snaptortoise/jekyll-rss-feeds) can be used.
-- `jekyll-seo-tag` works fine. `lang` must be set for every collection (using front matter defaults), or else everything will have `og:locale` set to `en-US` (or whatever `site.lang` is set to). Doesn’t create `rel="alternate" hreflang="x"` or `og:locale:alternate` tags, but those can be added manually.
+- `jekyll-feed` will only generate a feed for the default `posts` collection. Version 0.11.0 will resolve this by adding the ability to [generate feeds for any collection](https://github.com/jekyll/jekyll-feed/pull/228), but it hasn't been whitelisted yet. Liquid layouts like [jekyll-rss-feeds](https://github.com/snaptortoise/jekyll-rss-feeds) can be used in the meantime.
+- `jekyll-seo-tag` works fine, as long as `lang` is properly set for every document (using front matter defaults), or else everything will have `og:locale` set to `en-US` (or whatever `site.lang` is set to). Doesn’t create `rel="alternate" hreflang="x"` or `og:locale:alternate` tags, but those can be added manually.
