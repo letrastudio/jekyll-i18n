@@ -24,6 +24,8 @@ locales:
 
 The `default` locale is special, assumed to be the primary one and to be output to the site root.
 
+### Collections
+
 Collections are mirrored for each locale. Collections in the `default` locale are named normally, while other locales take the locale’s label as a suffix:
 
 ```yaml
@@ -38,7 +40,11 @@ collections:
 
 Permalinks need to be set manually for each collection to match the locale’s `baseurl`.
 
-In addition, a few front matter defaults need to be configured (`*` glob patterns are helpful here). To match localized collections to each other, `collection_basename` is used. All `photos` collections across any locales should have `collection_basename` set to `photos`:
+### Front matter defaults
+
+A few front matter defaults need to be configured (`*` glob patterns are helpful here).
+
+To match localized collections to each other, `collection_basename` is used. All `photos` collections across any locales should have `collection_basename` set to `photos`:
 
 ```yaml
 defaults:
@@ -74,6 +80,8 @@ For pages, `pages_LOCALE` collections need to be created as well. The default lo
   values:
     permalink: "/pt/"
 ```
+
+### Content structure
 
 The site’s content should look something like this:
 
@@ -207,7 +215,7 @@ Since getting `document_id` is the most common use case, a smaller include that 
 
 
 
-## Content fallbacks
+### Content fallbacks
 
 `default_page` can be used to fallback to content in the default locale if it’s not localized:
 
@@ -239,7 +247,7 @@ Somos uma empresa fixe.
 
 
 
-## Localizing text strings
+### Localizing text strings
 
 Text strings are defined in `_data` — one YAML file for each locale, named `strings_LOCALE.yml`. The `default` locale file is named `strings.yml`.
 
@@ -262,7 +270,7 @@ pt: Olá
 
 
 
-## Localizing dates
+### Localizing dates
 
 A special include deals with dates: `i18n/date`.
 
