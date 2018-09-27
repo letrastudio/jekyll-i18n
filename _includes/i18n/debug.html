@@ -6,11 +6,11 @@
       <dl>
         <dt>page.locale</dt>
         <dd>{{ page.locale }}</dd>
-        <dt><strong>locale</strong>.name</dt>
+        <dt>locale.name</dt>
         <dd>{{ locale.name }}</dd>
-        <dt><strong>locale</strong>.lang</dt>
+        <dt>locale.lang</dt>
         <dd>{{ locale.lang }}</dd>
-        <dt><strong>locale</strong>.baseurl</dt>
+        <dt>locale.baseurl</dt>
         <dd>
           {% if locale.baseurl.size > 0 %}
           {{ locale.baseurl }}
@@ -18,9 +18,9 @@
           <i>{{ locale.baseurl | inspect }}</i>
           {% endif %}
         </dd>
-        <dt><strong>strings_ref</strong></dt>
+        <dt>strings_ref</dt>
         <dd>{{ strings_ref }}</dd>
-        <dt><strong>strings</strong></dt>
+        <dt>strings</dt>
         <dd>{% for string in strings %}{{ string[0] }}{% unless forloop.last %}, {% endunless %}{% endfor %}</dd>
       </dl>
       
@@ -37,7 +37,7 @@
         <dd>{{ page.id }}</dd>
         <dt>page.document_id</dt>
         <dd>{{ page.document_id }}</dd>
-        <dt><strong>document_id</strong></dt>
+        <dt>document_id</dt>
         <dd>{{ document_id }}</dd>
       </dl>
       
@@ -54,15 +54,15 @@
           <i>{{ page.collection_suffix | inspect }}</i>
           {% endif %}
         </dd>
-        <dt><strong>localized_collections</strong></dt>
+        <dt>localized_collections</dt>
         <dd>{{ localized_collections | join: ", " }}</dd>
-        <dt><strong>localized_pages</strong></dt>
+        <dt>localized_pages</dt>
         <dd>
           {% for localized_page in localized_pages %}
           <a href="{{ site.baseurl }}{{ localized_page.url }}">{{ localized_page.locale }}</a>{% unless forloop.last %},{% endunless %}
           {% endfor %}
         </dd>
-        <dt><strong>default_page</strong></dt>
+        <dt>default_page</dt>
         <dd>
           {% if default_page %}
           <a href="{{ site.baseurl }}{{ default_page.url }}">{{ default_page.locale }}</a>
