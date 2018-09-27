@@ -1,20 +1,14 @@
 <nav class="site-nav">
   <ul>
-    {% assign current_url = page.url %}
-    {% assign pages_collection = "pages" | append: page.collection_suffix %}
-    {% assign pages = site[pages_collection] %}
-    {% for document_id in site.navigation %}
-      {% for page in pages %}
-        {% include i18n/document_id obj=page %}
-        {% if obj_document_id == document_id %}
-        <li>
-          <a href="{{ page.url | prepend: site.baseurl }}" {% if page.url == current_url %}aria-current="page"{% endif %}>
-            {{ page.title | escape }}
-          </a>
-        </li>
-        {% break %}
-        {% endif %}
-      {% endfor %}
-    {% endfor %}
+  {% for document_id in site.navigation %}
+    {% assign nav_page = locale.pages | where: "document_id", document_id | first %}
+    {% if nav_page %}
+    <li>
+      <a href="{{ nav_page.url | prepend: site.baseurl }}" {% if nav_page.url == page.url %}aria-current="page"{% endif %}>
+        {{ nav_page.title | escape }}
+      </a>
+    </li>
+    {% endif %}
+  {% endfor %}
   </ul>
 </nav>

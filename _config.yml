@@ -7,113 +7,57 @@ description: A sane plugin-free solution for internationalized Jekyll sites.
 
 locales:
   default:
-    baseurl: ""
     name: English
     lang: en-US
   pt:
-    baseurl: /pt
     name: Português
     lang: pt-PT
   mo:
-    baseurl: /mo
     name: 繁體中文
     lang: zh-MO
   ae:
-    baseurl: /ae
     name: عربى
     lang: ar-AE
     direction: rtl
 
 collections:
-  pages_pt:
-    output: true
-    permalink: /pt/:path/
-  pages_mo:
-    output: true
-    permalink: /mo/:path/
-  pages_ae:
-    output: true
-    permalink: /ae/:path/
   posts:
-    output: true
     permalink: /blog/:categories/:title/
-  posts_pt:
+  posts/mo:
+    permalink: /boke/:categories/:title/
+  posts/ae:
+    permalink: /mudawana/:categories/:title/
+  pages:
     output: true
-    permalink: /pt/blog/:categories/:title/
-  posts_mo:
-    output: true
-    permalink: /mo/boke/:categories/:title/
-  posts_ae:
-    output: true
-    permalink: /ae/mudawana/:categories/:title/
+    permalink: /:path/
   photos:
     output: true
     permalink: /photos/:path/
-  photos_pt:
-    output: true
-    permalink: /pt/fotografias/:path/
+  photos/pt:
+    permalink: /fotografias/:path/
+  photos/mo:
+    output: false
+  photos/ae:
+    output: false
 
 permalink: pretty
 
 defaults:
-# set page.collection_basename to match collections
 - scope:
     type: pages
-  values:
-    layout: page
-    collection_basename: pages
-- scope:
-    path: "_pages*/"
-  values:
-    layout: page
-    collection_basename: pages
-- scope:
-    path: "_posts*/"
-  values:
-    layout: post
-    collection_basename: posts
-- scope:
-    path: "_photos*/"
-  values:
-    layout: photo
-    collection_basename: photos
-# set page.locale, page.lang, page.collection_suffix
-- scope:
-    path: "*_pt/"
-  values:
-    locale: pt
-    lang: pt-PT
-    collection_suffix: _pt
-- scope:
-    path: "*_mo/"
-  values:
-    locale: mo
-    lang: zh-MO
-    collection_suffix: _mo
-- scope:
-    path: "*_ae/"
-  values:
-    locale: ae
-    lang: ar-AE
-    collection_suffix: _ae
-- scope:
     path: ""
   values:
-    locale: default
-    lang: en-US
-# prevent index pages from publishing to baseurl/index/index.html
+    layout: page
 - scope:
-    path: "_pages_pt/index.*"
+    type: posts
+    path: ""
   values:
-    permalink: "/pt/"
+    layout: post
 - scope:
-    path: "_pages_mo/index.*"
+    type: photos
+    path: ""
   values:
-    permalink: "/mo/"
-- scope:
-    path: "_pages_ae/index.*"
-  values:
-    permalink: "/ae/"
+    layout: photo
 
 plugins:
 - jekyll-sitemap

@@ -1,18 +1,13 @@
 <nav class="lang-switcher" aria-label="{{ locale_strings.language_selector }}">
   <ul>
     {% for locale in site.locales %}
-    {% assign label = locale[0] %}
-    {% assign locale_object = locale[1] %}
-    <li lang="{{ locale_object.lang }}">
-      {% if label == page.locale %}
-      <a href="{{ page.url | prepend: site.baseurl }}" aria-current="true">{{ locale_object.name }}</a>
+    <li lang="{{ locale.lang }}">
+      {% if locale.label == page.locale %}
+      <a href="{{ page.url | prepend: site.baseurl }}" aria-current="true">{{ locale.name }}</a>
+      {% elsif page.localized[locale.label] %}
+      <a href="{{ page.localized[locale.label].url | prepend: site.baseurl }}" hreflang="{{ locale.lang }}">{{ locale.name }}</a>
       {% else %}
-        {% assign localized_page = localized_pages | where: "locale", label | first %}
-        {% if localized_page %}
-        <a href="{{ localized_page.url | prepend: site.baseurl }}" hreflang="{{ locale_object.lang }}">{{ locale_object.name }}</a>
-        {% else %}
-        <a href="{{ locale_object.baseurl | prepend: site.baseurl }}/" hreflang="{{ locale_object.lang }}" class="not-available">{{ locale_object.name }}</a>
-        {% endif %}
+      <a href="{{ locale.baseurl | prepend: site.baseurl }}/" hreflang="{{ locale.lang }}" class="not-available">{{ locale.name }}</a>
       {% endif %}
     </li>
     {% endfor %}

@@ -7,8 +7,6 @@ layout: page
 
 <ul>
 {% for locale in site.locales %}
-  {% assign label = locale[0] %}
-  {% assign locale_object = locale[1] %}
-  <li><a href="{{ site.baseurl }}{{ locale_object.baseurl }}/" lang="{{ locale_object.lang }}">{{ locale_object.name }}</a></li>
+  <li><a href="{{ site.baseurl }}{{ locale.baseurl }}/" lang="{{ locale.lang }}">{{ locale.name }}</a></li>
 {% endfor %}
 </ul>

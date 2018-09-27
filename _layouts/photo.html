@@ -2,8 +2,6 @@
 layout: default
 ---
 
-{% include i18n/i18n %}
-
 <div class="photo wrapper">
   
   <div class="page-header">
@@ -11,7 +9,7 @@ layout: default
   </div>
 
   <figure>
-    <img src="{{ page.image | default: default_page.image | prepend: site.baseurl }}" {% if page.image_alt %}alt="{{ page.image_alt }}"{% endif %}>
+    <img src="{{ page.image | default: page.default.image | prepend: site.baseurl }}" {% if page.image_alt %}alt="{{ page.image_alt }}"{% endif %}>
     {% if page.caption %}
     <figcaption>{{ page.caption }}</figcaption>
     {% endif %}
@@ -21,14 +19,14 @@ layout: default
   
   <div class="text text-wrapper">
     <p>
-      <strong>{{ strings.author }}:</strong>
-        {{ page.author | default: default_page.author }}<br>
-      <strong>{{ strings.date }}:</strong>
-        {% assign date_published = page.date_published | default: default_page.date_published %}{% include i18n/date date=date_published format="long" %}<br>
-      <strong>{{ strings.location }}:</strong>
-        {{ page.location | default: default_page.location }}<br>
-      <strong>{{ strings.link }}:</strong>
-        <a href="{{ page.link | default: default_page.link }}" target="_blank" rel="noopener">unsplash.com</a>
+      <strong>{{ locale.strings.author }}:</strong>
+        {{ page.author | default: page.default.author }}<br>
+      <strong>{{ locale.strings.date }}:</strong>
+        {{ page.date_published | default: page.default.date_published | localized_date: "long" }}<br>
+      <strong>{{ locale.strings.location }}:</strong>
+        {{ page.location | default: page.default.location }}<br>
+      <strong>{{ locale.strings.link }}:</strong>
+        <a href="{{ page.link | default: page.default.link }}" target="_blank" rel="noopener">unsplash.com</a>
     </p>
   </div>
   

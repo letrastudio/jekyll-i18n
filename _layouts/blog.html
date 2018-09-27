@@ -2,9 +2,6 @@
 layout: default
 ---
 
-{% include i18n/i18n %}
-{% assign posts_collection = "posts" | append: page.collection_suffix %}
-
 <div class="blog wrapper">
   
   <div class="page-header">
@@ -12,10 +9,10 @@ layout: default
   </div>
   
   <ul class="blog-list">
-    {% for post in site[posts_collection] %}
+    {% for post in locale.posts %}
     <li>
       <h2 class="post-title"><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h2>
-      <small class="post-meta">{% include i18n/date date=post.date format="long" %}</small>
+      <small class="post-meta">{{ post.date | localized_date: "long" }}</small>
     </li>
     {% endfor %}
   </ul>

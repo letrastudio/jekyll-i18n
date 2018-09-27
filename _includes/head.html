@@ -6,10 +6,10 @@
   
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/main.css">
   
-  {% for localized_page in localized_pages %}
-  {% unless localized_page.locale == page.locale %}
-  <link rel="alternate" hreflang="{{ localized_page.lang }}" href="{{ site.url }}{{ site.baseurl }}{{ localized_page.url }}">
-  {% endunless %}
+  {% for locale in site.locales %}
+  {% if page.localized[locale.label] %}
+  <link rel="alternate" hreflang="{{ locale.lang }}" href="{{ site.url }}{{ site.baseurl }}{{ page.localized[locale.label].url }}">
+  {% endif %}
   {% endfor %}
   
   {% seo title=false %}
