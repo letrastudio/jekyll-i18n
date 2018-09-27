@@ -1,4 +1,4 @@
-# jekyll-vanilla-i18n
+# jekyll-i18n
 
 Turning Jekyll multilingual is not a straightforward task and comes with tradeoffs. This approach trades complex setup and configuration for simple content management.
 
