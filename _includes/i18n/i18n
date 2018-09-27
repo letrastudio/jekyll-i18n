@@ -1,13 +1,13 @@
 {%- assign obj = include.obj | default: page -%}
 
 {%- comment -%} Get locale {%- endcomment -%}
-{%- assign temp_locale = site.locales[obj.locale] -%}
+{%- assign obj_locale = site.locales[obj.locale] -%}
 
 {%- comment -%} Get or generate document_id {%- endcomment -%}
-{%- include i18n/temp_document_id obj=obj -%}
+{%- include i18n/document_id obj=obj -%}
 
 {%- comment -%} Generate list of localized collections {%- endcomment -%}
-{%- assign temp_localized_collections = "" | split: "," -%}
+{%- assign obj_localized_collections = "" | split: "," -%}
 {%- for locale in site.locales -%}
   {%- assign locale_label = locale[0] -%}
   {%- if locale_label == "default" -%}
@@ -17,37 +17,38 @@
     {%- assign locale_collection_suffix = locale_label | prepend: "_" -%}
     {%- assign locale_collection_name = obj.collection_basename | append: locale_collection_suffix -%}
   {%- endif -%}
-  {%- assign collection_obj = site.collections | where: "label", locale_collection_name | first -%}
-  {%- if collection_obj.output == true or locale_collection_name == "pages" -%}
-    {%- assign temp_localized_collections = temp_localized_collections | push: locale_collection_name -%}
+  {%- assign collection_object = site.collections | where: "label", locale_collection_name | first -%}
+  {%- if collection_object.output == true or locale_collection_name == "pages" -%}
+    {%- assign obj_localized_collections = obj_localized_collections | push: locale_collection_name -%}
   {%- endif -%}
 {%- endfor -%}
 
 {%- comment -%} Generate list of localized pages {%- endcomment -%}
-{%- assign temp_localized_pages = "" | split: "," -%}
-{%- assign current_document_id = temp_document_id -%}
-{%- for localized_collection in temp_localized_collections -%}
+{%- assign obj_localized_pages = "" | split: "," -%}
+{%- assign current_document_id = obj_document_id -%}
+{%- for localized_collection in obj_localized_collections -%}
   {%- for document in site[localized_collection] -%}
-    {%- include i18n/temp_document_id obj=document -%}
-    {%- if temp_document_id == current_document_id -%}
-      {%- assign temp_localized_pages = temp_localized_pages | push: document -%}
+    {%- include i18n/document_id obj=document -%}
+    {%- if obj_document_id == current_document_id -%}
+      {%- assign obj_localized_pages = obj_localized_pages | push: document -%}
       {%- break -%}
     {%- endif -%}
   {%- endfor -%}
 {%- endfor -%}
-{%- assign temp_document_id = current_document_id -%}
-{%- assign temp_default_page = temp_localized_pages | where: "locale", "default" | first -%}
+{%- assign obj_document_id = current_document_id -%}
+{%- assign obj_default_page = obj_localized_pages | where: "locale", "default" | first -%}
 
 {%- comment -%} String localization {%- endcomment -%}
-{%- assign strings_ref = obj.collection_suffix | prepend: "strings" -%}
-{%- assign temp_strings = site.data[strings_ref] -%}
+{%- assign obj_strings_ref = obj.collection_suffix | prepend: "strings" -%}
+{%- assign obj_strings = site.data[obj_strings_ref] -%}
 
 {%- comment -%} Set output variables unless include.obj was passed {%- endcomment -%}
 {%- unless include.obj -%}
-  {%- assign locale = temp_locale -%}
-  {%- assign document_id = temp_document_id -%}
-  {%- assign localized_collections = temp_localized_collections -%}
-  {%- assign localized_pages = temp_localized_pages -%}
-  {%- assign default_page = temp_default_page -%}
-  {%- assign strings = temp_strings -%}
+  {%- assign locale = obj_locale -%}
+  {%- assign document_id = obj_document_id -%}
+  {%- assign localized_collections = obj_localized_collections -%}
+  {%- assign localized_pages = obj_localized_pages -%}
+  {%- assign default_page = obj_default_page -%}
+  {%- assign strings_ref = obj_strings_ref -%}
+  {%- assign strings = obj_strings -%}
 {%- endunless -%}

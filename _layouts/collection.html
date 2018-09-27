@@ -14,7 +14,7 @@ layout: default
     {% include i18n/i18n obj=document %}
     <div class="grid-item">
       <a href="{{ document.url | prepend: site.baseurl }}" title="{{ document.title }}">
-        <img src="{{ document.image | default: temp_default_page.image | prepend: site.baseurl }}" alt="{{ document.title }}">
+        <img src="{{ document.image | default: obj_default_page.image | prepend: site.baseurl }}" alt="{{ document.title }}">
       </a>
     </div>
     {% endfor %}

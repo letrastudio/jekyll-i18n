@@ -1,0 +1,17 @@
+{%- assign id_obj = include.obj | default: page -%}
+
+{%- if id_obj.document_id -%}
+  {%- assign obj_document_id = id_obj.document_id -%}
+{%- else -%}
+  {%- if id_obj.collection -%}
+    {%- assign collection_path = id_obj.collection | prepend: "_" | append: "/" -%}
+    {%- assign path_in_collection = id_obj.path | remove_first: collection_path -%}
+  {%- else -%}
+    {%- assign path_in_collection = id_obj.path -%}
+  {%- endif -%}
+  {%- assign obj_document_id = path_in_collection | split: "." | pop | join: "." -%}
+{%- endif -%}
+
+{%- unless include.obj -%}
+  {%- assign document_id = obj_document_id -%}
+{%- endunless -%}
