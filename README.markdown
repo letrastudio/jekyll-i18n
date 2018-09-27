@@ -81,7 +81,7 @@ For pages, `pages_LOCALE` collections need to be created as well. The default lo
     permalink: "/pt/"
 ```
 
-### Content structure
+## Content management
 
 The site’s content should look something like this:
 
@@ -124,7 +124,7 @@ It’s not necessary for each locale to have a copy of every collection, or ever
 
 
 
-## Document matching between locales
+### Document matching between locales
 
 Document matching is automatic when file and folder names are exactly the same. In this example both documents represent the same content:
 
