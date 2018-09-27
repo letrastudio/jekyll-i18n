@@ -6,7 +6,7 @@ Minimum required Jekyll version is 3.7.0, or 3.8.0 if using `collections_dir`.
 
 
 
-## Configuration and content organization
+## Configuration
 
 Locales are configured in `_config.yml`:
 
@@ -44,7 +44,7 @@ Permalinks need to be set manually for each collection to match the locale’s `
 
 A few front matter defaults need to be configured (`*` glob patterns are helpful here).
 
-To match localized collections to each other, `collection_basename` is used. All `photos` collections across any locales should have `collection_basename` set to `photos`:
+To match localized collections to each other, `collection_basename` is used. All `photos` collections across any locales must have `collection_basename` set to `photos`:
 
 ```yaml
 defaults:
@@ -130,37 +130,37 @@ Document matching is automatic when file and folder names are exactly the same. 
 
 ```
 ├── _collection
-│   └── subdir
+│   └── folder
 │       └── document.markdown
 └── _collection_pt
-    └── subdir
+    └── folder
         └── document.markdown
 ```
 
 To match them, the `i18n` include generates a variable called `document_id`, based on each document’s path inside the collection, and excluding the file extension.
 
-Both documents in this example would return the following `document_id`:
+Both documents in this example would return the same `document_id`, so they would match automatically:
 
 ```
-subdir/document
+folder/document
 ```
 
 When filenames don’t match, `document_id` can be set manually via YAML front matter. Example:
 
 ```
 ├── _collection
-│   └── subdir
+│   └── folder
 │       └── document.markdown
 └── _collection_pt
-    └── subpasta
+    └── pasta
         └── documento.markdown
 ```
 
-By adding this front matter to `documento.markdown`, they’ll match:
+By adding this front matter to `documento.markdown`, they’d match:
 
 ```yaml
 ---
-document_id: subdir/document
+document_id: folder/document
 ---
 ```
 
@@ -174,11 +174,11 @@ The `i18n` include does most of the heavy lifting for making i18n manageable in 
 
 | Variable | Description |
 |:--|:--|
-| `locale` | Contains the attributes of the current locale. The same as `site.locales[page.locale]`. |
+| `locale` | Contains the attributes of the current locale, as defined in `_config.yml`. The same as `site.locales[page.locale]`. |
 | `localized_collections` | An array of labels for all collections matched through `page.collection_basename`. |
-| `localized_pages` | An array of objects for all pages matched through `document_id`, based on `localized_collections`. |
-| `default_page` | The page object of a matched `default` locale version of the current page. Useful for falling back to the default locale when dealing with unlocalized content. |
-| `strings` | Contains any localized text strings defined in `_data`. More on that later. |
+| `localized_pages` | An array of objects for all documents matched through `document_id`, based on `localized_collections`. |
+| `default_page` | The page object of a matched `default` locale version of the current document. Useful for falling back to the default locale when dealing with unlocalized content. The same as `{{ localized_pages \| where: "locale", "default" \| first }}`. |
+| `strings` | Contains any localized text strings defined in `_data`. More on that below. |
 | `document_id` | Returns `page.document_id` or automatically generates a `document_id` string for the page. |
 
 `i18n` must be included at the top of every layout requiring i18n features:
