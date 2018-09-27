@@ -317,7 +317,34 @@ pt: Quinta-feira, 15 de Setembro de 2016
 
 
 
-## Plugin compatibility
+## Issues
+
+### Performance
+
+Build performance can be a problem. Glob pattern defaults are not super fast, and generating `document_id` can be a huge issue. The biggest example of how inefficient it can be is in the `site-nav.html` include, which creates a menu from a list of `document_id` strings:
+
+```liquid
+{% for document_id in site.navigation %}
+  {% for page in pages %}
+    {% include i18n/document_id obj=page %}
+    {% if obj_document_id == document_id %}
+    <li>
+      <a href="{{ page.url | prepend: site.baseurl }}" {% if page.url == current_url %}aria-current="page"{% endif %}>
+        {{ page.title | escape }}
+      </a>
+    </li>
+    {% break %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+```
+
+This nested looping is very bad for performance and can get out of hand quickly. Because `document_id` needs to be generated using complex Liquid, the `where` filter can't be used instead. The only solution would be to set `document_id` in front matter for *all* documents, but that goes against the initial objective of making content management easy.
+
+A native implementation of `document_id` in Jekyll would single-handedly fix most performace problems with this solution.
+
+
+### Plugin compatibility
 
 I’ve tested the most relevant GitHub-whitelisted plug-ins:
 
