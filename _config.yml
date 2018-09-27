@@ -63,55 +63,55 @@ defaults:
     layout: page
     collection_basename: pages
 - scope:
-    path: '_pages*/'
+    path: "_pages*/"
   values:
     layout: page
     collection_basename: pages
 - scope:
-    path: '_posts*/'
+    path: "_posts*/"
   values:
     layout: post
     collection_basename: posts
 - scope:
-    path: '_photos*/'
+    path: "_photos*/"
   values:
     layout: photo
     collection_basename: photos
 # set page.locale, page.lang, page.collection_suffix
 - scope:
-    path: '*_pt/'
+    path: "*_pt/"
   values:
     locale: pt
     lang: pt-PT
     collection_suffix: _pt
 - scope:
-    path: '*_mo/'
+    path: "*_mo/"
   values:
     locale: mo
     lang: zh-MO
     collection_suffix: _mo
 - scope:
-    path: '*_ae/'
+    path: "*_ae/"
   values:
     locale: ae
     lang: ar-AE
     collection_suffix: _ae
 - scope:
-    path: ''
+    path: ""
   values:
     locale: default
     lang: en-US
 # prevent index pages from publishing to baseurl/index/index.html
 - scope:
-    path: '_pages_pt/index.*'
+    path: "_pages_pt/index.*"
   values:
     permalink: "/pt/"
 - scope:
-    path: '_pages_mo/index.*'
+    path: "_pages_mo/index.*"
   values:
     permalink: "/mo/"
 - scope:
-    path: '_pages_ae/index.*'
+    path: "_pages_ae/index.*"
   values:
     permalink: "/ae/"
 
