@@ -328,12 +328,8 @@ Build performance can be a problem. Glob pattern defaults are not super fast, an
   {% for page in pages %}
     {% include i18n/document_id obj=page %}
     {% if obj_document_id == document_id %}
-    <li>
-      <a href="{{ page.url | prepend: site.baseurl }}" {% if page.url == current_url %}aria-current="page"{% endif %}>
-        {{ page.title | escape }}
-      </a>
-    </li>
-    {% break %}
+      <li><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title | escape }}</a></li>
+      {% break %}
     {% endif %}
   {% endfor %}
 {% endfor %}
