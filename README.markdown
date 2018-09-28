@@ -88,7 +88,7 @@ _site
 A new document attribute called `document_id` would be used to establish matches between locales. It would be generated automatically for every document based on its path within the parent collection and filename, excluding the file extension. Some examples:
 
 | Document | `document_id` |
-|:--|:--|:--|
+|:--|:--|
 | `index.html` | `index` |
 | `_pt/index.html` | `index` |
 | `_collection/folder/document.md` | `folder/document` |
